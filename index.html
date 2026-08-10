@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abdullah Akbar Khalid — Exhibits</title>
+<meta name="description" content="Systems I built for private-markets work: register-scale screening, covenant checks, self-verifying memos. Every claim on this page cites its source.">
+<meta property="og:title" content="Abdullah Akbar Khalid — Exhibits">
+<meta property="og:description" content="Can read a deal. Built the machine that reads five million.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF7;
+  --ink:#17181A;
+  --red:#EC3013;
+  --rule:#E3E1DA;
+  --muted:#6E6C66;
+  --band-a:#1E7A52;
+  --band-c:#B4700F;
+  --card:#FFFFFE;
+  --serif:"IBM Plex Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:47.5rem;margin:0 auto;padding:0 1.5rem}
+
+/* ---------- masthead ---------- */
+header.masthead{border-bottom:2px solid var(--ink);padding:1.4rem 0 1.1rem}
+.masthead-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem}
+.masthead h1{font-family:var(--mono);font-weight:600;font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
+.masthead nav{font-family:var(--mono);font-size:.8125rem;display:flex;gap:1.4rem}
+.masthead nav a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+.masthead nav a:hover{border-bottom-color:var(--red)}
+.masthead nav a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- thesis ---------- */
+.thesis{padding:5rem 0 4.25rem;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
+.thesis h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.4vw,3.125rem);
+  line-height:1.16;letter-spacing:-.01em;margin:1.1rem 0 1.6rem;max-width:17em;
+}
+.thesis h2 em{font-style:italic}
+.thesis p{max-width:36em;color:var(--ink)}
+.thesis p + p{margin-top:.9rem}
+.thesis .method{color:var(--muted);font-size:.9375rem;max-width:38em}
+
+/* ---------- citations ---------- */
+a.cite{
+  font-family:var(--mono);font-size:.72em;color:var(--red);text-decoration:none;
+  vertical-align:super;line-height:0;font-weight:500;padding:0 .1em;
+}
+a.cite:hover{text-decoration:underline}
+a.cite:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+/* ---------- exhibits ---------- */
+.exhibit{padding:3.6rem 0;border-bottom:1px solid var(--rule)}
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+.ex-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
+.ex-status{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
+.exhibit h3{font-family:var(--serif);font-weight:600;font-size:1.75rem;line-height:1.2;margin-bottom:.9rem;letter-spacing:-.005em}
+.exhibit .pitch{max-width:38em}
+.exhibit .pitch + .pitch{margin-top:.8rem}
+.tags{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.tags span{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--rule);padding:.18rem .55rem;border-radius:2px;background:var(--card)}
+
+/* crafted visuals share a frame */
+.visual{
+  margin-top:1.7rem;border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  overflow-x:auto;
+}
+.visual-caption{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.55rem .9rem;border-bottom:1px solid var(--rule)}
+
+/* A — funnel */
+.funnel{padding:1.2rem .9rem 1.3rem;font-family:var(--mono);font-size:.8125rem}
+.funnel .stage{display:flex;align-items:center;gap:.8rem;padding:.32rem 0}
+.funnel .bar{height:.9rem;background:var(--ink);border-radius:1px;flex:0 1 auto;min-width:.35rem;opacity:.92}
+.funnel .stage:last-child .bar{background:var(--red)}
+.funnel .lbl{color:var(--muted);white-space:nowrap;flex:none}
+.funnel .stage:last-child .lbl{color:var(--ink);font-weight:600}
+
+/* B — band comparison */
+.bands{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:.8125rem}
+.band{padding:1.1rem 1rem 1.2rem}
+.band + .band{border-left:1px solid var(--rule)}
+.band .co{font-weight:600;font-size:.8125rem;letter-spacing:.02em;min-height:2.4em}
+.band .fact{color:var(--muted);margin-top:.35rem;font-size:.75rem;line-height:1.55}
+.band .grade{margin-top:.9rem;font-size:1.5rem;font-weight:600}
+.band.bad .grade{color:var(--band-c)}
+.band.good .grade{color:var(--band-a)}
+.band .verdict{font-size:.75rem;margin-top:.15rem;color:var(--muted)}
+@media (max-width:540px){.bands{grid-template-columns:1fr}.band + .band{border-left:0;border-top:1px solid var(--rule)}}
+
+/* C — terminal grading */
+.term{background:var(--ink);color:#E8E6DF;font-family:var(--mono);font-size:.8125rem;line-height:1.7;padding:1.1rem 1.2rem;white-space:pre;border-radius:0 0 3px 3px}
+.term .ok{color:#7CC7A1}
+.term .warn{color:#E8A94E}
+.term .dim{color:#8B8A85}
+
+/* D — status grid */
+.grid-status{display:grid;grid-template-columns:repeat(3,1fr);font-family:var(--mono);font-size:.78rem}
+.cell{padding:.85rem 1rem;border-top:1px solid var(--rule);display:flex;align-items:center;gap:.55rem}
+.cell:nth-child(-n+3){border-top:0}
+.cell:not(:nth-child(3n+1)){border-left:1px solid var(--rule)}
+.dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--band-a);flex:none}
+.cell.hot{background:#FFF6F4}
+.cell.hot .dot{background:var(--red)}
+.cell.hot strong{color:var(--red)}
+@media (max-width:540px){
+  .grid-status{grid-template-columns:1fr 1fr}
+  .cell:not(:nth-child(3n+1)){border-left:0}
+  .cell:not(:nth-child(2n+1)){border-left:1px solid var(--rule)}
+  .cell:nth-child(3){border-top:1px solid var(--rule)}
+}
+
+/* E — relay diagram */
+.relay{padding:1.2rem 1rem 1.3rem;font-family:var(--mono);font-size:.78rem;display:flex;align-items:stretch;gap:0;min-width:34rem}
+.relay .col{flex:1;display:flex;flex-direction:column;gap:.45rem;justify-content:center}
+.relay .node{border:1px solid var(--rule);background:var(--paper);padding:.4rem .6rem;border-radius:2px;text-align:center}
+.relay .core{border:1.5px solid var(--ink);font-weight:600;padding:.8rem .6rem}
+.relay .core small{display:block;font-weight:400;color:var(--muted);margin-top:.25rem;font-size:.7rem}
+.relay .arrows{flex:none;display:flex;align-items:center;color:var(--muted);padding:0 .7rem;font-size:.9rem}
+.relay .out .node{border-color:var(--red);color:var(--red);font-weight:600}
+
+/* ---------- references ---------- */
+.refs{padding:3.4rem 0 2.5rem}
+.refs h4{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:1.3rem}
+.refs ol{list-style:none;font-family:var(--mono);font-size:.8125rem;line-height:2.1}
+.refs li{display:flex;gap:1rem}
+.refs .n{color:var(--muted);flex:none;width:1.6rem}
+.refs a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
+.refs a:hover{border-bottom-color:var(--red)}
+.refs a:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.refs .note{color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{border-top:2px solid var(--ink);padding:1.3rem 0 3.5rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+footer a:hover{border-bottom-color:var(--red)}
+
+/* load moment — thesis only */
+@media (prefers-reduced-motion:no-preference){
+  .thesis > *{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .thesis > *:nth-child(2){animation-delay:.08s}
+  .thesis > *:nth-child(3){animation-delay:.16s}
+  .thesis > *:nth-child(4){animation-delay:.24s}
+  @keyframes rise{to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <h1>Abdullah Akbar Khalid</h1>
+    <nav>
+      <a href="https://github.com/amateurakhbar">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+    </nav>
+  </div>
+</header>
+
+<section class="thesis">
+  <div class="wrap">
+    <p class="eyebrow">Operator-founder · INSEAD MBA · UK &amp; EU private markets</p>
+    <h2>Can read a deal. Built the machine that reads <em>five million</em>.</h2>
+    <p>Most people can read a deal or build a product. I do both — and this page is the receipts: working systems that do diligence work at register scale, built and run by me.</p>
+    <p class="method">One house rule, borrowed from my own tooling: every claim below carries a citation to its source — a repo, a live demo, or a public filing. What can't be cited is labelled private, not left implied.</p>
+  </div>
+</section>
+
+<article class="exhibit" id="screening">
+  <div class="wrap">
+    <div class="ex-head">
+      <span class="ex-label">Exhibit A · Sourcing at register scale</span>
+      <span class="ex-status">public · python</span>
+    </div>
+    <h3>Companies House Screening Engine<a class="cite" href="#ref-1">[1]</a></h3>
+    <p class="pitch">Which founder-owned tech-services firms actually fit a roll-up thesis — including the ones no keyword search would ever surface? This engine takes the <strong>entire UK register (~5M companies, 400+ columns)</strong> down to a ranked, defensible shortlist: it discovers each company's website, classifies it with rules + Claude on a four-axis taxonomy, recovers financials from iXBRL accounts, and scores defensibility.</p>
+    <div class="visual" aria-label="Screening funnel from five million companies to a ranked shortlist">
+      <div class="visual-caption">The funnel — one register in, one shortlist out</div>
+      <div class="funnel">
+        <div class="stage"><div class="bar" style="width:100%;max-width:24rem"></div><span class="lbl">~5,000,000 · UK register, bulk</span></div>
+        <div class="stage"><div class="bar" style="width:44%;max-width:24rem"></div><span class="lbl">tech / IT SIC filter</span></div>
+        <div class="stage"><div class="bar" style="width:24%;max-width:24rem"></div><span class="lbl">website discovered &amp; scraped</span></div>
+        <div class="stage"><div class="bar" style="width:11%;max-width:24rem"></div><span class="lbl">classified on 4-axis taxonomy</span></div>
+        <div class="stage"><div class="bar" style="width:5%;max-width:24rem"></div><span class="lbl">financials recovered (iXBRL)</span></div>
+        <div class="stage"><div class="bar" style="width:2%;max-width:24rem"></div><span class="lbl">ranked, defensible shortlist</span></div>
+      </div>
+    </div>
+    <div class="tags"><span>Python</span><span>Claude API</span><span>iXBRL</span><span>Companies House bulk data</span></div>
+  </div>
+</article>
+
+<article class="exhibit" id="covenant">
+  <div class="wrap">
+    <div class="ex-head">
+      <span class="ex-label">Exhibit B · Covenant strength</span>
+      <span class="ex-status">public · live demo</span>
+    </div>
+    <h3>Covenant<a class="cite" href="#ref-2">[2]</a></h3>
+    <p class="pitch">A lease is offered by entity X. <em>Is that covenant real?</em> Search the register for "Pret A Manger" and twenty entities come back — two of them named almost identically. One is the trading company filing full accounts since 1984. The other is a 2018 acquisition vehicle, formerly JAB (ACQUISITION) LTD. Same brand, same registered address, opposite covenant.<a class="cite" href="#ref-3">[3]</a></p>
+    <p class="pitch">Covenant screens tenant strength from free, public Companies House data — one tenant, a rent roll, or the whole country — instead of a per-report credit agency fee.</p>
+    <div class="visual" aria-label="Two Pret A Manger entities with opposite covenant grades">
+      <div class="visual-caption">Real register data — the example that carries the idea</div>
+      <div class="bands">
+        <div class="band bad">
+          <div class="co">PRET A MANGER LIMITED</div>
+          <div class="fact">No. 11391321 · inc. 2018<br>SIC 64209 — holding company<br>audit-exemption subsidiary</div>
+          <div class="grade">Band C · 55/100</div>
+          <div class="verdict">require guarantee or deposit</div>
+        </div>
+        <div class="band good">
+          <div class="co">PRET A MANGER (EUROPE)&nbsp;LIMITED</div>
+          <div class="fact">No. 01854213 · inc. 1984<br>SIC 47110 — retail, trading<br>full accounts filed</div>
+          <div class="grade">Band A · 100/100</div>
+          <div class="verdict">institutionally acceptable</div>
+        </div>
+      </div>
+    </div>
+    <div class="tags"><span>Python</span><span>Companies House API</span><span>GitHub Pages demo</span></div>
+  </div>
+</article>
+
+<article class="exhibit" id="cited-memo">
+  <div class="wrap">
+    <div class="ex-head">
+      <span class="ex-label">Exhibit C · Provenance</span>
+      <span class="ex-status">public · python</span>
+    </div>
+    <h3>cited-memo<a class="cite" href="#ref-4">[4]</a></h3>
+    <p class="pitch">AI drafts a plausible investment memo in seconds. The problem is the next hour, when an associate re-checks every figure against the data room because nobody can tell which numbers came from the accounts and which the model invented. cited-memo inverts it: it drafts from source documents only, cites the exact page behind every figure, then <strong>grades its own output</strong> — offline, no API key.</p>
+    <p class="pitch">You check the two flagged sentences instead of all twenty-six.</p>
+    <div class="visual" aria-label="cited-memo self-grading terminal output">
+      <div class="visual-caption">The self-grade — real output format</div>
+      <div class="term">traceable figures : <span class="ok">24/26  (92%)</span>
+invalid citations : <span class="ok">0</span>
+unsupported claims: <span class="warn">2</span>
+<span class="dim">  - EBITDA margin of 18% is expected to hold through FY26.
+  - Management estimates a further £400k of synergies.</span></div>
+    </div>
+    <div class="tags"><span>Python</span><span>PDF extraction</span><span>offline verification</span></div>
+  </div>
+</article>
+
+<article class="exhibit" id="command-center">
+  <div class="wrap">
+    <div class="ex-head">
+      <span class="ex-label">Exhibit D · Operations</span>
+      <span class="ex-status">public · react + supabase</span>
+    </div>
+    <h3>Command Center<a class="cite" href="#ref-5">[5]</a></h3>
+    <p class="pitch">One dashboard for what six apps and my head used to hold: today's priorities, the backlog, overdue items, people I owe a reply, the job pipeline. My AI automations capture into it all day. The page that justifies the project is <strong>Automation Health</strong> — automations fail silently, and a briefing that stops arriving looks identical to a quiet news day until something checks.</p>
+    <div class="visual" aria-label="Command Center surfaces with automation health highlighted">
+      <div class="visual-caption">Nine surfaces, one honest read</div>
+      <div class="grid-status">
+        <div class="cell"><span class="dot"></span>Today</div>
+        <div class="cell"><span class="dot"></span>Tasks</div>
+        <div class="cell"><span class="dot"></span>Overdue</div>
+        <div class="cell"><span class="dot"></span>Calendar</div>
+        <div class="cell"><span class="dot"></span>People</div>
+        <div class="cell"><span class="dot"></span>Jobs</div>
+        <div class="cell"><span class="dot"></span>Score</div>
+        <div class="cell"><span class="dot"></span>Remaining</div>
+        <div class="cell hot"><span class="dot"></span><strong>Automation&nbsp;Health</strong></div>
+      </div>
+    </div>
+    <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>row-level auth</span><span>edge functions</span></div>
+  </div>
+</article>
+
+<article class="exhibit" id="stack">
+  <div class="wrap">
+    <div class="ex-head">
+      <span class="ex-label">Exhibit E · The automation stack</span>
+      <span class="ex-status">private by necessity<a class="cite" href="#ref-6">[6]</a></span>
+    </div>
+    <h3>The systems that run my day</h3>
+    <p class="pitch">No repo for these — they hold my sessions and keys. A scraping engine that reads pages bot-detection blocks, including LinkedIn. A Discord→WhatsApp relay that reformats a trading community's calls into structured tables in real time. An Instagram story archiver with review notes. And a briefing pipeline that ranks everything I'm tracking and pushes a top-five to my WhatsApp twice a day, on a launchd schedule.</p>
+    <div class="visual" aria-label="Automation stack data flow from sources to WhatsApp and dashboard">
+      <div class="visual-caption">One flow — sources in, decisions out</div>
+      <div class="relay">
+        <div class="col">
+          <div class="node">Discord</div>
+          <div class="node">Instagram</div>
+          <div class="node">LinkedIn</div>
+          <div class="node">job boards</div>
+        </div>
+        <div class="arrows">→</div>
+        <div class="col">
+          <div class="node core">scrape · parse · rank<small>Python · Playwright · Claude · launchd</small></div>
+        </div>
+        <div class="arrows">→</div>
+        <div class="col out">
+          <div class="node">WhatsApp, 2×/day</div>
+          <div class="node">Command Center</div>
+        </div>
+      </div>
+    </div>
+    <div class="tags"><span>Python</span><span>Playwright</span><span>Claude API</span><span>launchd</span><span>WhatsApp bridge</span></div>
+  </div>
+</article>
+
+<section class="refs" id="references">
+  <div class="wrap">
+    <h4>References</h4>
+    <ol>
+      <li id="ref-1"><span class="n">[1]</span><span><a href="https://github.com/amateurakhbar/companies-house-screening-engine">github.com/amateurakhbar/companies-house-screening-engine</a></span></li>
+      <li id="ref-2"><span class="n">[2]</span><span><a href="https://github.com/amateurakhbar/covenant">github.com/amateurakhbar/covenant</a> · <a href="https://amateurakhbar.github.io/covenant/">live demo</a></span></li>
+      <li id="ref-3"><span class="n">[3]</span><span>Companies House — <a href="https://find-and-update.company-information.service.gov.uk/company/11391321">No. 11391321</a> · <a href="https://find-and-update.company-information.service.gov.uk/company/01854213">No. 01854213</a></span></li>
+      <li id="ref-4"><span class="n">[4]</span><span><a href="https://github.com/amateurakhbar/cited-memo">github.com/amateurakhbar/cited-memo</a></span></li>
+      <li id="ref-5"><span class="n">[5]</span><span><a href="https://github.com/amateurakhbar/command-center-companion">github.com/amateurakhbar/command-center-companion</a></span></li>
+      <li id="ref-6"><span class="n">[6]</span><span class="note">source withheld — these systems carry live credentials and personal data. Demos on request.</span></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Built by hand, no template — like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
