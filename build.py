@@ -34,7 +34,7 @@ def head(title, desc, canonical, extra=""):
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/media/og.png">
+<meta property="og:image" content="{SITE}/media/og-v2.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Abdullah Akbar Khalid: most people can read a deal or build a product, I do both.">
