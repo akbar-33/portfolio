@@ -314,6 +314,68 @@ footer.site .wrap,footer.site .wrap-wide{display:flex;justify-content:space-betw
 footer.site a{text-decoration:none;border-bottom:1px solid var(--rule)}
 footer.site a:hover{border-bottom-color:var(--red)}
 
+/* ---------- narrow screens ----------
+   The diagrams are laid out as horizontal chains, which needs a min-width and
+   therefore a sideways drag on a phone. Below 640px they become vertical
+   stacks instead, so the whole figure fits the screen and reads top to bottom.
+   The arrows rotate to match the new reading direction. */
+@media (max-width:640px){
+
+  /* architecture flows: lane label becomes a heading, nodes stack under it */
+  .flow{min-width:0;padding:.9rem .8rem 1rem;font-size:.78rem}
+  .lane{flex-direction:column;margin-bottom:1.3rem}
+  .lane:last-child{margin-bottom:0}
+  .lane-tag{
+    width:auto;margin-bottom:.55rem;padding-bottom:.35rem;
+    border-bottom:1px solid var(--rule);font-size:.66rem;
+  }
+  .chain{flex-direction:column}
+  .nd{width:100%;padding:.55rem .6rem;text-align:left}
+  .nd b{font-size:.78rem}
+  .nd small{font-size:.7rem}
+  .ar{padding:.28rem 0;justify-content:center;transform:rotate(90deg)}
+
+  /* relay: three columns become three stacked groups */
+  .relay{min-width:0;flex-direction:column;padding:.9rem .8rem 1rem;font-size:.8rem}
+  .relay .col{gap:.4rem}
+  .relay .arrows{padding:.35rem 0;justify-content:center;transform:rotate(90deg)}
+  .relay .core{padding:.7rem .6rem}
+
+  /* compliance tree: path above its obligation, one record per row */
+  .tree{min-width:0;padding:.85rem .8rem .95rem;font-size:.78rem}
+  .tree .row{
+    flex-direction:column;gap:.2rem;padding:.5rem 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .tree .row:last-child{border-bottom:0}
+  .tree .path{width:auto;font-weight:600}
+  .tree .ob{font-size:.72rem}
+  .tree .crown{margin:0 -.8rem;padding:.5rem .8rem}
+
+  /* funnel: let long labels wrap rather than force the card wider */
+  .funnel{padding:1rem .8rem 1.1rem}
+  .funnel .stage{gap:.6rem}
+  .funnel .lbl{white-space:normal}
+
+  /* status grid: one column reads better than two at this width */
+  .grid-status{grid-template-columns:1fr}
+  .cell:not(:nth-child(2n+1)){border-left:0}
+  .cell:nth-child(2),.cell:nth-child(3){border-top:1px solid var(--rule)}
+
+  /* terminal output wraps rather than scrolls. pre-wrap keeps the leading
+     indentation that makes the validator output readable, while letting long
+     lines fold instead of forcing a sideways drag. */
+  .term{
+    font-size:.72rem;padding:.9rem .95rem;line-height:1.6;
+    white-space:pre-wrap;overflow-wrap:break-word;
+  }
+
+  /* the nav is the one thing that still overflowed a 320px screen */
+  header.masthead{padding:.85rem 0}
+  .masthead nav{gap:.85rem;flex-wrap:wrap;justify-content:flex-end;row-gap:.5rem}
+  .masthead h1,.masthead .brand{font-size:.86rem;letter-spacing:.06em}
+}
+
 /* ---------- scroll reveal ---------- */
 @media (prefers-reduced-motion:no-preference){
   .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1)}
