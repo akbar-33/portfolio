@@ -38,7 +38,11 @@ The PNGs in `media/` are rendered from `media/src/*.html` at 1200x630:
   --screenshot=media/og.png "file://$PWD/media/src/og.html"
 ```
 
-`media/og.png` is the social preview card. Regenerate it whenever the hero copy changes, or link previews will show the old headline.
+The social preview card is the one declared as `og:image` in `build.py`, currently `media/og-v2.png`. Regenerate it whenever the hero copy changes, or link previews keep showing the old headline.
+
+**Replacing the file in place is not enough.** WhatsApp, iMessage and Slack cache previews by URL and will not refetch, so an updated image at the same path never reaches anyone who already has the link cached. Bump the filename (`og-v3.png`) and update the `og:image` line in `build.py`. Keep the old file: links already cached elsewhere still point at it.
+
+To force a refresh for a link already in circulation, run the page through [Facebook's Sharing Debugger](https://developers.facebook.com/tools/debug/), which shares crawler infrastructure with WhatsApp, and [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) for LinkedIn.
 
 ## Deploying
 
