@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cited-memo · Abdullah Akbar Khalid</title>
+<meta name="description" content="An investment memo drafted only from source documents, where every figure cites its page, and the tool grades its own provenance before you read a word.">
+<meta property="og:title" content="cited-memo · Abdullah Akbar Khalid">
+<meta property="og:description" content="An investment memo drafted only from source documents, where every figure cites its page, and the tool grades its own provenance before you read a word.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/cited-memo">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#cited-memo">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit D · Provenance</p>
+    <h1 class="reveal d1">AI drafting is cheap. Checking the draft is what costs you an hour.</h1>
+    <p class="lede reveal d2">An investment memo drafted only from source documents, where every figure cites its page, and the tool grades its own provenance before you read a word.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Public</dd></div><div><dt>Stack</dt><dd>Python · PDF extraction · offline verifier</dd></div><div><dt>Source</dt><dd><a href="https://github.com/akbar-33/cited-memo">github.com/akbar-33/cited-memo</a></dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The problem</h2><div class="reveal"><p>AI writes a plausible investment memo in seconds. The problem is the next hour, when an associate re-checks every figure against the data room because nobody can tell which numbers came from the accounts and which the model invented.</p>
+<p>That verification cost is why most AI drafting tools quietly stop being used around week three. The draft was never the expensive part.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The inversion</h2><div class="reveal"><p>The tool drafts from source documents only, cites the exact page behind every figure, and then grades its own output. Two uncited claims surfaced by name means you check two sentences instead of twenty-six.</p></div><div class="visual reveal" aria-label="cited-memo self-grading terminal output">
+  <div class="visual-caption"><span>The self-grade: real output format</span><span class="hint">Hover any line</span></div>
+  <div class="term"><span class="row" data-tip="Every figure in the draft is located, then checked: does the sentence containing it cite a passage, and does that passage exist? 92% is a grade of the draft, not a promise about it.">traceable figures : <span class="ok">24/26  (92%)</span></span>
+<span class="row" data-tip="A citation pointing at a passage that was never extracted. This is the failure mode people fear most from AI drafting, and it is the cheapest of the three to detect.">invalid citations : <span class="ok">0</span></span>
+<span class="row" data-tip="Assertions with no evidence behind them. The tool refuses to hide these: it names them in full so the reviewer knows exactly which two sentences to check.">unsupported claims: <span class="warn">2</span></span>
+<span class="row dim">  - EBITDA margin of 18% is expected to hold through FY26.
+  - Management estimates a further £400k of synergies.</span></div>
+</div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">How it operates</h2><div class="reveal"><p>Three steps, and the third is the one that matters.</p></div><div class="visual reveal" aria-label="How it operates: drafting is cheap, verification is the product"><div class="visual-caption"><span>How it operates: drafting is cheap, verification is the product</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Ingest</div><div class="chain"><div class="nd io" data-tip="Whatever the deal actually gave you, in whatever shape it arrived."><b>Source PDFs</b><small>the data room</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="The numbering is the whole trick. A citation can only be checked if the thing it points at has an address."><b>Extract</b><small>every page becomes a numbered passage, tagged document and page</small></div></div></div><div class="lane"><div class="lane-tag">Draft</div><div class="chain"><div class="nd " data-tip="Constraining the source material is what makes the output checkable at all."><b>The model writes from those passages only, and must follow each figure with the citation it came from</b></div></div></div><div class="lane"><div class="lane-tag">Verify</div><div class="chain"><div class="nd gate" data-tip="Deliberately not an LLM. A model grading its own homework can be talked out of a failure; a parser cannot."><b>Offline checker</b><small>no API key, no model in the loop</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd gate" data-tip="Three distinct failure modes, each detected differently."><b>Catches three failures</b><small>uncited figure · citation to a passage that does not exist · claim with no evidence</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="You check the two flagged sentences instead of all twenty-six."><b>Graded memo</b><small>coverage, invalid citations, unsupported claims</small></div></div></div></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal"><div class="decision"><b>The verifier is not a language model</b><p>It runs offline with no API key and no model in the loop. A model asked to grade its own homework can be argued out of a failure; a parser that looks for a citation and checks whether the passage exists cannot. Making verification dumber made it trustworthy.</p></div><div class="decision"><b>Numbering the passages is the whole trick</b><p>A citation can only be checked if the thing it points at has an address. Turning every page into a numbered passage tagged with its document and page number is what makes the rest mechanically verifiable.</p></div><div class="decision"><b>Name the unsupported claims in full</b><p>A coverage percentage on its own invites you to shrug. Printing the exact sentences that lack evidence turns a score into a two-minute task.</p></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Three failure modes, caught separately</h2><div class="reveal"><p>Verification catches a figure with no citation at all, a citation pointing at a passage that does not exist, and a claim asserted without evidence. They fail differently and are detected differently, which is why a single confidence score would hide more than it reveals.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#cited-memo">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

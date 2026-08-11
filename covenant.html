@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Covenant · Abdullah Akbar Khalid</title>
+<meta name="description" content="Screening the covenant strength of UK commercial tenants from free public filings, at any scale from one lease to an entire postcode district.">
+<meta property="og:title" content="Covenant · Abdullah Akbar Khalid">
+<meta property="og:description" content="Screening the covenant strength of UK commercial tenants from free public filings, at any scale from one lease to an entire postcode district.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/covenant">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#covenant">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit B · Covenant strength</p>
+    <h1 class="reveal d1">Is that covenant real, and if not, where does the money actually sit?</h1>
+    <p class="lede reveal d2">Screening the covenant strength of UK commercial tenants from free public filings, at any scale from one lease to an entire postcode district.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Public, live demo</dd></div><div><dt>Stack</dt><dd>Python · Companies House API · DuckDB · Flask</dd></div><div><dt>Source</dt><dd><a href="https://github.com/akbar-33/covenant">github.com/akbar-33/covenant</a></dd></div><div><dt>Demo</dt><dd><a href="https://akbar-33.github.io/covenant/">akbar-33.github.io/covenant</a></dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The problem</h2><div class="reveal"><p>In UK commercial property the building is almost secondary. What you are buying is the rental income stream, and that stream is only as good as the tenant's ability to keep paying. Surveyors call this covenant strength and assess it constantly, today either by paying a credit reference agency per report or by eyeballing it.</p>
+<p>Meanwhile every UK company files public, structured, machine-readable records for free, and the strongest early warnings of tenant failure are buried in them. Almost nobody reads them systematically, because doing it by hand across a rent roll is tedious.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The example that carries the whole idea</h2><div class="reveal"><p>Search the register for "Pret A Manger" and twenty entities come back, several dissolved, two of them named almost identically. One is a 2018 acquisition vehicle, formerly JAB (ACQUISITION) LTD, filing under the subsidiary audit exemption. The other has traded since 1984 and files full accounts.</p>
+<p>Same brand. Same registered address. Opposite covenant. A landlord who signs the first entity believes they have the sandwich chain, and actually holds a shell. That distinction is free, public and structured, and this is the machinery for checking it.</p></div><div class="visual reveal" aria-label="Two Pret A Manger entities with opposite covenant grades">
+  <div class="visual-caption"><span>Real register data: the example that carries the idea</span><span class="hint">Hover either entity</span></div>
+  <div class="bands">
+    <div class="band bad" data-tip="Incorporated in 2018 as JAB (ACQUISITION) LTD. A holding company by SIC code, filing under the subsidiary audit exemption, so there is no income statement to read. Signing a lease with this entity gets you the brand name and none of the trading history.">
+      <div class="co">PRET A MANGER LIMITED</div>
+      <div class="fact">No. 11391321 · inc. 2018<br>SIC 64209 · holding company<br>audit-exemption subsidiary</div>
+      <div class="grade">Band C · 55/100</div>
+      <div class="verdict">require guarantee or deposit</div>
+    </div>
+    <div class="band good" data-tip="Trading since 1984 and filing full accounts, which is the strongest disclosure level available. This is the entity with the sandwich shops, the revenue, and the covenant a landlord actually wants on the lease.">
+      <div class="co">PRET A MANGER (EUROPE)&nbsp;LIMITED</div>
+      <div class="fact">No. 01854213 · inc. 1984<br>SIC 47110 · retail, trading<br>full accounts filed</div>
+      <div class="grade">Band A · 100/100</div>
+      <div class="verdict">institutionally acceptable</div>
+    </div>
+  </div>
+</div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">How it operates</h2><div class="reveal"><p>Two paths with deliberately different currencies. A certificate is fetched live from the Companies House API at the moment you look at it. A sweep runs over a monthly bulk snapshot of 5,695,465 companies, dated the first of the month. The interface keeps the two visibly distinct, because presenting a month-old reading as live would be exactly the kind of quiet error this tool exists to catch.</p></div><div class="visual reveal" aria-label="How it operates: register in, defensible verdict out"><div class="visual-caption"><span>How it operates: register in, defensible verdict out</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Live path</div><div class="chain"><div class="nd io" data-tip="Live at the moment you look, so a certificate is never a stale photograph."><b>Companies House API</b><small>free, public register</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Every entity starts at 100 and loses points only for reasons that cite the filing that evidences them."><b>covenant.py</b><small>deduction ledger, each rule names its filing</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Four views, each answering one question a surveyor actually asks."><b>app.py (Flask)</b><small>search · certificate · compare</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="A grade with its working shown, phrased in transaction language: require a guarantee, take a deposit, accept as is."><b>Band A to E + score</b></div></div></div><div class="lane"><div class="lane-tag">Scale path</div><div class="chain"><div class="nd io" data-tip="The monthly bulk snapshot, roughly 470MB, dated the first of the month and visibly distinct from live readings."><b>Parquet snapshot</b><small>5,695,465 companies</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Fast enough to sweep a whole district interactively, which is what turns a single check into portfolio triage."><b>sweep.py + DuckDB</b><small>~0.6s per postcode, cached</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="The public demo is the real app, frozen. No server to sleep, no API key to leak."><b>freeze.py</b><small>renders the app to static HTML</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="Anyone can click through real register data without installing anything."><b>GitHub Pages</b><small>demo that never sleeps</small></div></div></div></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal"><div class="decision"><b>Deduction-based scoring, never a black box</b><p>Every entity starts at 100 and loses points only for reasons that name the filing evidencing them. A surveyor can disagree with a deduction and go read the source. A score with no ledger behind it is an opinion wearing a number's clothing.</p></div><div class="decision"><b>Transaction language, not adjectives</b><p>The output says require a guarantee, take a six to twelve month deposit, or accept as is. Those are the decisions a lease negotiation actually turns on. Describing a tenant as 'moderate risk' helps nobody.</p></div><div class="decision"><b>The demo is the real app, frozen</b><p>The public dashboard is generated by rendering the live application to static HTML. No server to fall asleep, no API key to leak, and no risk of a demo drifting away from the tool it claims to represent.</p></div><div class="decision"><b>A screen, not an opinion</b><p>Nothing here is a Red Book valuation or investment advice. It tells you which entities deserve an hour of a surveyor's attention, which is a genuinely useful thing to automate and a dangerous thing to overclaim.</p></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">At portfolio scale</h2><div class="reveal"><p>The sweep scores a whole postcode district in about six tenths of a second per postcode once cached. A single W1 run scores 7,746 companies, returns the band distribution, the weakest names, a distress league across the district, and a sector panel. That is what turns a one-lease check into portfolio triage.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#covenant">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

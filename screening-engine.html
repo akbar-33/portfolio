@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Companies House Screening Engine · Abdullah Akbar Khalid</title>
+<meta name="description" content="A sourcing engine for buy-and-build. It reads the entire UK Companies House register and returns a ranked target universe, including the companies no keyword search would ever surface.">
+<meta property="og:title" content="Companies House Screening Engine · Abdullah Akbar Khalid">
+<meta property="og:description" content="A sourcing engine for buy-and-build. It reads the entire UK Companies House register and returns a ranked target universe, including the companies no keyword search would ever surface.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/screening-engine">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#screening-engine">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit A · Sourcing at register scale</p>
+    <h1 class="reveal d1">Screening five million companies into a shortlist you can defend</h1>
+    <p class="lede reveal d2">A sourcing engine for buy-and-build. It reads the entire UK Companies House register and returns a ranked target universe, including the companies no keyword search would ever surface.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Public, actively used</dd></div><div><dt>Stack</dt><dd>Python · Claude API · pandas · Parquet</dd></div><div><dt>Source</dt><dd><a href="https://github.com/akbar-33/companies-house-screening-engine">github.com/akbar-33/companies-house-screening-engine</a></dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The problem</h2><div class="reveal"><p>A search fund or a buy-and-build thesis lives or dies on sourcing. The dream is the easy part; the grind is reading through thousands of companies to find the few that fit. The standard tools all start from a keyword, which means they can only return companies that describe themselves the way you happen to have phrased it.</p>
+<p>The UK register is free, public and structured. Roughly five million live companies, about 400 columns each. Nobody screens it systematically because the raw file is unusable on its own: SIC codes are self-reported and often stale, most rows carry no website, and small companies file abbreviated accounts with no revenue line at all.</p></div><div class="visual reveal" aria-label="Screening funnel from five million companies to a ranked shortlist">
+  <div class="visual-caption"><span>The funnel: one register in, one shortlist out</span><span class="hint">Hover any stage</span></div>
+  <div class="funnel">
+    <div class="stage" data-tip="The full monthly bulk product from Companies House. Every live company in the UK, roughly 400 columns per row, about 470MB compressed."><div class="bar" style="--w:100%;max-width:24rem"></div><span class="lbl">~5,000,000 · UK register, bulk</span></div>
+    <div class="stage" data-tip="First cut on SIC code. Cheap, coarse, and it removes the overwhelming majority before any expensive work begins."><div class="bar" style="--w:44%;max-width:24rem"></div><span class="lbl">tech / IT SIC filter</span></div>
+    <div class="stage" data-tip="SIC codes are self-reported and often wrong or stale. The website is the ground truth, so the engine finds and scrapes it before judging what a company actually does."><div class="bar" style="--w:24%;max-width:24rem"></div><span class="lbl">website discovered &amp; scraped</span></div>
+    <div class="stage" data-tip="Rules handle the obvious cases; Claude handles the ambiguous ones. Four axes: stack layer, function, business model, and vertical."><div class="bar" style="--w:11%;max-width:24rem"></div><span class="lbl">classified on 4-axis taxonomy</span></div>
+    <div class="stage" data-tip="Accounts are filed as iXBRL, a machine-readable format almost nobody parses at scale. This is where revenue and EBITDA estimates come from."><div class="bar" style="--w:5%;max-width:24rem"></div><span class="lbl">financials recovered (iXBRL)</span></div>
+    <div class="stage" data-tip="What survives is small enough for a human to read and defensible enough to take into an investment committee."><div class="bar" style="--w:2%;max-width:24rem"></div><span class="lbl">ranked, defensible shortlist</span></div>
+  </div>
+</div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">How it operates</h2><div class="reveal"><p>Two pipelines run over one register. The first decides what each company <em>is</em>. The second recovers what it is <em>worth</em>. Every stage caches its output, so a failed run resumes rather than restarting, which matters when a full pass costs real money in API calls.</p></div><div class="visual reveal" aria-label="How it operates: two pipelines over one register"><div class="visual-caption"><span>How it operates: two pipelines over one register</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Pipeline 1<br>src/01-09</div><div class="chain"><div class="nd io" data-tip="The monthly bulk product, about 470MB. Downloading it is trivial; making it mean something is the work."><b>UK bulk register</b><small>~5M rows · 400+ cols</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="A coarse SIC cut first, because every later stage costs real money per company."><b>Filter</b><small>tech / IT SIC</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Most companies never file a website anywhere machine-readable, so the engine has to go and find it."><b>Discover + scrape</b><small>find each site</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Stack layer, function, business model, vertical. Rules take the obvious cases so the model is only asked the hard ones."><b>Classify</b><small>rules + Claude · 4 axes</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Individual companies matter less than the niche they sit in. This is where a roll-up thesis actually forms."><b>Roll up + score</b><small>niche clustering</small></div></div></div><div class="lane"><div class="lane-tag">Pipeline 2<br>scripts/10-31</div><div class="chain"><div class="nd " data-tip="A second pass over everything the first pipeline failed to resolve, using different search providers."><b>Recover</b><small>sites + owners</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Filed accounts in a machine-readable format. Free, public, and almost nobody parses them at scale."><b>Pull accounts</b><small>Companies House iXBRL</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Small companies file abbreviated accounts, so revenue is never simply stated. It is inferred from what is disclosed."><b>Triangulate</b><small>revenue / EBITDA</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Recurring revenue, switching costs, and contract shape, because a cheap multiple on a fragile business is not a bargain."><b>Defensibility</b><small>moat scoring</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Everything deduped into a single table an analyst can sort, filter, and defend."><b>Consolidate</b><small>one master table</small></div></div></div><div class="lane"><div class="lane-tag">Output</div><div class="chain"><div class="nd out" data-tip="The deliverable: a shortlist small enough to read and evidenced enough to argue for."><b>Ranked, deduped target universe with estimated financials and defensibility scores</b></div></div></div></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal"><div class="decision"><b>Cheap filters before expensive ones</b><p>SIC filtering is coarse and imperfect, but it runs on a laptop in seconds and removes most of the register before anything bills per company. Ordering the pipeline by cost per row is the difference between a run that is affordable and one that is not.</p></div><div class="decision"><b>The website is the ground truth, not the SIC code</b><p>A company's own description of itself, scraped from its site, is far more reliable than a code it picked at incorporation and never revisited. So the engine spends real effort finding sites that were never filed anywhere machine-readable, then judges the company on what it says it does.</p></div><div class="decision"><b>Rules first, model second</b><p>Claude is asked only the genuinely ambiguous cases. Rules handle the obvious ones deterministically, which keeps the classification reproducible, cheaper, and auditable. A four-axis taxonomy (stack layer, function, business model, vertical) means a company can be described precisely instead of dropped into one blunt bucket.</p></div><div class="decision"><b>Estimate the financials, and say that they are estimates</b><p>Small companies do not file a revenue line. The engine triangulates from what is disclosed in iXBRL filings and labels the result as an estimate throughout. A number presented with false confidence is worse than no number.</p></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">What it produces</h2><div class="reveal"><p>A single deduped master table: the target universe, ranked, with estimated financials and defensibility scores attached. Small enough for a partner to read, and evidenced enough to argue for in an investment committee.</p>
+<p>A second lightweight entry point runs a fast SIC-only first cut over the same bulk register, for when you want a rough sector map rather than a full classification pass.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#screening-engine">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

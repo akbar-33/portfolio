@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The systems that run my day · Abdullah Akbar Khalid</title>
+<meta name="description" content="A scraping engine, a real-time relay, an archiver and a ranked twice-daily briefing. All working, all private, because they hold live sessions and keys.">
+<meta property="og:title" content="The systems that run my day · Abdullah Akbar Khalid">
+<meta property="og:description" content="A scraping engine, a real-time relay, an archiver and a ranked twice-daily briefing. All working, all private, because they hold live sessions and keys.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/automation-stack">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#automation-stack">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit F · The automation stack</p>
+    <h1 class="reveal d1">The systems that run my day, and why none of them have a repository</h1>
+    <p class="lede reveal d2">A scraping engine, a real-time relay, an archiver and a ranked twice-daily briefing. All working, all private, because they hold live sessions and keys.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Private by necessity</dd></div><div><dt>Stack</dt><dd>Python · Playwright · Claude API · launchd</dd></div><div><dt>Source</dt><dd>Source withheld. Demos on request.</dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">Why there is no repository</h2><div class="reveal"><p>These carry authenticated browser sessions, API keys and personal data. Publishing them would mean either shipping credentials or gutting the parts that make them work. So they are described here rather than linked, and labelled private rather than left vaguely implied.</p></div><div class="visual reveal" aria-label="Automation stack data flow">
+  <div class="visual-caption"><span>One flow: sources in, decisions out</span><span class="hint">Hover any node</span></div>
+  <div class="relay">
+    <div class="col">
+      <div class="node" data-tip="A trading community whose calls are worth reading but arrive faster than anyone can watch.">Discord</div>
+      <div class="node" data-tip="Stories expire in 24 hours, so anything worth keeping has to be captured automatically or it is gone.">Instagram</div>
+      <div class="node" data-tip="Blocked to plain fetching and to most headless browsers. Reading it needs a real, authenticated session.">LinkedIn</div>
+      <div class="node" data-tip="Lever, Ashby and Greenhouse expose JSON APIs that return the whole board, which page scraping silently truncates.">job boards</div>
+    </div>
+    <div class="arrows" aria-hidden="true">&rarr;</div>
+    <div class="col">
+      <div class="node core" data-tip="Playwright for the pages that fight back, Claude for the judgement calls, launchd for the schedule. The ranking is the part that matters: raw capture is easy, deciding what deserves attention is not.">scrape · parse · rank<small>Python · Playwright · Claude · launchd</small></div>
+    </div>
+    <div class="arrows" aria-hidden="true">&rarr;</div>
+    <div class="col out">
+      <div class="node" data-tip="Twice a day, on a schedule, to the place I actually read. A dashboard I have to remember to open is a dashboard I will not open.">WhatsApp, 2×/day</div>
+      <div class="node" data-tip="The automations need somewhere to land, and somewhere I can see whether they are still running.">Command Center</div>
+    </div>
+  </div>
+</div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">What they do</h2><div class="reveal"><p><strong>A universal scraper.</strong> Renders with an undetected browser and extracts structured data with a model, for the pages that return a block page or an empty shell to anything simpler. It reads sites that defeat plain fetching, including LinkedIn.</p>
+<p><strong>A Discord to WhatsApp relay.</strong> Watches a trading community and reformats its calls into structured tables, in real time, in the place I actually read messages. Planned setups stay in their own section rather than being mixed in with live calls, because conflating the two is how you act on something that was never a signal.</p>
+<p><strong>An Instagram story archiver.</strong> Stories expire in 24 hours, so anything worth keeping has to be captured automatically or it is gone. Captures with review notes attached.</p>
+<p><strong>A briefing pipeline.</strong> Ranks everything I am tracking and pushes a top five to WhatsApp twice a day on a launchd schedule. The ranking is the hard part: capture is easy, deciding what deserves attention is not.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal"><div class="decision"><b>Deliver to where attention already is</b><p>A dashboard I have to remember to open is a dashboard I will not open. The briefing goes to WhatsApp because that is where I already look, and the dashboard exists for when I want depth rather than a nudge.</p></div><div class="decision"><b>Rank, do not just collect</b><p>An unranked feed is a second inbox, which is a cost rather than a tool. Five items, ordered, twice a day, is a decision aid.</p></div></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#automation-stack">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -4,381 +4,199 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abdullah Akbar Khalid · Exhibits</title>
-<meta name="description" content="Systems I built for private-markets work: register-scale screening, covenant checks, AI governance records, self-verifying memos. Every claim on this page cites its source.">
+<meta name="description" content="Systems I built for private-markets work: register-scale screening, covenant checks, AI governance records, self-verifying memos. Every claim cites its source.">
 <meta property="og:title" content="Abdullah Akbar Khalid · Exhibits">
-<meta property="og:description" content="Can read a deal. Built the machine that reads five million. Register-scale screening, covenant checks, AI governance records and self-verifying memos, each one a working system.">
+<meta property="og:description" content="Systems I built for private-markets work: register-scale screening, covenant checks, AI governance records, self-verifying memos. Every claim cites its source.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://akbar-khalid.vercel.app/">
 <meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Abdullah Akbar Khalid: can read a deal, built the machine that reads five million.">
 <meta property="og:site_name" content="Abdullah Akbar Khalid">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#FBFAF7;
-  --ink:#17181A;
-  --red:#EC3013;
-  --rule:#E3E1DA;
-  --muted:#6E6C66;
-  --band-a:#1E7A52;
-  --band-c:#B4700F;
-  --card:#FFFFFE;
-  --serif:"IBM Plex Serif",Georgia,serif;
-  --sans:"IBM Plex Sans",-apple-system,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{
-  background:var(--paper);color:var(--ink);
-  font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:47.5rem;margin:0 auto;padding:0 1.5rem}
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
 
-/* ---------- masthead ---------- */
-header.masthead{border-bottom:2px solid var(--ink);padding:1.4rem 0 1.1rem}
-.masthead-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem}
-.masthead h1{font-family:var(--mono);font-weight:600;font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
-.masthead nav{font-family:var(--mono);font-size:.8125rem;display:flex;gap:1.4rem}
-.masthead nav a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
-.masthead nav a:hover{border-bottom-color:var(--red)}
-.masthead nav a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-
-/* ---------- thesis ---------- */
-.thesis{padding:5rem 0 4.25rem;border-bottom:1px solid var(--rule)}
-.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
-.thesis h2{
-  font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.4vw,3.125rem);
-  line-height:1.16;letter-spacing:-.01em;margin:1.1rem 0 1.6rem;max-width:17em;
-}
-.thesis h2 em{font-style:italic}
-.thesis p{max-width:36em;color:var(--ink)}
-.thesis p + p{margin-top:.9rem}
-.thesis .method{color:var(--muted);font-size:.9375rem;max-width:38em}
-
-/* ---------- citations ---------- */
-a.cite{
-  font-family:var(--mono);font-size:.72em;color:var(--red);text-decoration:none;
-  vertical-align:super;line-height:0;font-weight:500;padding:0 .1em;
-}
-a.cite:hover{text-decoration:underline}
-a.cite:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-
-/* ---------- exhibits ---------- */
-.exhibit{padding:3.6rem 0;border-bottom:1px solid var(--rule)}
-.ex-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
-.ex-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
-.ex-status{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
-.exhibit h3{font-family:var(--serif);font-weight:600;font-size:1.75rem;line-height:1.2;margin-bottom:.9rem;letter-spacing:-.005em}
-.exhibit .pitch{max-width:38em}
-.exhibit .pitch + .pitch{margin-top:.8rem}
-.tags{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.5rem}
-.tags span{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--rule);padding:.18rem .55rem;border-radius:2px;background:var(--card)}
-
-/* crafted visuals share a frame */
-.visual{
-  margin-top:1.7rem;border:1px solid var(--rule);border-radius:3px;background:var(--card);
-  overflow-x:auto;
-}
-.visual-caption{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.55rem .9rem;border-bottom:1px solid var(--rule)}
-
-/* A: funnel */
-.funnel{padding:1.2rem .9rem 1.3rem;font-family:var(--mono);font-size:.8125rem}
-.funnel .stage{display:flex;align-items:center;gap:.8rem;padding:.32rem 0}
-.funnel .bar{height:.9rem;background:var(--ink);border-radius:1px;flex:0 1 auto;min-width:.35rem;opacity:.92}
-.funnel .stage:last-child .bar{background:var(--red)}
-.funnel .lbl{color:var(--muted);white-space:nowrap;flex:none}
-.funnel .stage:last-child .lbl{color:var(--ink);font-weight:600}
-
-/* B: band comparison */
-.bands{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:.8125rem}
-.band{padding:1.1rem 1rem 1.2rem}
-.band + .band{border-left:1px solid var(--rule)}
-.band .co{font-weight:600;font-size:.8125rem;letter-spacing:.02em;min-height:2.4em}
-.band .fact{color:var(--muted);margin-top:.35rem;font-size:.75rem;line-height:1.55}
-.band .grade{margin-top:.9rem;font-size:1.5rem;font-weight:600}
-.band.bad .grade{color:var(--band-c)}
-.band.good .grade{color:var(--band-a)}
-.band .verdict{font-size:.75rem;margin-top:.15rem;color:var(--muted)}
-@media (max-width:540px){.bands{grid-template-columns:1fr}.band + .band{border-left:0;border-top:1px solid var(--rule)}}
-
-/* D: terminal grading */
-.term{background:var(--ink);color:#E8E6DF;font-family:var(--mono);font-size:.8125rem;line-height:1.7;padding:1.1rem 1.2rem;white-space:pre;border-radius:0 0 3px 3px}
-.term .ok{color:#7CC7A1}
-.term .warn{color:#E8A94E}
-.term .dim{color:#8B8A85}
-
-/* E: status grid */
-.grid-status{display:grid;grid-template-columns:repeat(3,1fr);font-family:var(--mono);font-size:.78rem}
-.cell{padding:.85rem 1rem;border-top:1px solid var(--rule);display:flex;align-items:center;gap:.55rem}
-.cell:nth-child(-n+3){border-top:0}
-.cell:not(:nth-child(3n+1)){border-left:1px solid var(--rule)}
-.dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--band-a);flex:none}
-.cell.hot{background:#FFF6F4}
-.cell.hot .dot{background:var(--red)}
-.cell.hot strong{color:var(--red)}
-@media (max-width:540px){
-  .grid-status{grid-template-columns:1fr 1fr}
-  .cell:not(:nth-child(3n+1)){border-left:0}
-  .cell:not(:nth-child(2n+1)){border-left:1px solid var(--rule)}
-  .cell:nth-child(3){border-top:1px solid var(--rule)}
-}
-
-/* F: relay diagram */
-.relay{padding:1.2rem 1rem 1.3rem;font-family:var(--mono);font-size:.78rem;display:flex;align-items:stretch;gap:0;min-width:34rem}
-.relay .col{flex:1;display:flex;flex-direction:column;gap:.45rem;justify-content:center}
-.relay .node{border:1px solid var(--rule);background:var(--paper);padding:.4rem .6rem;border-radius:2px;text-align:center}
-.relay .core{border:1.5px solid var(--ink);font-weight:600;padding:.8rem .6rem}
-.relay .core small{display:block;font-weight:400;color:var(--muted);margin-top:.25rem;font-size:.7rem}
-.relay .arrows{flex:none;display:flex;align-items:center;color:var(--muted);padding:0 .7rem;font-size:.9rem}
-.relay .out .node{border-color:var(--red);color:var(--red);font-weight:600}
-
-/* C: compliance repo tree */
-.tree{padding:1.15rem 1rem 1.25rem;font-family:var(--mono);font-size:.8125rem;min-width:30rem}
-.tree .row{display:flex;gap:1.2rem;align-items:baseline;padding:.26rem 0}
-.tree .path{color:var(--ink);white-space:pre;flex:none;width:14.5rem}
-.tree .ob{color:var(--muted);font-size:.75rem}
-.tree .ob b{color:var(--red);font-weight:500}
-.tree .root .path{font-weight:600}
-.tree .crown{background:#FFF6F4;margin:0 -1rem;padding-left:1rem;padding-right:1rem}
-
-/* architecture flow, shared by exhibits A to D */
-.flow{padding:1.1rem 1rem 1.2rem;font-family:var(--mono);font-size:.75rem;min-width:37rem}
-.lane{display:flex;align-items:stretch;margin-bottom:.5rem}
-.lane:last-child{margin-bottom:0}
-.lane-tag{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);width:5.4rem;flex:none;display:flex;align-items:center;line-height:1.35}
-.chain{display:flex;align-items:stretch;flex:1}
-.nd{border:1px solid var(--rule);background:var(--paper);border-radius:2px;padding:.45rem .5rem;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.nd b{font-size:.72rem;font-weight:600;line-height:1.25}
-.nd small{color:var(--muted);font-size:.65rem;display:block;margin-top:.2rem;line-height:1.4}
-.ar{flex:none;color:var(--muted);display:flex;align-items:center;padding:0 .38rem}
-.nd.gate{border:1.5px solid var(--red)}
-.nd.gate b{color:var(--red)}
-.nd.io{background:var(--ink);border-color:var(--ink)}
-.nd.io b{color:#FFF}
-.nd.io small{color:#B9B7B1}
-.nd.out{border:1.5px solid var(--ink);background:#FFF6F4}
-
-/* ---------- references ---------- */
-
-.refs{padding:3.4rem 0 2.5rem}
-.refs h4{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:1.3rem}
-.refs ol{list-style:none;font-family:var(--mono);font-size:.8125rem;line-height:2.1}
-.refs li{display:flex;gap:1rem}
-.refs .n{color:var(--muted);flex:none;width:1.6rem}
-.refs a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
-.refs a:hover{border-bottom-color:var(--red)}
-.refs a:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.refs .note{color:var(--muted)}
-
-/* ---------- footer ---------- */
-footer{border-top:2px solid var(--ink);padding:1.3rem 0 3.5rem}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
-footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
-footer a:hover{border-bottom-color:var(--red)}
-
-/* load moment: thesis only */
-@media (prefers-reduced-motion:no-preference){
-  .thesis > *{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  .thesis > *:nth-child(2){animation-delay:.08s}
-  .thesis > *:nth-child(3){animation-delay:.16s}
-  .thesis > *:nth-child(4){animation-delay:.24s}
-  @keyframes rise{to{opacity:1;transform:none}}
-}
-</style>
 </head>
-<body>
-
-<header class="masthead">
-  <div class="wrap masthead-row">
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
     <h1>Abdullah Akbar Khalid</h1>
     <nav>
+      <a href="/#exhibits">Work</a>
       <a href="https://github.com/akbar-33">GitHub</a>
       <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
       <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
     </nav>
   </div>
 </header>
-
 <section class="thesis">
   <div class="wrap">
-    <p class="eyebrow">Operator-founder · INSEAD MBA · UK &amp; EU private markets</p>
-    <h2>Can read a deal. Built the machine that reads <em>five million</em>.</h2>
-    <p>Most people can read a deal or build a product. I do both, and this page is the receipts: working systems that do diligence work at register scale, built and run by me.</p>
-    <p class="method">One house rule, borrowed from my own tooling: every claim below carries a citation to its source, whether a repo, a live demo, or a public filing. What can't be cited is labelled private, not left implied.</p>
+    <p class="eyebrow reveal">Operator-founder · INSEAD MBA · UK &amp; EU private markets</p>
+    <h2 class="reveal d1">Can read a deal. Built the machine that reads <em>five million</em>.</h2>
+    <p class="reveal d2">Most people can read a deal or build a product. I do both, and this page is the receipts: working systems that do diligence work at register scale, built and run by me.</p>
+    <p class="method reveal d3">One house rule, borrowed from my own tooling: every claim below carries a citation to its source, whether a repo, a live demo, or a public filing. What can't be cited is labelled private, not left implied. Each exhibit opens into a full case page, so you never have to leave for GitHub to see how it works.</p>
   </div>
 </section>
-
-<article class="exhibit" id="screening">
+<div id="exhibits"><article class="exhibit" id="screening-engine">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit A · Sourcing at register scale</span>
       <span class="ex-status">public · python</span>
     </div>
-    <h3>Companies House Screening Engine<a class="cite" href="#ref-1">[1]</a></h3>
-    <p class="pitch">Which founder-owned tech-services firms actually fit a roll-up thesis, including the ones no keyword search would ever surface? This engine takes the <strong>entire UK register (~5M companies, 400+ columns)</strong> down to a ranked, defensible shortlist: it discovers each company's website, classifies it with rules + Claude on a four-axis taxonomy, recovers financials from iXBRL accounts, and scores defensibility.</p>
-    <div class="visual" aria-label="Screening funnel from five million companies to a ranked shortlist">
-      <div class="visual-caption">The funnel: one register in, one shortlist out</div>
-      <div class="funnel">
-        <div class="stage"><div class="bar" style="width:100%;max-width:24rem"></div><span class="lbl">~5,000,000 · UK register, bulk</span></div>
-        <div class="stage"><div class="bar" style="width:44%;max-width:24rem"></div><span class="lbl">tech / IT SIC filter</span></div>
-        <div class="stage"><div class="bar" style="width:24%;max-width:24rem"></div><span class="lbl">website discovered &amp; scraped</span></div>
-        <div class="stage"><div class="bar" style="width:11%;max-width:24rem"></div><span class="lbl">classified on 4-axis taxonomy</span></div>
-        <div class="stage"><div class="bar" style="width:5%;max-width:24rem"></div><span class="lbl">financials recovered (iXBRL)</span></div>
-        <div class="stage"><div class="bar" style="width:2%;max-width:24rem"></div><span class="lbl">ranked, defensible shortlist</span></div>
-      </div>
-    </div>
-    <div class="visual" aria-label="How it operates: two pipelines over one register"><div class="visual-caption">How it operates: two pipelines over one register</div><div class="flow"><div class="lane"><div class="lane-tag">Pipeline 1<br>src/01-09</div><div class="chain"><div class="nd io"><b>UK bulk register</b><small>~5M rows · 400+ cols</small></div><div class="ar">&rarr;</div><div class="nd "><b>Filter</b><small>tech / IT SIC</small></div><div class="ar">&rarr;</div><div class="nd "><b>Discover + scrape</b><small>find each site</small></div><div class="ar">&rarr;</div><div class="nd "><b>Classify</b><small>rules + Claude · 4 axes</small></div><div class="ar">&rarr;</div><div class="nd "><b>Roll up + score</b><small>niche clustering</small></div></div></div><div class="lane"><div class="lane-tag">Pipeline 2<br>scripts/10-31</div><div class="chain"><div class="nd "><b>Recover</b><small>sites + owners</small></div><div class="ar">&rarr;</div><div class="nd "><b>Pull accounts</b><small>Companies House iXBRL</small></div><div class="ar">&rarr;</div><div class="nd "><b>Triangulate</b><small>revenue / EBITDA</small></div><div class="ar">&rarr;</div><div class="nd "><b>Defensibility</b><small>moat scoring</small></div><div class="ar">&rarr;</div><div class="nd "><b>Consolidate</b><small>one master table</small></div></div></div><div class="lane"><div class="lane-tag">Output</div><div class="chain"><div class="nd out"><b>Ranked, deduped target universe with estimated financials and defensibility scores</b></div></div></div></div></div>
-    <div class="tags"><span>Python</span><span>Claude API</span><span>iXBRL</span><span>Companies House bulk data</span></div>
+    <h3 class="reveal"><a href="/screening-engine">Companies House Screening Engine</a><a class="cite" href="/#ref-1">[1]</a></h3>
+    <p class="pitch reveal">Which founder-owned tech-services firms actually fit a roll-up thesis, including the ones no keyword search would ever surface? This engine takes the <strong>entire UK register (~5M companies, 400+ columns)</strong> down to a ranked, defensible shortlist: it discovers each company's website, classifies it with rules + Claude on a four-axis taxonomy, recovers financials from iXBRL accounts, and scores defensibility.</p>
+    <div class="visual reveal" aria-label="Screening funnel from five million companies to a ranked shortlist">
+  <div class="visual-caption"><span>The funnel: one register in, one shortlist out</span><span class="hint">Hover any stage</span></div>
+  <div class="funnel">
+    <div class="stage" data-tip="The full monthly bulk product from Companies House. Every live company in the UK, roughly 400 columns per row, about 470MB compressed."><div class="bar" style="--w:100%;max-width:24rem"></div><span class="lbl">~5,000,000 · UK register, bulk</span></div>
+    <div class="stage" data-tip="First cut on SIC code. Cheap, coarse, and it removes the overwhelming majority before any expensive work begins."><div class="bar" style="--w:44%;max-width:24rem"></div><span class="lbl">tech / IT SIC filter</span></div>
+    <div class="stage" data-tip="SIC codes are self-reported and often wrong or stale. The website is the ground truth, so the engine finds and scrapes it before judging what a company actually does."><div class="bar" style="--w:24%;max-width:24rem"></div><span class="lbl">website discovered &amp; scraped</span></div>
+    <div class="stage" data-tip="Rules handle the obvious cases; Claude handles the ambiguous ones. Four axes: stack layer, function, business model, and vertical."><div class="bar" style="--w:11%;max-width:24rem"></div><span class="lbl">classified on 4-axis taxonomy</span></div>
+    <div class="stage" data-tip="Accounts are filed as iXBRL, a machine-readable format almost nobody parses at scale. This is where revenue and EBITDA estimates come from."><div class="bar" style="--w:5%;max-width:24rem"></div><span class="lbl">financials recovered (iXBRL)</span></div>
+    <div class="stage" data-tip="What survives is small enough for a human to read and defensible enough to take into an investment committee."><div class="bar" style="--w:2%;max-width:24rem"></div><span class="lbl">ranked, defensible shortlist</span></div>
   </div>
-</article>
-
-<article class="exhibit" id="covenant">
+</div><div class="visual reveal" aria-label="How it operates: two pipelines over one register"><div class="visual-caption"><span>How it operates: two pipelines over one register</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Pipeline 1<br>src/01-09</div><div class="chain"><div class="nd io" data-tip="The monthly bulk product, about 470MB. Downloading it is trivial; making it mean something is the work."><b>UK bulk register</b><small>~5M rows · 400+ cols</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="A coarse SIC cut first, because every later stage costs real money per company."><b>Filter</b><small>tech / IT SIC</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Most companies never file a website anywhere machine-readable, so the engine has to go and find it."><b>Discover + scrape</b><small>find each site</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Stack layer, function, business model, vertical. Rules take the obvious cases so the model is only asked the hard ones."><b>Classify</b><small>rules + Claude · 4 axes</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Individual companies matter less than the niche they sit in. This is where a roll-up thesis actually forms."><b>Roll up + score</b><small>niche clustering</small></div></div></div><div class="lane"><div class="lane-tag">Pipeline 2<br>scripts/10-31</div><div class="chain"><div class="nd " data-tip="A second pass over everything the first pipeline failed to resolve, using different search providers."><b>Recover</b><small>sites + owners</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Filed accounts in a machine-readable format. Free, public, and almost nobody parses them at scale."><b>Pull accounts</b><small>Companies House iXBRL</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Small companies file abbreviated accounts, so revenue is never simply stated. It is inferred from what is disclosed."><b>Triangulate</b><small>revenue / EBITDA</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Recurring revenue, switching costs, and contract shape, because a cheap multiple on a fragile business is not a bargain."><b>Defensibility</b><small>moat scoring</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Everything deduped into a single table an analyst can sort, filter, and defend."><b>Consolidate</b><small>one master table</small></div></div></div><div class="lane"><div class="lane-tag">Output</div><div class="chain"><div class="nd out" data-tip="The deliverable: a shortlist small enough to read and evidenced enough to argue for."><b>Ranked, deduped target universe with estimated financials and defensibility scores</b></div></div></div></div></div>
+    
+    <div class="tags reveal"><span>Python</span><span>Claude API</span><span>iXBRL</span><span>Companies House bulk data</span></div>
+    <a class="more" href="/screening-engine">Read the full case<span class="arrow">&rarr;</span></a>
+  </div>
+</article><article class="exhibit" id="covenant">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit B · Covenant strength</span>
       <span class="ex-status">public · live demo</span>
     </div>
-    <h3>Covenant<a class="cite" href="#ref-2">[2]</a></h3>
-    <p class="pitch">A lease is offered by entity X. <em>Is that covenant real?</em> Search the register for "Pret A Manger" and twenty entities come back, two of them named almost identically. One is the trading company filing full accounts since 1984. The other is a 2018 acquisition vehicle, formerly JAB (ACQUISITION) LTD. Same brand, same registered address, opposite covenant.<a class="cite" href="#ref-3">[3]</a></p>
-    <p class="pitch">Covenant screens tenant strength from free, public Companies House data (one tenant, a rent roll, or the whole country) instead of a per-report credit agency fee.</p>
-    <div class="visual" aria-label="Two Pret A Manger entities with opposite covenant grades">
-      <div class="visual-caption">Real register data: the example that carries the idea</div>
-      <div class="bands">
-        <div class="band bad">
-          <div class="co">PRET A MANGER LIMITED</div>
-          <div class="fact">No. 11391321 · inc. 2018<br>SIC 64209 · holding company<br>audit-exemption subsidiary</div>
-          <div class="grade">Band C · 55/100</div>
-          <div class="verdict">require guarantee or deposit</div>
-        </div>
-        <div class="band good">
-          <div class="co">PRET A MANGER (EUROPE)&nbsp;LIMITED</div>
-          <div class="fact">No. 01854213 · inc. 1984<br>SIC 47110 · retail, trading<br>full accounts filed</div>
-          <div class="grade">Band A · 100/100</div>
-          <div class="verdict">institutionally acceptable</div>
-        </div>
-      </div>
+    <h3 class="reveal"><a href="/covenant">Covenant</a><a class="cite" href="/#ref-2">[2]</a></h3>
+    <p class="pitch reveal">A lease is offered by entity X. <em>Is that covenant real?</em> Search the register for "Pret A Manger" and twenty entities come back, two of them named almost identically. One is the trading company filing full accounts since 1984. The other is a 2018 acquisition vehicle, formerly JAB (ACQUISITION) LTD. Same brand, same registered address, opposite covenant.<a class="cite" href="/#ref-3">[3]</a></p><p class="pitch reveal">Covenant screens tenant strength from free, public Companies House data (one tenant, a rent roll, or the whole country) instead of a per-report credit agency fee.</p>
+    <div class="visual reveal" aria-label="Two Pret A Manger entities with opposite covenant grades">
+  <div class="visual-caption"><span>Real register data: the example that carries the idea</span><span class="hint">Hover either entity</span></div>
+  <div class="bands">
+    <div class="band bad" data-tip="Incorporated in 2018 as JAB (ACQUISITION) LTD. A holding company by SIC code, filing under the subsidiary audit exemption, so there is no income statement to read. Signing a lease with this entity gets you the brand name and none of the trading history.">
+      <div class="co">PRET A MANGER LIMITED</div>
+      <div class="fact">No. 11391321 · inc. 2018<br>SIC 64209 · holding company<br>audit-exemption subsidiary</div>
+      <div class="grade">Band C · 55/100</div>
+      <div class="verdict">require guarantee or deposit</div>
     </div>
-    <div class="visual" aria-label="How it operates: register in, defensible verdict out"><div class="visual-caption">How it operates: register in, defensible verdict out</div><div class="flow"><div class="lane"><div class="lane-tag">Live path</div><div class="chain"><div class="nd io"><b>Companies House API</b><small>free, public register</small></div><div class="ar">&rarr;</div><div class="nd "><b>covenant.py</b><small>deduction ledger, each rule names its filing</small></div><div class="ar">&rarr;</div><div class="nd "><b>app.py (Flask)</b><small>search · certificate · compare</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Band + score</b><small>with the evidence trail</small></div></div></div><div class="lane"><div class="lane-tag">Scale path</div><div class="chain"><div class="nd io"><b>Parquet snapshot</b><small>whole-register extract</small></div><div class="ar">&rarr;</div><div class="nd "><b>sweep.py + DuckDB</b><small>postcode sweeps, cached</small></div><div class="ar">&rarr;</div><div class="nd "><b>freeze.py</b><small>renders the app to static HTML</small></div><div class="ar">&rarr;</div><div class="nd out"><b>GitHub Pages</b><small>demo that never sleeps</small></div></div></div></div></div>
-    <div class="tags"><span>Python</span><span>Companies House API</span><span>GitHub Pages demo</span></div>
+    <div class="band good" data-tip="Trading since 1984 and filing full accounts, which is the strongest disclosure level available. This is the entity with the sandwich shops, the revenue, and the covenant a landlord actually wants on the lease.">
+      <div class="co">PRET A MANGER (EUROPE)&nbsp;LIMITED</div>
+      <div class="fact">No. 01854213 · inc. 1984<br>SIC 47110 · retail, trading<br>full accounts filed</div>
+      <div class="grade">Band A · 100/100</div>
+      <div class="verdict">institutionally acceptable</div>
+    </div>
   </div>
-</article>
-
-<article class="exhibit" id="oversight">
+</div><div class="visual reveal" aria-label="How it operates: register in, defensible verdict out"><div class="visual-caption"><span>How it operates: register in, defensible verdict out</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Live path</div><div class="chain"><div class="nd io" data-tip="Live at the moment you look, so a certificate is never a stale photograph."><b>Companies House API</b><small>free, public register</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Every entity starts at 100 and loses points only for reasons that cite the filing that evidences them."><b>covenant.py</b><small>deduction ledger, each rule names its filing</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Four views, each answering one question a surveyor actually asks."><b>app.py (Flask)</b><small>search · certificate · compare</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="A grade with its working shown, phrased in transaction language: require a guarantee, take a deposit, accept as is."><b>Band A to E + score</b></div></div></div><div class="lane"><div class="lane-tag">Scale path</div><div class="chain"><div class="nd io" data-tip="The monthly bulk snapshot, roughly 470MB, dated the first of the month and visibly distinct from live readings."><b>Parquet snapshot</b><small>5,695,465 companies</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Fast enough to sweep a whole district interactively, which is what turns a single check into portfolio triage."><b>sweep.py + DuckDB</b><small>~0.6s per postcode, cached</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="The public demo is the real app, frozen. No server to sleep, no API key to leak."><b>freeze.py</b><small>renders the app to static HTML</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="Anyone can click through real register data without installing anything."><b>GitHub Pages</b><small>demo that never sleeps</small></div></div></div></div></div>
+    
+    <div class="tags reveal"><span>Python</span><span>Companies House API</span><span>DuckDB</span><span>GitHub Pages demo</span></div>
+    <a class="more" href="/covenant">Read the full case<span class="arrow">&rarr;</span></a>
+  </div>
+</article><article class="exhibit" id="oversight">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit C · Governed AI</span>
       <span class="ex-status">public · live evidence pack</span>
     </div>
-    <h3>Oversight<a class="cite" href="#ref-4">[4]</a></h3>
-    <p class="pitch">Since 9 March 2026, a RICS member whose AI use materially affects surveying work has to be able to show four things: which AI systems the firm uses, that a named qualified surveyor wrote a decision on how reliable the output was, that the client was told in the Terms of Engagement, and that the vendor was diligenced.<a class="cite" href="#ref-5">[5]</a> That is a records problem, and I could not find a single tool built for it.</p>
-    <p class="pitch">Oversight keeps those records as plain files in a git repository, so authorship, timestamps and append-only history come free: the audit trail is the repo. <strong>check</strong> exits non-zero and names the obligation each failure would breach. <strong>pack</strong> renders the regulator-ready evidence pack and refuses to run while any check fails, so a pack existing is itself evidence the records were coherent when it was made.</p>
-    <div class="visual" aria-label="Compliance repository file tree mapped to the obligations each record evidences">
-      <div class="visual-caption">The repository is the database. Each path evidences an obligation.</div>
-      <div class="tree">
-        <div class="row root"><span class="path">your-compliance-repo/</span><span class="ob"></span></div>
-        <div class="row"><span class="path">├── config.yaml</span><span class="ob">firm, staleness thresholds</span></div>
-        <div class="row"><span class="path">├── systems/*.yaml</span><span class="ob"><b>Governance.</b> Every AI system, each with a named surveyor</span></div>
-        <div class="row crown"><span class="path">├── rdrs/&lt;engagement&gt;/</span><span class="ob"><b>Documentation.</b> The reliability decision, bound to the SHA-256 of the output</span></div>
-        <div class="row"><span class="path">├── disclosures/*.md</span><span class="ob"><b>Client transparency.</b> ToE wording, generated from the register</span></div>
-        <div class="row"><span class="path">├── dd/*.md</span><span class="ob"><b>Risk management.</b> Vendor procurement diligence</span></div>
-        <div class="row"><span class="path">└── incidents/*.md</span><span class="ob"><b>Risk, lifecycle.</b> Outputs rejected and errors caught</span></div>
-      </div>
-    </div>
-    <p class="pitch" style="margin-top:1.2rem">The example firm registers <a href="#covenant" style="color:inherit">Covenant</a> as one of its AI systems, with a real reliability decision record for a real screening. One tool doing surveying work with AI, one tool governing AI to surveying standards.</p>
-    <div class="visual" aria-label="How it operates: capture, store, enforce"><div class="visual-caption">How it operates: capture, store, enforce</div><div class="flow"><div class="lane"><div class="lane-tag">Capture</div><div class="chain"><div class="nd "><b>init</b></div><div class="ar">&rarr;</div><div class="nd "><b>add-system</b><small>the AI register</small></div><div class="ar">&rarr;</div><div class="nd "><b>rdr</b><small>binds SHA-256 of the output</small></div><div class="ar">&rarr;</div><div class="nd "><b>disclose</b><small>ToE text</small></div><div class="ar">&rarr;</div><div class="nd "><b>dd · incidents</b></div></div></div><div class="lane"><div class="lane-tag">Store</div><div class="chain"><div class="nd io"><b>Plain files in a git repository: systems/ · rdrs/ · disclosures/ · dd/ · incidents/</b><small>the commit log is the evidence timeline</small></div></div></div><div class="lane"><div class="lane-tag">Enforce</div><div class="chain"><div class="nd gate"><b>check</b><small>exits non-zero, names the obligation breached</small></div><div class="ar">&rarr;</div><div class="nd gate"><b>pack</b><small>refuses to render while any check fails</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Regulator-ready record</b></div></div></div></div></div>
-    <div class="tags"><span>Python</span><span>Jinja2</span><span>git as the database</span><span>SHA-256 output binding</span><span>GitHub Pages demo</span></div>
+    <h3 class="reveal"><a href="/oversight">Oversight</a><a class="cite" href="/#ref-4">[4]</a></h3>
+    <p class="pitch reveal">Since 9 March 2026, a RICS member whose AI use materially affects surveying work has to be able to show four things: which AI systems the firm uses, that a named qualified surveyor wrote a decision on how reliable the output was, that the client was told in the Terms of Engagement, and that the vendor was diligenced.<a class="cite" href="/#ref-5">[5]</a> That is a records problem, and I could not find a single tool built for it.</p><p class="pitch reveal">Oversight keeps those records as plain files in a git repository, so authorship, timestamps and append-only history come free: the audit trail is the repo. <strong>check</strong> exits non-zero and names the obligation each failure would breach. <strong>pack</strong> renders the regulator-ready evidence pack and refuses to run while any check fails, so a pack existing is itself evidence the records were coherent when it was made.</p>
+    <div class="visual reveal" aria-label="Compliance repository mapped to obligations">
+  <div class="visual-caption"><span>The repository is the database. Each path evidences an obligation.</span><span class="hint">Hover any path</span></div>
+  <div class="tree">
+    <div class="row root"><span class="path">your-compliance-repo/</span><span class="ob"></span></div>
+    <div class="row" data-tip="Firm name and the staleness thresholds that decide when due diligence or a lifecycle review counts as overdue."><span class="path">├── config.yaml</span><span class="ob">firm, staleness thresholds</span></div>
+    <div class="row" data-tip="The AI system register. A firm cannot govern what it has not written down, so this is the record everything else refers back to."><span class="path">├── systems/*.yaml</span><span class="ob"><b>Governance.</b> Every AI system, each with a named surveyor</span></div>
+    <div class="row crown" data-tip="The crown jewel. A written decision on output reliability by a named, qualified surveyor, optionally bound to the SHA-256 of the exact output reviewed, so the record provably covers that output and no other."><span class="path">├── rdrs/&lt;engagement&gt;/</span><span class="ob"><b>Documentation.</b> The reliability decision, bound to the SHA-256 of the output</span></div>
+    <div class="row" data-tip="Generated from the register rather than written by hand, so the wording a client sees stays consistent with what the firm actually runs."><span class="path">├── disclosures/*.md</span><span class="ob"><b>Client transparency.</b> ToE wording, generated from the register</span></div>
+    <div class="row" data-tip="Procurement diligence on external AI vendors: data flows, retention, model provenance, exit terms. Goes stale after twelve months and the validator says so."><span class="path">├── dd/*.md</span><span class="ob"><b>Risk management.</b> Vendor procurement diligence</span></div>
+    <div class="row" data-tip="A lived incident log reads as real governance. An empty one reads as theatre, which is exactly what a regulator is trained to notice."><span class="path">└── incidents/*.md</span><span class="ob"><b>Risk, lifecycle.</b> Outputs rejected and errors caught</span></div>
   </div>
-</article>
-
-<article class="exhibit" id="cited-memo">
+</div><div class="visual reveal" aria-label="How it operates: capture, store, enforce"><div class="visual-caption"><span>How it operates: capture, store, enforce</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Capture</div><div class="chain"><div class="nd " data-tip="Sets the firm name and the staleness thresholds the validator later enforces."><b>init</b><small>firm config</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Each system gets a named responsible surveyor and a lifecycle review date."><b>add-system</b><small>the AI register</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Pipe the AI output straight in and the record is bound to that exact output, not to a description of it."><b>rdr</b><small>binds SHA-256 of the output</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Generated from the register, so the client-facing wording cannot drift from what the firm runs."><b>disclose</b><small>ToE text</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Vendor diligence and the lived incident log, the two records that separate real governance from theatre."><b>dd · incidents</b></div></div></div><div class="lane"><div class="lane-tag">Store</div><div class="chain"><div class="nd io" data-tip="No database and no vendor holding records a firm must retain for years. Git already provides authorship, timestamps and append-only history."><b>Plain files in a git repository: systems/ · rdrs/ · disclosures/ · dd/ · incidents/</b><small>the commit log is the evidence timeline</small></div></div></div><div class="lane"><div class="lane-tag">Enforce</div><div class="chain"><div class="nd gate" data-tip="Runs in CI or as a pre-commit hook. Nine failure classes, each reported with the obligation it would breach."><b>check</b><small>exits non-zero, names the obligation breached</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd gate" data-tip="The gate that gives the whole thing teeth."><b>pack</b><small>refuses to render while any check fails</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="One HTML file, handed to a RICS review or a professional indemnity insurer."><b>Regulator-ready record</b></div></div></div></div></div>
+    <p class="pitch reveal" style="margin-top:1.2rem">The example firm registers <a href="/covenant">Covenant</a> as one of its AI systems, with a real reliability decision record for a real screening. One tool doing surveying work with AI, one tool governing AI to surveying standards.</p>
+    <div class="tags reveal"><span>Python</span><span>Jinja2</span><span>git as the database</span><span>SHA-256 output binding</span></div>
+    <a class="more" href="/oversight">Read the full case<span class="arrow">&rarr;</span></a>
+  </div>
+</article><article class="exhibit" id="cited-memo">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit D · Provenance</span>
       <span class="ex-status">public · python</span>
     </div>
-    <h3>cited-memo<a class="cite" href="#ref-6">[6]</a></h3>
-    <p class="pitch">AI drafts a plausible investment memo in seconds. The problem is the next hour, when an associate re-checks every figure against the data room because nobody can tell which numbers came from the accounts and which the model invented. cited-memo inverts it: it drafts from source documents only, cites the exact page behind every figure, then <strong>grades its own output</strong> (offline, no API key).</p>
-    <p class="pitch">You check the two flagged sentences instead of all twenty-six.</p>
-    <div class="visual" aria-label="cited-memo self-grading terminal output">
-      <div class="visual-caption">The self-grade: real output format</div>
-      <div class="term">traceable figures : <span class="ok">24/26  (92%)</span>
-invalid citations : <span class="ok">0</span>
-unsupported claims: <span class="warn">2</span>
-<span class="dim">  - EBITDA margin of 18% is expected to hold through FY26.
+    <h3 class="reveal"><a href="/cited-memo">cited-memo</a><a class="cite" href="/#ref-6">[6]</a></h3>
+    <p class="pitch reveal">AI drafts a plausible investment memo in seconds. The problem is the next hour, when an associate re-checks every figure against the data room because nobody can tell which numbers came from the accounts and which the model invented. cited-memo inverts it: it drafts from source documents only, cites the exact page behind every figure, then <strong>grades its own output</strong> (offline, no API key).</p><p class="pitch reveal">You check the two flagged sentences instead of all twenty-six.</p>
+    <div class="visual reveal" aria-label="cited-memo self-grading terminal output">
+  <div class="visual-caption"><span>The self-grade: real output format</span><span class="hint">Hover any line</span></div>
+  <div class="term"><span class="row" data-tip="Every figure in the draft is located, then checked: does the sentence containing it cite a passage, and does that passage exist? 92% is a grade of the draft, not a promise about it.">traceable figures : <span class="ok">24/26  (92%)</span></span>
+<span class="row" data-tip="A citation pointing at a passage that was never extracted. This is the failure mode people fear most from AI drafting, and it is the cheapest of the three to detect.">invalid citations : <span class="ok">0</span></span>
+<span class="row" data-tip="Assertions with no evidence behind them. The tool refuses to hide these: it names them in full so the reviewer knows exactly which two sentences to check.">unsupported claims: <span class="warn">2</span></span>
+<span class="row dim">  - EBITDA margin of 18% is expected to hold through FY26.
   - Management estimates a further £400k of synergies.</span></div>
-    </div>
-    <div class="visual" aria-label="How it operates: drafting is cheap, verification is the product"><div class="visual-caption">How it operates: drafting is cheap, verification is the product</div><div class="flow"><div class="lane"><div class="lane-tag">Ingest</div><div class="chain"><div class="nd io"><b>Source PDFs</b><small>the data room</small></div><div class="ar">&rarr;</div><div class="nd "><b>Extract</b><small>every page becomes a numbered passage, tagged document and page</small></div></div></div><div class="lane"><div class="lane-tag">Draft</div><div class="chain"><div class="nd "><b>The model writes from those passages only, and must follow each figure with the citation it came from</b></div></div></div><div class="lane"><div class="lane-tag">Verify</div><div class="chain"><div class="nd gate"><b>Offline checker</b><small>no API key, no model in the loop</small></div><div class="ar">&rarr;</div><div class="nd gate"><b>Catches three failures</b><small>uncited figure · citation to a passage that does not exist · claim with no evidence</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Graded memo</b><small>coverage, invalid citations, unsupported claims</small></div></div></div></div></div>
-    <div class="tags"><span>Python</span><span>PDF extraction</span><span>offline verification</span></div>
+</div><div class="visual reveal" aria-label="How it operates: drafting is cheap, verification is the product"><div class="visual-caption"><span>How it operates: drafting is cheap, verification is the product</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Ingest</div><div class="chain"><div class="nd io" data-tip="Whatever the deal actually gave you, in whatever shape it arrived."><b>Source PDFs</b><small>the data room</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="The numbering is the whole trick. A citation can only be checked if the thing it points at has an address."><b>Extract</b><small>every page becomes a numbered passage, tagged document and page</small></div></div></div><div class="lane"><div class="lane-tag">Draft</div><div class="chain"><div class="nd " data-tip="Constraining the source material is what makes the output checkable at all."><b>The model writes from those passages only, and must follow each figure with the citation it came from</b></div></div></div><div class="lane"><div class="lane-tag">Verify</div><div class="chain"><div class="nd gate" data-tip="Deliberately not an LLM. A model grading its own homework can be talked out of a failure; a parser cannot."><b>Offline checker</b><small>no API key, no model in the loop</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd gate" data-tip="Three distinct failure modes, each detected differently."><b>Catches three failures</b><small>uncited figure · citation to a passage that does not exist · claim with no evidence</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="You check the two flagged sentences instead of all twenty-six."><b>Graded memo</b><small>coverage, invalid citations, unsupported claims</small></div></div></div></div></div>
+    
+    <div class="tags reveal"><span>Python</span><span>PDF extraction</span><span>offline verification</span></div>
+    <a class="more" href="/cited-memo">Read the full case<span class="arrow">&rarr;</span></a>
   </div>
-</article>
-
-<article class="exhibit" id="command-center">
+</article><article class="exhibit" id="command-center">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit E · Operations</span>
       <span class="ex-status">public · react + supabase</span>
     </div>
-    <h3>Command Center<a class="cite" href="#ref-7">[7]</a></h3>
-    <p class="pitch">One dashboard for what six apps and my head used to hold: today's priorities, the backlog, overdue items, people I owe a reply, the job pipeline. My AI automations capture into it all day. The page that justifies the project is <strong>Automation Health</strong>, because automations fail silently and a briefing that stops arriving looks identical to a quiet news day until something checks.</p>
-    <div class="visual" aria-label="Command Center surfaces with automation health highlighted">
-      <div class="visual-caption">Nine surfaces, one honest read</div>
-      <div class="grid-status">
-        <div class="cell"><span class="dot"></span>Today</div>
-        <div class="cell"><span class="dot"></span>Tasks</div>
-        <div class="cell"><span class="dot"></span>Overdue</div>
-        <div class="cell"><span class="dot"></span>Calendar</div>
-        <div class="cell"><span class="dot"></span>People</div>
-        <div class="cell"><span class="dot"></span>Jobs</div>
-        <div class="cell"><span class="dot"></span>Score</div>
-        <div class="cell"><span class="dot"></span>Remaining</div>
-        <div class="cell hot"><span class="dot"></span><strong>Automation&nbsp;Health</strong></div>
-      </div>
-    </div>
-    <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>row-level auth</span><span>edge functions</span></div>
+    <h3 class="reveal"><a href="/command-center">Command Center</a><a class="cite" href="/#ref-7">[7]</a></h3>
+    <p class="pitch reveal">One dashboard for what six apps and my head used to hold: today's priorities, the backlog, overdue items, people I owe a reply, the job pipeline. My AI automations capture into it all day. The page that justifies the project is <strong>Automation Health</strong>, because automations fail silently and a briefing that stops arriving looks identical to a quiet news day until something checks.</p>
+    <div class="visual reveal" aria-label="Command Center surfaces with automation health highlighted">
+  <div class="visual-caption"><span>Nine surfaces, one honest read</span><span class="hint">Hover any surface</span></div>
+  <div class="grid-status">
+    <div class="cell" data-tip="What actually needs to happen in the next few hours, not the whole backlog."><span class="dot"></span>Today</div>
+    <div class="cell" data-tip="The full backlog, with capture from automated sources as well as by hand."><span class="dot"></span>Tasks</div>
+    <div class="cell" data-tip="What slipped, surfaced rather than buried."><span class="dot"></span>Overdue</div>
+    <div class="cell" data-tip="Commitments sitting alongside the task load instead of in a separate app."><span class="dot"></span>Calendar</div>
+    <div class="cell" data-tip="Who I owe a reply, an introduction, or a follow-up."><span class="dot"></span>People</div>
+    <div class="cell" data-tip="Application pipeline tracked through stages."><span class="dot"></span>Jobs</div>
+    <div class="cell" data-tip="A single read on whether the week is going well."><span class="dot"></span>Score</div>
+    <div class="cell" data-tip="What is left in the current window."><span class="dot"></span>Remaining</div>
+    <div class="cell hot" data-tip="The page that justifies the project. Automations fail silently, and a briefing that stops arriving looks identical to a quiet news day until something checks."><span class="dot"></span><strong>Automation&nbsp;Health</strong></div>
   </div>
-</article>
-
-<article class="exhibit" id="stack">
+</div>
+    
+    <div class="tags reveal"><span>React</span><span>TypeScript</span><span>Supabase</span><span>row-level auth</span><span>edge functions</span></div>
+    <a class="more" href="/command-center">Read the full case<span class="arrow">&rarr;</span></a>
+  </div>
+</article><article class="exhibit" id="automation-stack">
   <div class="wrap">
-    <div class="ex-head">
+    <div class="ex-head reveal">
       <span class="ex-label">Exhibit F · The automation stack</span>
-      <span class="ex-status">private by necessity<a class="cite" href="#ref-8">[8]</a></span>
+      <span class="ex-status">private by necessity<a class="cite" href="/#ref-8">[8]</a></span>
     </div>
-    <h3>The systems that run my day</h3>
-    <p class="pitch">No repo for these; they hold my sessions and keys. A scraping engine that reads pages bot-detection blocks, including LinkedIn. A Discord→WhatsApp relay that reformats a trading community's calls into structured tables in real time. An Instagram story archiver with review notes. And a briefing pipeline that ranks everything I'm tracking and pushes a top-five to my WhatsApp twice a day, on a launchd schedule.</p>
-    <div class="visual" aria-label="Automation stack data flow from sources to WhatsApp and dashboard">
-      <div class="visual-caption">One flow: sources in, decisions out</div>
-      <div class="relay">
-        <div class="col">
-          <div class="node">Discord</div>
-          <div class="node">Instagram</div>
-          <div class="node">LinkedIn</div>
-          <div class="node">job boards</div>
-        </div>
-        <div class="arrows">→</div>
-        <div class="col">
-          <div class="node core">scrape · parse · rank<small>Python · Playwright · Claude · launchd</small></div>
-        </div>
-        <div class="arrows">→</div>
-        <div class="col out">
-          <div class="node">WhatsApp, 2×/day</div>
-          <div class="node">Command Center</div>
-        </div>
-      </div>
+    <h3 class="reveal"><a href="/automation-stack">The systems that run my day</a></h3>
+    <p class="pitch reveal">No repo for these; they hold my sessions and keys. A scraping engine that reads pages bot-detection blocks, including LinkedIn. A Discord to WhatsApp relay that reformats a trading community's calls into structured tables in real time. An Instagram story archiver with review notes. And a briefing pipeline that ranks everything I'm tracking and pushes a top-five to my WhatsApp twice a day, on a launchd schedule.</p>
+    <div class="visual reveal" aria-label="Automation stack data flow">
+  <div class="visual-caption"><span>One flow: sources in, decisions out</span><span class="hint">Hover any node</span></div>
+  <div class="relay">
+    <div class="col">
+      <div class="node" data-tip="A trading community whose calls are worth reading but arrive faster than anyone can watch.">Discord</div>
+      <div class="node" data-tip="Stories expire in 24 hours, so anything worth keeping has to be captured automatically or it is gone.">Instagram</div>
+      <div class="node" data-tip="Blocked to plain fetching and to most headless browsers. Reading it needs a real, authenticated session.">LinkedIn</div>
+      <div class="node" data-tip="Lever, Ashby and Greenhouse expose JSON APIs that return the whole board, which page scraping silently truncates.">job boards</div>
     </div>
-    <div class="tags"><span>Python</span><span>Playwright</span><span>Claude API</span><span>launchd</span><span>WhatsApp bridge</span></div>
+    <div class="arrows" aria-hidden="true">&rarr;</div>
+    <div class="col">
+      <div class="node core" data-tip="Playwright for the pages that fight back, Claude for the judgement calls, launchd for the schedule. The ranking is the part that matters: raw capture is easy, deciding what deserves attention is not.">scrape · parse · rank<small>Python · Playwright · Claude · launchd</small></div>
+    </div>
+    <div class="arrows" aria-hidden="true">&rarr;</div>
+    <div class="col out">
+      <div class="node" data-tip="Twice a day, on a schedule, to the place I actually read. A dashboard I have to remember to open is a dashboard I will not open.">WhatsApp, 2×/day</div>
+      <div class="node" data-tip="The automations need somewhere to land, and somewhere I can see whether they are still running.">Command Center</div>
+    </div>
   </div>
-</article>
-
+</div>
+    
+    <div class="tags reveal"><span>Python</span><span>Playwright</span><span>Claude API</span><span>launchd</span><span>WhatsApp bridge</span></div>
+    <a class="more" href="/automation-stack">Read the full case<span class="arrow">&rarr;</span></a>
+  </div>
+</article></div>
 <section class="refs" id="references">
   <div class="wrap">
     <h4>References</h4>
@@ -394,13 +212,12 @@ unsupported claims: <span class="warn">2</span>
     </ol>
   </div>
 </section>
-
-<footer>
-  <div class="wrap">
+<footer class="site">
+  <div class="wrap-wide">
     <span>Built by hand, no template, like everything above.</span>
     <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
   </div>
 </footer>
-
+<script src="/app.js"></script>
 </body>
 </html>

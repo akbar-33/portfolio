@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oversight · Abdullah Akbar Khalid</title>
+<meta name="description" content="Compliance tooling for the professional standard on responsible use of AI in surveying practice, in force since 9 March 2026.">
+<meta property="og:title" content="Oversight · Abdullah Akbar Khalid">
+<meta property="og:description" content="Compliance tooling for the professional standard on responsible use of AI in surveying practice, in force since 9 March 2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/oversight">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#oversight">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit C · Governed AI</p>
+    <h1 class="reveal d1">The RICS AI standard is a records problem, and nobody had built the records tool</h1>
+    <p class="lede reveal d2">Compliance tooling for the professional standard on responsible use of AI in surveying practice, in force since 9 March 2026.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Public, live evidence pack</dd></div><div><dt>Stack</dt><dd>Python · Jinja2 · git</dd></div><div><dt>Source</dt><dd><a href="https://github.com/akbar-33/oversight">github.com/akbar-33/oversight</a></dd></div><div><dt>Demo</dt><dd><a href="https://akbar-33.github.io/oversight/">example evidence pack</a></dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The problem</h2><div class="reveal"><p>Since 9 March 2026, RICS members and regulated firms whose AI use has a material impact on the delivery of surveying services must be able to show four things: what AI they use, that a named qualified surveyor made a written decision about the reliability of AI outputs, that clients were told in the Terms of Engagement, and that AI procurement was diligenced.</p>
+<p>That is not a modelling problem. It is a records problem, and when I looked there was no tooling for it at all.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The design bet: compliance records are plain files in a git repository</h2><div class="reveal"><p>No database, no SaaS, no vendor holding records a firm must retain for years. Git already provides append-only history, authorship and timestamps, which is what an audit trail <em>is</em>. A regulator-ready evidence pack then becomes a render of the repository, with the commit log as the evidence timeline.</p></div><div class="visual reveal" aria-label="Compliance repository mapped to obligations">
+  <div class="visual-caption"><span>The repository is the database. Each path evidences an obligation.</span><span class="hint">Hover any path</span></div>
+  <div class="tree">
+    <div class="row root"><span class="path">your-compliance-repo/</span><span class="ob"></span></div>
+    <div class="row" data-tip="Firm name and the staleness thresholds that decide when due diligence or a lifecycle review counts as overdue."><span class="path">├── config.yaml</span><span class="ob">firm, staleness thresholds</span></div>
+    <div class="row" data-tip="The AI system register. A firm cannot govern what it has not written down, so this is the record everything else refers back to."><span class="path">├── systems/*.yaml</span><span class="ob"><b>Governance.</b> Every AI system, each with a named surveyor</span></div>
+    <div class="row crown" data-tip="The crown jewel. A written decision on output reliability by a named, qualified surveyor, optionally bound to the SHA-256 of the exact output reviewed, so the record provably covers that output and no other."><span class="path">├── rdrs/&lt;engagement&gt;/</span><span class="ob"><b>Documentation.</b> The reliability decision, bound to the SHA-256 of the output</span></div>
+    <div class="row" data-tip="Generated from the register rather than written by hand, so the wording a client sees stays consistent with what the firm actually runs."><span class="path">├── disclosures/*.md</span><span class="ob"><b>Client transparency.</b> ToE wording, generated from the register</span></div>
+    <div class="row" data-tip="Procurement diligence on external AI vendors: data flows, retention, model provenance, exit terms. Goes stale after twelve months and the validator says so."><span class="path">├── dd/*.md</span><span class="ob"><b>Risk management.</b> Vendor procurement diligence</span></div>
+    <div class="row" data-tip="A lived incident log reads as real governance. An empty one reads as theatre, which is exactly what a regulator is trained to notice."><span class="path">└── incidents/*.md</span><span class="ob"><b>Risk, lifecycle.</b> Outputs rejected and errors caught</span></div>
+  </div>
+</div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">How it operates</h2><div class="reveal"><p>Commands capture each record, the repository stores them, and the validator refuses to let an incomplete set become a document anyone could rely on.</p></div><div class="visual reveal" aria-label="How it operates: capture, store, enforce"><div class="visual-caption"><span>How it operates: capture, store, enforce</span><span class="hint">Hover any stage</span></div><div class="flow"><div class="lane"><div class="lane-tag">Capture</div><div class="chain"><div class="nd " data-tip="Sets the firm name and the staleness thresholds the validator later enforces."><b>init</b><small>firm config</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Each system gets a named responsible surveyor and a lifecycle review date."><b>add-system</b><small>the AI register</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Pipe the AI output straight in and the record is bound to that exact output, not to a description of it."><b>rdr</b><small>binds SHA-256 of the output</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Generated from the register, so the client-facing wording cannot drift from what the firm runs."><b>disclose</b><small>ToE text</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd " data-tip="Vendor diligence and the lived incident log, the two records that separate real governance from theatre."><b>dd · incidents</b></div></div></div><div class="lane"><div class="lane-tag">Store</div><div class="chain"><div class="nd io" data-tip="No database and no vendor holding records a firm must retain for years. Git already provides authorship, timestamps and append-only history."><b>Plain files in a git repository: systems/ · rdrs/ · disclosures/ · dd/ · incidents/</b><small>the commit log is the evidence timeline</small></div></div></div><div class="lane"><div class="lane-tag">Enforce</div><div class="chain"><div class="nd gate" data-tip="Runs in CI or as a pre-commit hook. Nine failure classes, each reported with the obligation it would breach."><b>check</b><small>exits non-zero, names the obligation breached</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd gate" data-tip="The gate that gives the whole thing teeth."><b>pack</b><small>refuses to render while any check fails</small></div><div class="ar" aria-hidden="true">&rarr;</div><div class="nd out" data-tip="One HTML file, handed to a RICS review or a professional indemnity insurer."><b>Regulator-ready record</b></div></div></div></div></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The teeth</h2><div class="reveal"><p><code>oversight check</code> validates every record and exits non-zero on failure, so it runs in CI or as a pre-commit hook. Every failure cites the obligation it would breach:</p>
+<div class="visual reveal"><div class="visual-caption"><span>Real validator output</span></div><div class="term">  FAIL  systems/leasereader.yaml
+        external system with no procurement due-diligence record on file
+        <span class="dim">&#8627; Risk management: procurement due diligence, data governance, and
+          review through the AI lifecycle</span>
+
+  FAIL  rdrs/2026-114/
+        engagement used AI but has no ToE disclosure on file: run 'oversight disclose'
+        <span class="dim">&#8627; Client transparency: material AI use disclosed in the Terms of Engagement</span></div></div>
+<p>It catches unnamed responsible surveyors, external systems without due diligence, diligence gone stale past twelve months, overdue lifecycle reviews, unsigned or malformed decision records, records referencing unregistered systems, engagements that used AI with no client disclosure, and template placeholders left sitting in a record.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal"><div class="decision"><b>The pack refuses to render while any check fails</b><p>This is the whole point. If a pack can always be produced, its existence proves nothing. Because it cannot, a pack is itself evidence that the records were coherent at the moment it was generated.</p></div><div class="decision"><b>Bind the decision to the output, not to a description of it</b><p>A reliability decision can be bound to the SHA-256 of the exact output reviewed, so the record provably covers that output and no other. Without it, a decision record is an assertion that some review happened, some time, about something.</p></div><div class="decision"><b>Paraphrase the obligations, never invent clause numbers</b><p>The published RICS text is authoritative and this tool is not it. Obligation text is deliberately paraphrased and no clause numbers are fabricated, so nobody can mistake independent tooling for the standard itself.</p></div></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#oversight">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>
