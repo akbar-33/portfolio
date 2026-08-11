@@ -322,6 +322,7 @@ footer.site a:hover{border-bottom-color:var(--red)}
 @media (max-width:640px){
 
   /* architecture flows: lane label becomes a heading, nodes stack under it */
+  .visual{overflow:visible}
   .flow{min-width:0;padding:.9rem .8rem 1rem;font-size:.78rem}
   .lane{flex-direction:column;margin-bottom:1.3rem}
   .lane:last-child{margin-bottom:0}
@@ -333,12 +334,14 @@ footer.site a:hover{border-bottom-color:var(--red)}
   .nd{width:100%;padding:.55rem .6rem;text-align:left}
   .nd b{font-size:.78rem}
   .nd small{font-size:.7rem}
-  .ar{padding:.28rem 0;justify-content:center;transform:rotate(90deg)}
+  .ar{padding:.28rem 0;justify-content:center;font-size:0}
+  .ar::after{content:"\2193";font-size:.95rem;line-height:1}
 
   /* relay: three columns become three stacked groups */
   .relay{min-width:0;flex-direction:column;padding:.9rem .8rem 1rem;font-size:.8rem}
   .relay .col{gap:.4rem}
-  .relay .arrows{padding:.35rem 0;justify-content:center;transform:rotate(90deg)}
+  .relay .arrows{padding:.35rem 0;justify-content:center;font-size:0}
+  .relay .arrows::after{content:"\2193";font-size:1rem;line-height:1}
   .relay .core{padding:.7rem .6rem}
 
   /* compliance tree: path above its obligation, one record per row */
