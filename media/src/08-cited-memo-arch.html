@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBFAF7;--ink:#17181A;--red:#EC3013;--rule:#E3E1DA;--muted:#6E6C66;--card:#FFF;
+--serif:"IBM Plex Serif",Georgia,serif;--sans:"IBM Plex Sans",sans-serif;--mono:"IBM Plex Mono",monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:630px;background:var(--paper);color:var(--ink);font-family:var(--sans);
+display:flex;flex-direction:column;padding:40px 50px;overflow:hidden}
+.eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:500}
+h1{font-family:var(--serif);font-size:38px;font-weight:600;margin:8px 0 4px;line-height:1.1}
+.sub{color:var(--muted);font-size:17px;line-height:1.4;max-width:70ch}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;margin-top:16px}
+footer{font-family:var(--mono);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;padding-top:14px;border-top:2px solid var(--ink)}
+footer b{color:var(--ink);font-weight:600}
+.lane{display:flex;align-items:stretch}
+.lane-tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);
+ width:78px;flex:none;display:flex;align-items:center;line-height:1.3}
+.flow{display:flex;align-items:stretch;flex:1}
+.node{border:1px solid var(--rule);background:var(--card);border-radius:3px;padding:9px 10px;flex:1;
+ display:flex;flex-direction:column;justify-content:center;text-align:center}
+.node b{font-family:var(--mono);font-size:12.5px;font-weight:600;line-height:1.3}
+.node small{color:var(--muted);font-size:10.5px;display:block;margin-top:4px;line-height:1.4}
+.arw{flex:none;color:var(--muted);display:flex;align-items:center;padding:0 8px;font-size:15px}
+.gate{border:1.6px solid var(--red)}
+.gate b{color:var(--red)}
+.io{background:var(--ink);color:#F3F2EF;border:none}
+.io b{color:#FFF}.io small{color:#B9B7B1}
+.out{border:1.6px solid var(--ink);background:#FFF6F4}
+.note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;margin-top:2px}
+</style>
+<div class="eyebrow">How it operates</div><h1>cited-memo: drafting is cheap, verification is the product</h1><div class="sub">The model may only write from extracted passages, and the checker that grades it runs offline with no API key, so verification cannot be talked out of a failure.</div>
+<div class="body"><div class="lane"><div class="lane-tag">Ingest</div><div class="flow">
+ <div class="node io"><b>Source PDFs</b><small>the data room</small></div><div class="arw">&rarr;</div>
+ <div class="node "><b>Extract</b><small>every page becomes a numbered passage<br>tagged with document and page number</small></div></div></div>
+ <div class="lane"><div class="lane-tag">Draft</div><div class="flow">
+ <div class="node "><b>Model writes from those passages only</b><small>each figure must be followed by the citation it came from, like [3]</small></div></div></div>
+ <div class="lane"><div class="lane-tag">Verify</div><div class="flow">
+ <div class="node gate"><b>Offline checker</b><small>no API key · no model in the loop</small></div><div class="arw">&rarr;</div>
+ <div class="node gate"><b>Catches three failures</b><small>figure with no citation · citation pointing at<br>a passage that does not exist · claim asserted without evidence</small></div><div class="arw">&rarr;</div>
+ <div class="node out"><b>Graded memo</b><small>coverage %, invalid citations,<br>unsupported claims named in full</small></div></div></div></div>
+<footer><span><b>Abdullah Akbar Khalid</b> · akbar-khalid.vercel.app</span><span>github.com/akbar-33/cited-memo</span></footer>
