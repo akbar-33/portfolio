@@ -150,7 +150,25 @@ a.cite:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 .tree .root .path{font-weight:600}
 .tree .crown{background:#FFF6F4;margin:0 -1rem;padding-left:1rem;padding-right:1rem}
 
+/* architecture flow, shared by exhibits A to D */
+.flow{padding:1.1rem 1rem 1.2rem;font-family:var(--mono);font-size:.75rem;min-width:37rem}
+.lane{display:flex;align-items:stretch;margin-bottom:.5rem}
+.lane:last-child{margin-bottom:0}
+.lane-tag{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);width:5.4rem;flex:none;display:flex;align-items:center;line-height:1.35}
+.chain{display:flex;align-items:stretch;flex:1}
+.nd{border:1px solid var(--rule);background:var(--paper);border-radius:2px;padding:.45rem .5rem;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.nd b{font-size:.72rem;font-weight:600;line-height:1.25}
+.nd small{color:var(--muted);font-size:.65rem;display:block;margin-top:.2rem;line-height:1.4}
+.ar{flex:none;color:var(--muted);display:flex;align-items:center;padding:0 .38rem}
+.nd.gate{border:1.5px solid var(--red)}
+.nd.gate b{color:var(--red)}
+.nd.io{background:var(--ink);border-color:var(--ink)}
+.nd.io b{color:#FFF}
+.nd.io small{color:#B9B7B1}
+.nd.out{border:1.5px solid var(--ink);background:#FFF6F4}
+
 /* ---------- references ---------- */
+
 .refs{padding:3.4rem 0 2.5rem}
 .refs h4{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:1.3rem}
 .refs ol{list-style:none;font-family:var(--mono);font-size:.8125rem;line-height:2.1}
@@ -218,6 +236,7 @@ footer a:hover{border-bottom-color:var(--red)}
         <div class="stage"><div class="bar" style="width:2%;max-width:24rem"></div><span class="lbl">ranked, defensible shortlist</span></div>
       </div>
     </div>
+    <div class="visual" aria-label="How it operates: two pipelines over one register"><div class="visual-caption">How it operates: two pipelines over one register</div><div class="flow"><div class="lane"><div class="lane-tag">Pipeline 1<br>src/01-09</div><div class="chain"><div class="nd io"><b>UK bulk register</b><small>~5M rows · 400+ cols</small></div><div class="ar">&rarr;</div><div class="nd "><b>Filter</b><small>tech / IT SIC</small></div><div class="ar">&rarr;</div><div class="nd "><b>Discover + scrape</b><small>find each site</small></div><div class="ar">&rarr;</div><div class="nd "><b>Classify</b><small>rules + Claude · 4 axes</small></div><div class="ar">&rarr;</div><div class="nd "><b>Roll up + score</b><small>niche clustering</small></div></div></div><div class="lane"><div class="lane-tag">Pipeline 2<br>scripts/10-31</div><div class="chain"><div class="nd "><b>Recover</b><small>sites + owners</small></div><div class="ar">&rarr;</div><div class="nd "><b>Pull accounts</b><small>Companies House iXBRL</small></div><div class="ar">&rarr;</div><div class="nd "><b>Triangulate</b><small>revenue / EBITDA</small></div><div class="ar">&rarr;</div><div class="nd "><b>Defensibility</b><small>moat scoring</small></div><div class="ar">&rarr;</div><div class="nd "><b>Consolidate</b><small>one master table</small></div></div></div><div class="lane"><div class="lane-tag">Output</div><div class="chain"><div class="nd out"><b>Ranked, deduped target universe with estimated financials and defensibility scores</b></div></div></div></div></div>
     <div class="tags"><span>Python</span><span>Claude API</span><span>iXBRL</span><span>Companies House bulk data</span></div>
   </div>
 </article>
@@ -248,6 +267,7 @@ footer a:hover{border-bottom-color:var(--red)}
         </div>
       </div>
     </div>
+    <div class="visual" aria-label="How it operates: register in, defensible verdict out"><div class="visual-caption">How it operates: register in, defensible verdict out</div><div class="flow"><div class="lane"><div class="lane-tag">Live path</div><div class="chain"><div class="nd io"><b>Companies House API</b><small>free, public register</small></div><div class="ar">&rarr;</div><div class="nd "><b>covenant.py</b><small>deduction ledger, each rule names its filing</small></div><div class="ar">&rarr;</div><div class="nd "><b>app.py (Flask)</b><small>search · certificate · compare</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Band + score</b><small>with the evidence trail</small></div></div></div><div class="lane"><div class="lane-tag">Scale path</div><div class="chain"><div class="nd io"><b>Parquet snapshot</b><small>whole-register extract</small></div><div class="ar">&rarr;</div><div class="nd "><b>sweep.py + DuckDB</b><small>postcode sweeps, cached</small></div><div class="ar">&rarr;</div><div class="nd "><b>freeze.py</b><small>renders the app to static HTML</small></div><div class="ar">&rarr;</div><div class="nd out"><b>GitHub Pages</b><small>demo that never sleeps</small></div></div></div></div></div>
     <div class="tags"><span>Python</span><span>Companies House API</span><span>GitHub Pages demo</span></div>
   </div>
 </article>
@@ -274,6 +294,7 @@ footer a:hover{border-bottom-color:var(--red)}
       </div>
     </div>
     <p class="pitch" style="margin-top:1.2rem">The example firm registers <a href="#covenant" style="color:inherit">Covenant</a> as one of its AI systems, with a real reliability decision record for a real screening. One tool doing surveying work with AI, one tool governing AI to surveying standards.</p>
+    <div class="visual" aria-label="How it operates: capture, store, enforce"><div class="visual-caption">How it operates: capture, store, enforce</div><div class="flow"><div class="lane"><div class="lane-tag">Capture</div><div class="chain"><div class="nd "><b>init</b></div><div class="ar">&rarr;</div><div class="nd "><b>add-system</b><small>the AI register</small></div><div class="ar">&rarr;</div><div class="nd "><b>rdr</b><small>binds SHA-256 of the output</small></div><div class="ar">&rarr;</div><div class="nd "><b>disclose</b><small>ToE text</small></div><div class="ar">&rarr;</div><div class="nd "><b>dd · incidents</b></div></div></div><div class="lane"><div class="lane-tag">Store</div><div class="chain"><div class="nd io"><b>Plain files in a git repository: systems/ · rdrs/ · disclosures/ · dd/ · incidents/</b><small>the commit log is the evidence timeline</small></div></div></div><div class="lane"><div class="lane-tag">Enforce</div><div class="chain"><div class="nd gate"><b>check</b><small>exits non-zero, names the obligation breached</small></div><div class="ar">&rarr;</div><div class="nd gate"><b>pack</b><small>refuses to render while any check fails</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Regulator-ready record</b></div></div></div></div></div>
     <div class="tags"><span>Python</span><span>Jinja2</span><span>git as the database</span><span>SHA-256 output binding</span><span>GitHub Pages demo</span></div>
   </div>
 </article>
@@ -295,6 +316,7 @@ unsupported claims: <span class="warn">2</span>
 <span class="dim">  - EBITDA margin of 18% is expected to hold through FY26.
   - Management estimates a further £400k of synergies.</span></div>
     </div>
+    <div class="visual" aria-label="How it operates: drafting is cheap, verification is the product"><div class="visual-caption">How it operates: drafting is cheap, verification is the product</div><div class="flow"><div class="lane"><div class="lane-tag">Ingest</div><div class="chain"><div class="nd io"><b>Source PDFs</b><small>the data room</small></div><div class="ar">&rarr;</div><div class="nd "><b>Extract</b><small>every page becomes a numbered passage, tagged document and page</small></div></div></div><div class="lane"><div class="lane-tag">Draft</div><div class="chain"><div class="nd "><b>The model writes from those passages only, and must follow each figure with the citation it came from</b></div></div></div><div class="lane"><div class="lane-tag">Verify</div><div class="chain"><div class="nd gate"><b>Offline checker</b><small>no API key, no model in the loop</small></div><div class="ar">&rarr;</div><div class="nd gate"><b>Catches three failures</b><small>uncited figure · citation to a passage that does not exist · claim with no evidence</small></div><div class="ar">&rarr;</div><div class="nd out"><b>Graded memo</b><small>coverage, invalid citations, unsupported claims</small></div></div></div></div></div>
     <div class="tags"><span>Python</span><span>PDF extraction</span><span>offline verification</span></div>
   </div>
 </article>
