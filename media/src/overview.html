@@ -1,49 +1,22 @@
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,600&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#131418;--ink:#EDEBE5;--red:#FF5A38;--rule:#2B2D34;--muted:#9B9A94;--card:#191B21;
+:root{--paper:#131418;--ink:#EDEBE5;--red:#FF5A38;--rule:#2B2D34;--muted:#9B9A94;
 --serif:"IBM Plex Serif",Georgia,serif;--sans:"IBM Plex Sans",sans-serif;--mono:"IBM Plex Mono",monospace}
 *{margin:0;padding:0;box-sizing:border-box}
 body{width:1200px;height:630px;background:var(--paper);color:var(--ink);font-family:var(--sans);
-display:flex;flex-direction:column;padding:38px 46px 30px;overflow:hidden}
-.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:13px}
-.nm{font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
-.meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.07em}
-h1{font-family:var(--serif);font-size:35px;font-weight:400;line-height:1.15;margin:20px 0 4px;letter-spacing:-.01em}
-h1 em{font-style:italic}
-.sub{color:var(--muted);font-size:14px;max-width:76ch;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:20px;flex:1}
-.c{border:1px solid var(--rule);background:var(--card);border-radius:3px;padding:12px 13px;display:flex;flex-direction:column}
-.c .lb{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);font-weight:500}
-.c .nmm{font-family:var(--serif);font-size:17px;font-weight:600;margin:5px 0 5px;line-height:1.15}
-.c .d{color:var(--muted);font-size:11.5px;line-height:1.5;flex:1}
-.c .n{font-family:var(--mono);font-size:11px;color:var(--ink);margin-top:7px;font-weight:500}
-.bot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);padding-top:12px;margin-top:16px;font-family:var(--mono);font-size:13.5px}
-.bot b{color:var(--red);font-weight:600}
-.bot span.r{color:var(--muted)}
+display:flex;flex-direction:column;justify-content:space-between;padding:48px 56px;overflow:hidden}
+.nm{font-family:var(--mono);font-size:26px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:3px solid var(--ink);padding-bottom:20px}
+h1{font-family:var(--serif);font-size:82px;font-weight:600;line-height:1.06;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--red)}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row span{font-family:var(--mono);font-size:25px;font-weight:500;color:var(--ink);
+  border:2px solid var(--rule);border-radius:3px;padding:9px 16px}
+.url{font-family:var(--mono);font-size:34px;font-weight:600;color:var(--red);
+  border-top:3px solid var(--ink);padding-top:20px}
 </style>
-<div class="top"><span class="nm">Abdullah Akbar Khalid</span>
-<span class="meta">OPERATOR-FOUNDER · INSEAD MBA · UK &amp; EU PRIVATE MARKETS</span></div>
-<h1>Most people can read a deal or build a product. I do <em>both</em>.</h1>
-<div class="sub">I build the tooling I need for the job, then open-source it. Six working systems, every claim cited to a repo, a live demo, or a public filing.</div>
-<div class="grid">
-  <div class="c"><span class="lb">Sourcing at scale</span><span class="nmm">Screening engine</span>
-    <span class="d">The entire UK register, filtered, classified with an LLM and scored into a defensible shortlist.</span>
-    <span class="n">~5,000,000 companies read</span></div>
-  <div class="c"><span class="lb">Covenant strength</span><span class="nmm">Covenant</span>
-    <span class="d">Two entities, same brand and address, opposite covenant. Read straight from public filings.</span>
-    <span class="n">Band A vs Band C, live demo</span></div>
-  <div class="c"><span class="lb">Governed AI</span><span class="nmm">Oversight</span>
-    <span class="d">Records tooling for the RICS standard on responsible AI in surveying, in force since March 2026.</span>
-    <span class="n">The git repo is the audit trail</span></div>
-  <div class="c"><span class="lb">Provenance</span><span class="nmm">cited-memo</span>
-    <span class="d">An investment memo where every figure cites its source page, and the tool grades itself.</span>
-    <span class="n">24/26 traceable, 2 flagged</span></div>
-  <div class="c"><span class="lb">Operations</span><span class="nmm">Command Center</span>
-    <span class="d">Nine surfaces for the work, plus the page that shows whether the automations behind them still run.</span>
-    <span class="n">React · Supabase</span></div>
-  <div class="c"><span class="lb">The stack</span><span class="nmm">Automation</span>
-    <span class="d">A scraper that reads what blocks bots, a real-time relay, and a ranked briefing twice a day.</span>
-    <span class="n">Private, demos on request</span></div>
-</div>
-<div class="bot"><span><b>akbar-khalid.vercel.app</b></span><span class="r">github.com/akbar-33</span></div>
+<div class="nm">Abdullah Akbar Khalid</div>
+<h1>Deals, and the<br>tooling that <em>does them</em>.</h1>
+<div class="row"><span>Deal sourcing</span><span>Covenant</span><span>AI governance</span></div>
+<div class="url">akbar-khalid.vercel.app</div>
