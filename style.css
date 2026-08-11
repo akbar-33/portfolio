@@ -133,25 +133,22 @@ a.cite:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 }
 .visual-caption .hint{color:var(--red);opacity:.75;font-size:.68rem;white-space:nowrap}
 
-/* ---------- tooltips: hover AND keyboard focus ---------- */
-[data-tip]{position:relative;cursor:help;outline:none}
-[data-tip]::after{
-  content:attr(data-tip);
-  position:absolute;left:50%;bottom:calc(100% + .5rem);transform:translate(-50%,4px);
-  background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:.75rem;line-height:1.45;
-  letter-spacing:0;text-transform:none;font-weight:400;text-align:left;
-  padding:.5rem .65rem;border-radius:3px;width:max-content;max-width:19rem;
-  opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:60;
-  box-shadow:0 6px 20px rgba(0,0,0,.28);
-}
-[data-tip]::before{
-  content:"";position:absolute;left:50%;bottom:calc(100% + .18rem);
-  border:5px solid transparent;border-top-color:var(--ink);
-  transform:translate(-50%,4px);opacity:0;transition:opacity .18s,transform .18s;z-index:61;
-}
-[data-tip]:hover::after,[data-tip]:focus-visible::after,
-[data-tip]:hover::before,[data-tip]:focus-visible::before{opacity:1;transform:translate(-50%,0)}
+/* ---------- tooltips ----------
+   Rendered into a single floating node on <body> by app.js, because .visual
+   uses overflow-x:auto for scrollable diagrams and that clips absolute children. */
+[data-tip]{cursor:help;outline:none;scroll-margin-top:6rem}
 [data-tip]:focus-visible{box-shadow:0 0 0 2px var(--red);border-radius:2px}
+.tip{
+  position:fixed;top:0;left:0;z-index:9999;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-size:.78rem;line-height:1.5;font-weight:400;
+  letter-spacing:0;text-transform:none;text-align:left;
+  padding:.6rem .75rem;border-radius:4px;max-width:min(22rem,calc(100vw - 2rem));
+  opacity:0;pointer-events:none;transform:translateY(5px);
+  transition:opacity .15s ease,transform .15s ease;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+}
+.tip.is-shown{opacity:1;transform:none}
 
 /* ---------- A: funnel ---------- */
 .funnel{padding:1.2rem .9rem 1.3rem;font-family:var(--mono);font-size:.8125rem}
