@@ -84,6 +84,15 @@ header.masthead{
 .thesis p{max-width:36em}
 .thesis p + p{margin-top:.9rem}
 .thesis .method{color:var(--muted);font-size:.9375rem;max-width:38em}
+.thesis .repos{
+  font-family:var(--mono);font-size:.8125rem;color:var(--muted);max-width:44em;line-height:2.1;
+}
+.thesis .repos a{
+  color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);
+  padding-bottom:1px;transition:border-color .2s,color .2s;
+}
+.thesis .repos a:hover{color:var(--red);border-bottom-color:var(--red)}
+.thesis .repos a:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:2px}
 
 /* ---------- citations ---------- */
 a.cite{

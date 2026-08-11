@@ -305,7 +305,7 @@ def build_index():
     <p class="eyebrow reveal">Operator-founder · INSEAD MBA · UK &amp; EU private markets</p>
     <h2 class="reveal d1">Most people can read a deal or build a product. I do <em>both</em>.</h2>
     <p class="reveal d2">I build the tooling I need for the job, then open-source it: deal sourcing at register scale, covenant checks, AI governance records, memo verification. The diligence stack I wanted and couldn't buy.</p>
-    <p class="method reveal d3">One house rule, borrowed from my own tooling: every claim below carries a citation to its source, whether a repo, a live demo, or a public filing. What can't be cited is labelled private, not left implied. Each exhibit opens into a full case page, so you never have to leave for GitHub to see how it works.</p>
+    <p class="repos reveal d3">Source: <a href="{GH}/companies-house-screening-engine">screening engine</a> · <a href="{GH}/covenant">covenant</a> · <a href="{GH}/oversight">oversight</a> · <a href="{GH}/cited-memo">cited-memo</a> · <a href="{GH}/command-center-companion">command center</a> · <a href="{GH}">everything on GitHub</a><br>Live demos: <a href="https://akbar-33.github.io/covenant/">covenant dashboard</a> · <a href="https://akbar-33.github.io/oversight/">oversight evidence pack</a></p>
   </div>
 </section>
 <div id="exhibits">{''.join(arts)}</div>
