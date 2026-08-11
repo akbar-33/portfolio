@@ -22,6 +22,12 @@ Hand-maintained files:
 | `media/*.png` | Social preview card and the LinkedIn project images |
 | `media/src/*.html` | The HTML those PNGs are rendered from, at 1200x630 |
 
+## Narrow screens
+
+The diagrams are horizontal chains, which needs a `min-width` and therefore a sideways drag on a phone. A `max-width: 640px` block in `style.css` restructures them into vertical stacks: lane labels become headings, nodes stack under them, and the arrows rotate to point down. Terminal blocks switch to `white-space: pre-wrap` so long lines fold instead of scrolling, while keeping the indentation that makes validator output readable.
+
+**If you add a new diagram, add its narrow-screen rule at the same time.** Verify with a real measurement rather than by eye: at 320, 375 and 430px, every `.visual` should satisfy `scrollWidth <= clientWidth`, and `document.documentElement.scrollWidth` should equal `clientWidth`.
+
 ## Two things that will bite you
 
 **Tooltips must render into a floating node on `body`.** The diagram cards use `overflow-x:auto` so wide diagrams scroll on narrow screens, and that clips absolutely positioned children. A CSS `::after` tooltip inside a card gets sliced at its edge.
