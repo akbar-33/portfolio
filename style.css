@@ -392,7 +392,7 @@ footer.site a:hover{border-bottom-color:var(--red)}
   .funnel .bar{width:var(--w);transition:none}
 }
 
-/* ---------- blog ---------- */
+/* ---------- ideas ---------- */
 .post-card{padding:1.6rem 0;border-bottom:1px solid var(--rule)}
 .post-card:first-child{padding-top:.4rem}
 .post-card:last-of-type{border-bottom:0}

@@ -4,13 +4,13 @@ Source for [akbar-khalid.vercel.app](https://akbar-khalid.vercel.app). Static, n
 
 ## Editing
 
-`index.html`, the six case pages, and everything under `blog/` are **generated**. Blog posts come from the `POSTS` list in `build.py`; add a post there, not as a new HTML file. Do not edit them by hand, or the next build will overwrite the change. Edit `build.py` and re-run it:
+`index.html`, the six case pages, and everything under `ideas/` are **generated**. Posts come from the `POSTS` list in `build.py`; add a post there, not as a new HTML file. Do not edit them by hand, or the next build will overwrite the change. Edit `build.py` and re-run it:
 
 ```bash
 python3 build.py
 ```
 
-That rewrites `index.html`, the six case pages, the blog index and posts, and `vercel.json` from one source, so the one-pager and the case pages cannot drift apart.
+That rewrites `index.html`, the six case pages, the ideas index and posts, and `vercel.json` from one source, so the one-pager and the case pages cannot drift apart.
 
 Hand-maintained files:
 

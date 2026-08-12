@@ -58,7 +58,7 @@ def masthead(brand_link=True):
     {brand}
     <nav>
       <a href="/#exhibits">Work</a>
-      <a href="/blog">Blog</a>
+      <a href="/ideas">Ideas</a>
       <a href="{GH}">GitHub</a>
       <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
       <a href="mailto:akbar.khalid@insead.edu">Email</a>
@@ -501,7 +501,7 @@ for e in EX:
 print(f"built index.html + {len(EX)} case pages + vercel.json")
 
 
-# ================================================================ blog
+# ================================================================ ideas
 POSTS = [
  dict(slug="tenant-on-the-lease", date="2026-08-11", read="6 min",
    kicker="Covenant",
@@ -568,7 +568,7 @@ POSTS = [
    title="Which businesses does AI actually threaten",
    standfirst="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.",
    tags=["AI displacement","UK market map","Companies House","LLM evaluation"],
-   links=[("Full-size map","/media/ai-map.png"),("Method note","/blog/ai-impact-map")],
+   links=[("Full-size map","/media/ai-map.png"),("Method note","/ideas/ai-impact-map")],
    body=[
     ("The question, and why the first version failed", """
 <p>"Which industries will AI eat" is usually answered at the level of a category. Legal. Accounting. Marketing. That is the wrong altitude, because AI acts on <em>tasks</em>, not on categories, and every category is a bundle of tasks with wildly different exposure.</p>
@@ -596,8 +596,8 @@ POSTS = [
    ]),
 ]
 
-def build_blog():
-    outdir = OUT / "blog"
+def build_ideas():
+    outdir = OUT / "ideas"
     outdir.mkdir(exist_ok=True)
 
     # index
@@ -605,7 +605,7 @@ def build_blog():
     for p in POSTS:
         tags = "".join(f"<span>{t}</span>" for t in p["tags"])
         cards.append(f"""<article class="post-card reveal">
-      <a class="post-card-link" href="/blog/{p['slug']}">
+      <a class="post-card-link" href="/ideas/{p['slug']}">
         <div class="post-meta"><span class="post-kicker">{p['kicker']}</span><span>{p['date']} · {p['read']} read</span></div>
         <h2>{p['title']}</h2>
         <p>{p['standfirst']}</p>
@@ -615,7 +615,7 @@ def build_blog():
     body = f"""{masthead()}
 <section class="case-hero">
   <div class="wrap">
-    <p class="eyebrow reveal">Blog</p>
+    <p class="eyebrow reveal">Ideas</p>
     <h1 class="reveal d1">Notes on the things I build</h1>
     <p class="lede reveal d2">Longer than a LinkedIn post and with the working shown: the problem, the method, the numbers, and the decisions I would defend if challenged.</p>
   </div>
@@ -623,9 +623,9 @@ def build_blog():
 <section class="sec"><div class="wrap">{''.join(cards)}</div></section>
 {FOOT}"""
     (outdir / "index.html").write_text(
-        head("Blog · Abdullah Akbar Khalid",
+        head("Ideas · Abdullah Akbar Khalid",
              "Notes on building diligence tooling: covenant screening, register-scale sourcing, and measuring where AI actually displaces work.",
-             SITE + "/blog") + body)
+             SITE + "/ideas") + body)
 
     # posts
     for p in POSTS:
@@ -643,7 +643,7 @@ def build_blog():
         body = f"""{masthead()}
 <section class="case-hero">
   <div class="wrap">
-    <a class="backlink" href="/blog">&larr; All posts</a>
+    <a class="backlink" href="/ideas">&larr; All ideas</a>
     <div class="post-meta reveal" style="margin-top:1rem"><span class="post-kicker">{p['kicker']}</span><span>{p['date']} · {p['read']} read</span></div>
     <h1 class="reveal d1">{p['title']}</h1>
     <p class="lede reveal d2">{p['standfirst']}</p>
@@ -653,11 +653,11 @@ def build_blog():
 </section>
 {''.join(secs)}
 <section class="sec"><div class="wrap">
-  <a class="more" href="/blog">More posts<span class="arrow">&rarr;</span></a>
+  <a class="more" href="/ideas">More ideas<span class="arrow">&rarr;</span></a>
 </div></section>
 {FOOT}"""
         (outdir / f"{p['slug']}.html").write_text(
-            head(f"{p['title']} · Abdullah Akbar Khalid", p["standfirst"], f"{SITE}/blog/{p['slug']}") + body)
-    print(f"built blog index + {len(POSTS)} posts")
+            head(f"{p['title']} · Abdullah Akbar Khalid", p["standfirst"], f"{SITE}/ideas/{p['slug']}") + body)
+    print(f"built ideas index + {len(POSTS)} posts")
 
-build_blog()
+build_ideas()
