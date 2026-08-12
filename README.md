@@ -40,11 +40,16 @@ import pathlib
 src = pathlib.Path.home()/"Amakor Capital/AI_Matrix_v2/artifact.html"
 out = pathlib.Path("media/ai-impact-map.html")
 s = src.read_text(); i = s.find("</style>") + len("</style>")
+body = s[:i] + "\n</head>\n<body>\n" + s[i:]
+# the artifact labels SIC sections with em dashes; this repo does not use them
+body = body.replace("\u2014", "\u00b7").replace("&mdash;", "&middot;")
 out.write_text('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
   '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-  '<meta name="robots" content="noindex">\n' + s[:i] + "\n</head>\n<body>\n" + s[i:] + "\n</body>\n</html>")
+  '<meta name="robots" content="noindex">\n' + body + "\n</body>\n</html>")
 EOF
 ```
+
+The wrap also swaps the em dashes in the section labels for middots, since nothing in this repo carries an em dash.
 
 **Check it for client references before publishing.** The source lives in a client folder. Grep for the client and engagement names; the only legitimate hits are data content, including a subsector named "Confidential shredding & data destruction".
 
