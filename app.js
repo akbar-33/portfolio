@@ -27,6 +27,7 @@
       else root.removeAttribute("data-theme");
       try { localStorage.setItem(KEY, toLight ? "light" : "dark"); } catch (e) {}
       label(btn);
+      paintFrames();
     });
   }
 
@@ -154,6 +155,21 @@
      content so there is no scrollbar inside the figure. Phones get the still
      image and a link instead: the map is 348KB and its bubbles are unusable at
      that width, so loading it there would cost a lot and help nobody. */
+  var frames = [];
+
+  function isLight() { return root.getAttribute("data-theme") === "light"; }
+
+  // The map ships its own dark palette keyed on the same data-theme attribute
+  // this site uses, so the parent just tells it which one to wear.
+  function paintFrame(frame) {
+    try {
+      var d = frame.contentDocument;
+      if (d && d.documentElement) d.documentElement.setAttribute("data-theme", isLight() ? "light" : "dark");
+    } catch (e) { /* cross-origin, nothing to do */ }
+  }
+
+  function paintFrames() { frames.forEach(paintFrame); }
+
   function wireEmbeds() {
     document.querySelectorAll("[data-embed]").forEach(function (fig) {
       var slot = fig.querySelector(".embed-slot");
@@ -174,7 +190,9 @@
       }
 
       var frame = document.createElement("iframe");
-      frame.src = fig.getAttribute("data-embed");
+      var src = fig.getAttribute("data-embed");
+      src += (src.indexOf("?") > -1 ? "&" : "?") + "theme=" + (isLight() ? "light" : "dark");
+      frame.src = src;
       frame.title = fig.getAttribute("data-embed-alt") || "Interactive figure";
       frame.loading = "lazy";
       frame.style.height = "820px";
@@ -193,11 +211,13 @@
               (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0));
             if (h > 100 && Math.abs(h - frame.clientHeight) > 4) frame.style.height = h + "px";
           };
+          paintFrame(frame);
           fit();
           setTimeout(fit, 600);   // again once the load animation settles
           if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body);
         } catch (e) { /* leave the fallback height */ }
       });
+      frames.push(frame);
       slot.appendChild(frame);
     });
   }
