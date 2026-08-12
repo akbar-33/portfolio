@@ -391,3 +391,32 @@ footer.site a:hover{border-bottom-color:var(--red)}
   .reveal{opacity:1;transform:none}
   .funnel .bar{width:var(--w);transition:none}
 }
+
+/* ---------- blog ---------- */
+.post-card{padding:1.6rem 0;border-bottom:1px solid var(--rule)}
+.post-card:first-child{padding-top:.4rem}
+.post-card:last-of-type{border-bottom:0}
+.post-card-link{display:block;text-decoration:none}
+.post-card h2{
+  font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.22;
+  margin:.5rem 0 .55rem;letter-spacing:-.005em;transition:color .2s;
+}
+.post-card-link:hover h2{color:var(--red)}
+.post-card p{color:var(--muted);max-width:40em}
+.post-card-link:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:3px}
+.post-meta{
+  display:flex;gap:.85rem;align-items:baseline;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.05em;
+}
+.post-kicker{color:var(--red);text-transform:uppercase;letter-spacing:.13em;font-weight:500}
+
+.figure{margin:1.7rem 0 0;border:1px solid var(--rule);border-radius:3px;background:var(--card);overflow:hidden}
+.figure img{display:block;width:100%;height:auto}
+.figure figcaption{
+  font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.5;
+  padding:.7rem .9rem;border-top:1px solid var(--rule);
+}
+.sec code{
+  font-family:var(--mono);font-size:.86em;background:var(--card-2);
+  border:1px solid var(--rule);border-radius:2px;padding:.05em .35em;
+}

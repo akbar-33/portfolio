@@ -58,6 +58,7 @@ def masthead(brand_link=True):
     {brand}
     <nav>
       <a href="/#exhibits">Work</a>
+      <a href="/blog">Blog</a>
       <a href="{GH}">GitHub</a>
       <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
       <a href="mailto:akbar.khalid@insead.edu">Email</a>
@@ -498,3 +499,165 @@ for e in EX:
 
 (OUT/"vercel.json").write_text('{\n  "cleanUrls": true,\n  "trailingSlash": false\n}\n')
 print(f"built index.html + {len(EX)} case pages + vercel.json")
+
+
+# ================================================================ blog
+POSTS = [
+ dict(slug="tenant-on-the-lease", date="2026-08-11", read="6 min",
+   kicker="Covenant",
+   title="The tenant on the lease is not always the business you think",
+   standfirst="Two companies, same brand, same registered address, opposite covenant. The distinction is free, public and structured, and almost nobody checks it.",
+   tags=["UK commercial property","Companies House","Python"],
+   links=[("Live demo","https://akbar-33.github.io/covenant/"),
+          ("Source","https://github.com/akbar-33/covenant"),
+          ("Case page","/covenant")],
+   body=[
+    ("The data is not hidden. The attention is.", """
+<p>In UK commercial property the building is almost secondary. What you are actually buying is the rental income stream, and that stream is only as good as the tenant's ability to keep paying it.</p>
+<p>Surveyors call this covenant strength and they assess it constantly. Today that usually means paying a credit reference agency per report, or forming a judgement by eye.</p>
+<p>Here is the part I find strange. Every UK company files public, structured, machine-readable records at Companies House, for free. Buried in those filings are the strongest early warnings of tenant failure: a company that quietly stopped filing full accounts, a name change five years ago, a holding company with no trading history of its own, an overdue filing, a charge registered last month.</p>
+<p>Almost nobody reads them systematically. Not because the data is hidden, but because doing it by hand across a rent roll is tedious.</p>
+<p>That gap is not information asymmetry. It is <strong>attention asymmetry</strong>. The data is free, public and sitting there. Reading all of it is the part nobody bothered to automate. I think that is about to change across a lot of professional work, and the edge moves from who can access the data to who can be bothered to read every line of it.</p>"""),
+    ("The example that carries the whole idea", """
+<p>Search the register for "Pret A Manger" and twenty entities come back, several dissolved, two of them named almost identically.</p>
+<p><strong>PRET A MANGER LIMITED</strong>, number 11391321, incorporated 2018. SIC code 64209, a holding company. It files under the subsidiary audit exemption, so there is no income statement to read. It was called JAB (ACQUISITION) LTD until 2019.</p>
+<p><strong>PRET A MANGER (EUROPE) LIMITED</strong>, number 01854213, incorporated 1984. SIC 47110, retail. It files full accounts.</p>
+<p>Same brand. Same registered address. Opposite covenant. A landlord who signs with the first entity believes they have the sandwich chain, and actually holds an acquisition vehicle. The trap is that the entity with the less obvious name is the one that has traded since 1984.</p>""",
+     [("/media/02-covenant.png","Two real Companies House entities, scored by the tool. Band C against Band A, from filings alone.")]),
+    ("What the tool does", """
+<p>Covenant screens the covenant strength of UK commercial tenants directly from Companies House, at any scale from a single lease to an entire postcode district.</p>
+<p>Every entity starts at 100 and loses points only for reasons that name the filing evidencing them. You get a band from A to E, a score, and a schedule of findings you can argue with, because each one links back to the register page it came from.</p>
+<p>It answers in transaction language: accept as is, take a six to twelve month deposit, require a guarantee. Not "moderate risk". Those are the decisions a lease negotiation actually turns on.</p>"""),
+    ("How it works", """
+<p>Two paths, deliberately kept at different currencies.</p>
+<p>The <strong>live path</strong> answers one question about one tenant. It hits the Companies House API, runs the rules engine, and returns a certificate with the deduction ledger on it.</p>
+<p>The <strong>scale path</strong> answers a portfolio question. A monthly bulk snapshot of 5,695,465 companies sits in Parquet, queried with DuckDB. A postcode sweep takes about six tenths of a second once cached. One W1 run scores 7,746 companies and returns the band distribution, the weakest names, and a distress league across the district.</p>""",
+     [("/media/06-covenant-arch.png","The two paths. A certificate is fetched live; a sweep reads a snapshot dated the first of the month.")]),
+    ("Three decisions I would defend", """
+<p><strong>A deduction ledger instead of a black box.</strong> A score with no working shown is an opinion wearing a number's clothing. Every deduction names the filing behind it, so a surveyor can disagree and go read the source.</p>
+<p><strong>The public demo is the real application, frozen to static HTML.</strong> No server to fall asleep, no API key to leak, and no risk of the demo drifting away from the tool it represents.</p>
+<p><strong>The two data sources never blur.</strong> The sweep is a photograph dated the first of the month. A certificate is fetched live at the moment you look. Presenting a month-old reading as live is exactly the error this tool exists to catch.</p>
+<p>It is a screen, not an opinion, and nothing in it is a Red Book valuation. It tells you which entities deserve an hour of a surveyor's attention, which is a useful thing to automate and a dangerous thing to overclaim.</p>"""),
+   ]),
+
+ dict(slug="reading-the-whole-register", date="2026-08-12", read="6 min",
+   kicker="Screening engine",
+   title="Reading the entire UK company register",
+   standfirst="Five million companies, four hundred columns, and a shortlist small enough to take into an investment committee. The hard part was never the data.",
+   tags=["Deal sourcing","Buy-and-build","Python","LLM classification"],
+   links=[("Source","https://github.com/akbar-33/companies-house-screening-engine"),
+          ("Case page","/screening-engine")],
+   body=[
+    ("Sourcing is the grind, not the thesis", """
+<p>A search fund or a buy-and-build thesis lives or dies on sourcing. The dream is the easy part. The grind is reading through thousands of companies to find the few that fit.</p>
+<p>Every standard tool starts from a keyword, which means it can only return companies that describe themselves the way you happened to phrase it. The ones you most want are the ones that describe themselves badly.</p>
+<p>The UK register is free, public and structured. Roughly five million live companies, about four hundred columns each. Nobody screens it systematically because the raw file is unusable on its own: SIC codes are self-reported and often stale, most rows carry no website, and small companies file abbreviated accounts with no revenue line at all.</p>""",
+     [("/media/01-screening-engine.png","What survives each stage. The last row is small enough for a partner to read.")]),
+    ("Two pipelines over one register", """
+<p>The first pipeline decides what each company <em>is</em>. The second recovers what it is <em>worth</em>. Every stage caches its output, so a failed run resumes rather than restarting, which matters when a full pass costs real money in API calls.</p>""",
+     [("/media/05-screening-arch.png","Classification first, then financial recovery, then one consolidated table.")]),
+    ("Decisions worth defending", """
+<p><strong>Cheap filters before expensive ones.</strong> SIC filtering is coarse and imperfect, but it runs on a laptop in seconds and removes most of the register before anything bills per company. Ordering the pipeline by cost per row is the difference between a run that is affordable and one that is not.</p>
+<p><strong>The website is the ground truth, not the SIC code.</strong> A company's own description of itself is far more reliable than a code it picked at incorporation and never revisited. So the engine spends real effort finding sites that were never filed anywhere machine-readable, then judges the company on what it says it does.</p>
+<p><strong>Rules first, model second.</strong> The LLM is asked only the genuinely ambiguous cases. Rules handle the obvious ones deterministically, which keeps classification reproducible, cheaper and auditable. A four-axis taxonomy, stack layer by function by business model by vertical, means a company can be described precisely instead of dropped into one blunt bucket.</p>
+<p><strong>Estimate the financials, and say that they are estimates.</strong> Small companies do not file a revenue line. The engine triangulates from what is disclosed in iXBRL filings and labels the result as an estimate throughout. A number presented with false confidence is worse than no number.</p>"""),
+   ]),
+
+ dict(slug="ai-impact-map", date="2026-08-12", read="8 min",
+   kicker="AI impact",
+   title="Which businesses does AI actually threaten",
+   standfirst="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.",
+   tags=["AI displacement","UK market map","Companies House","LLM evaluation"],
+   links=[("Full-size map","/media/ai-map.png"),("Method note","/blog/ai-impact-map")],
+   body=[
+    ("The question, and why the first version failed", """
+<p>"Which industries will AI eat" is usually answered at the level of a category. Legal. Accounting. Marketing. That is the wrong altitude, because AI acts on <em>tasks</em>, not on categories, and every category is a bundle of tasks with wildly different exposure.</p>
+<p>My first attempt scored two axes per archetype and let 681 subsectors inherit their archetype's position. It had no company counts, and a roll-up fit column I could not define precisely. Someone took it apart in about four questions on a call, and every one of those questions was fair. This version fixes exactly those three things and nothing else.</p>"""),
+    ("Two axes that are genuinely independent", """
+<p><strong>Displacement risk</strong> asks whether AI can do the job instead of the incumbent. <strong>Tailwind</strong> asks whether AI lifts the business without replacing it, mostly through demand for the physical and regulated work that AI infrastructure itself creates.</p>
+<p>They are independent, which is the point. A subsector can score high on both, which makes it Contested. It can score low on both, which makes it Inert. The interesting corner is high tailwind and low displacement.</p>
+<p>Every subsector is scored individually on nine anchored criteria, five for displacement and four for tailwind, each on a 0 to 4 scale with a written anchor for what each level means. The axes are the weighted mean rescaled to 0 to 5. All the arithmetic lives in code, and every weight, anchor and threshold sits in one <code>assumptions.json</code>, so a challenge can be re-run rather than argued about: change the value, re-run the compute step.</p>
+<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind, not a line fitted to make the answer look tidy.</p>""",
+     [("/media/ai-map.png","681 subsectors. Bubble area is the count of active UK companies aged five years or more.")]),
+    ("The finding I did not expect", """
+<p>To check whether the scoring was reproducible, I deliberately scored 50 subsectors twice, with two different models as judges, and compared them.</p>
+<p><strong>Exact agreement was 33%.</strong> The mean difference was 1.04 levels on a 0 to 4 scale, and on tailwind the two judges sat 1.39 apart on a 0 to 5 scale. Worse, the disagreement was systematic rather than noisy. The smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75, and scored stocktaking displacement at zero.</p>
+<p>That matters far beyond this project. When your quadrant boundary is a <em>median</em>, mixing two judges across one scored universe silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. I re-scored all 681 with a single judge and kept both passes in the repository so the comparison stays inspectable.</p>
+<p>If you take one thing from this: <strong>never mix judges across a scored universe</strong>, and if you are using an LLM as a rater, measure inter-rater agreement before you trust a single output. It is a cheap test and it is the difference between an instrument and a picture.</p>"""),
+    ("Counting the companies honestly", """
+<p>Bubble size is a real number, not an impression. Counts come live from the Companies House advanced-search API, queried per five-digit SIC code across all 731 codes, on two measures: active companies, and active companies incorporated on or before a five-year cutoff.</p>
+<p>The honest caveat is that 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so, plus a lower-bound column counting only codes exclusive to that subsector. 531 of the 681 rows are flagged.</p>
+<p>What is deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p>"""),
+    ("What it says", """
+<p>Fortified 166, Contested 180, Eroding 201, Inert 134. Thirty-seven subsectors are Fortified <em>and</em> have a buyable pool of companies behind them.</p>
+<p>Top of the list is data centre and critical-environment maintenance, displacement 1.12 against tailwind 4.38, with roughly 18,400 companies aged five years or more. Then electrical installation and contracting, EV charging maintenance, renewables operations and maintenance, lightning protection, industrial inspection and NDT. The pattern is not subtle: the work that AI infrastructure physically requires, done by people who have to be on site, holding a certification.</p>
+<p>The eroding end is equally blunt, and closer to home for anyone reading this. SEO and digital marketing, translation and localisation, transcription and captioning, directory publishing and data entry all score 4.75 on displacement.</p>
+<p>The uncomfortable version of the conclusion: the safest businesses on this map are the ones that need a van, a qualification and a physical site. The most exposed are the ones that were themselves the last wave of automation.</p>"""),
+   ]),
+]
+
+def build_blog():
+    outdir = OUT / "blog"
+    outdir.mkdir(exist_ok=True)
+
+    # index
+    cards = []
+    for p in POSTS:
+        tags = "".join(f"<span>{t}</span>" for t in p["tags"])
+        cards.append(f"""<article class="post-card reveal">
+      <a class="post-card-link" href="/blog/{p['slug']}">
+        <div class="post-meta"><span class="post-kicker">{p['kicker']}</span><span>{p['date']} · {p['read']} read</span></div>
+        <h2>{p['title']}</h2>
+        <p>{p['standfirst']}</p>
+      </a>
+      <div class="tags">{tags}</div>
+    </article>""")
+    body = f"""{masthead()}
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow reveal">Blog</p>
+    <h1 class="reveal d1">Notes on the things I build</h1>
+    <p class="lede reveal d2">Longer than a LinkedIn post and with the working shown: the problem, the method, the numbers, and the decisions I would defend if challenged.</p>
+  </div>
+</section>
+<section class="sec"><div class="wrap">{''.join(cards)}</div></section>
+{FOOT}"""
+    (outdir / "index.html").write_text(
+        head("Blog · Abdullah Akbar Khalid",
+             "Notes on building diligence tooling: covenant screening, register-scale sourcing, and measuring where AI actually displaces work.",
+             SITE + "/blog") + body)
+
+    # posts
+    for p in POSTS:
+        secs = []
+        for item in p["body"]:
+            title, html = item[0], item[1]
+            figs = item[2] if len(item) > 2 else []
+            figs_html = "".join(
+                f'<figure class="figure reveal"><img src="{src}" alt="{cap}" loading="lazy" width="1200" height="630">'
+                f'<figcaption>{cap}</figcaption></figure>' for src, cap in figs)
+            secs.append(f'<section class="sec"><div class="wrap"><h2 class="reveal">{title}</h2>'
+                        f'<div class="reveal">{html}</div>{figs_html}</div></section>')
+        links = " · ".join(f'<a href="{u}">{t}</a>' for t, u in p["links"])
+        tags = "".join(f"<span>{t}</span>" for t in p["tags"])
+        body = f"""{masthead()}
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/blog">&larr; All posts</a>
+    <div class="post-meta reveal" style="margin-top:1rem"><span class="post-kicker">{p['kicker']}</span><span>{p['date']} · {p['read']} read</span></div>
+    <h1 class="reveal d1">{p['title']}</h1>
+    <p class="lede reveal d2">{p['standfirst']}</p>
+    <div class="tags reveal d3" style="margin-top:1.4rem">{tags}</div>
+    <p class="repos reveal d3" style="margin-top:1.2rem">{links}</p>
+  </div>
+</section>
+{''.join(secs)}
+<section class="sec"><div class="wrap">
+  <a class="more" href="/blog">More posts<span class="arrow">&rarr;</span></a>
+</div></section>
+{FOOT}"""
+        (outdir / f"{p['slug']}.html").write_text(
+            head(f"{p['title']} · Abdullah Akbar Khalid", p["standfirst"], f"{SITE}/blog/{p['slug']}") + body)
+    print(f"built blog index + {len(POSTS)} posts")
+
+build_blog()

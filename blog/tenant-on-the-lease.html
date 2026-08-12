@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The tenant on the lease is not always the business you think · Abdullah Akbar Khalid</title>
+<meta name="description" content="Two companies, same brand, same registered address, opposite covenant. The distinction is free, public and structured, and almost nobody checks it.">
+<meta property="og:title" content="The tenant on the lease is not always the business you think · Abdullah Akbar Khalid">
+<meta property="og:description" content="Two companies, same brand, same registered address, opposite covenant. The distinction is free, public and structured, and almost nobody checks it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/blog/tenant-on-the-lease">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og-v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abdullah Akbar Khalid: most people can read a deal or build a product, I do both.">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="/blog">Blog</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/blog">&larr; All posts</a>
+    <div class="post-meta reveal" style="margin-top:1rem"><span class="post-kicker">Covenant</span><span>2026-08-11 · 6 min read</span></div>
+    <h1 class="reveal d1">The tenant on the lease is not always the business you think</h1>
+    <p class="lede reveal d2">Two companies, same brand, same registered address, opposite covenant. The distinction is free, public and structured, and almost nobody checks it.</p>
+    <div class="tags reveal d3" style="margin-top:1.4rem"><span>UK commercial property</span><span>Companies House</span><span>Python</span></div>
+    <p class="repos reveal d3" style="margin-top:1.2rem"><a href="https://akbar-33.github.io/covenant/">Live demo</a> · <a href="https://github.com/akbar-33/covenant">Source</a> · <a href="/covenant">Case page</a></p>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The data is not hidden. The attention is.</h2><div class="reveal">
+<p>In UK commercial property the building is almost secondary. What you are actually buying is the rental income stream, and that stream is only as good as the tenant's ability to keep paying it.</p>
+<p>Surveyors call this covenant strength and they assess it constantly. Today that usually means paying a credit reference agency per report, or forming a judgement by eye.</p>
+<p>Here is the part I find strange. Every UK company files public, structured, machine-readable records at Companies House, for free. Buried in those filings are the strongest early warnings of tenant failure: a company that quietly stopped filing full accounts, a name change five years ago, a holding company with no trading history of its own, an overdue filing, a charge registered last month.</p>
+<p>Almost nobody reads them systematically. Not because the data is hidden, but because doing it by hand across a rent roll is tedious.</p>
+<p>That gap is not information asymmetry. It is <strong>attention asymmetry</strong>. The data is free, public and sitting there. Reading all of it is the part nobody bothered to automate. I think that is about to change across a lot of professional work, and the edge moves from who can access the data to who can be bothered to read every line of it.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The example that carries the whole idea</h2><div class="reveal">
+<p>Search the register for "Pret A Manger" and twenty entities come back, several dissolved, two of them named almost identically.</p>
+<p><strong>PRET A MANGER LIMITED</strong>, number 11391321, incorporated 2018. SIC code 64209, a holding company. It files under the subsidiary audit exemption, so there is no income statement to read. It was called JAB (ACQUISITION) LTD until 2019.</p>
+<p><strong>PRET A MANGER (EUROPE) LIMITED</strong>, number 01854213, incorporated 1984. SIC 47110, retail. It files full accounts.</p>
+<p>Same brand. Same registered address. Opposite covenant. A landlord who signs with the first entity believes they have the sandwich chain, and actually holds an acquisition vehicle. The trap is that the entity with the less obvious name is the one that has traded since 1984.</p></div><figure class="figure reveal"><img src="/media/02-covenant.png" alt="Two real Companies House entities, scored by the tool. Band C against Band A, from filings alone." loading="lazy" width="1200" height="630"><figcaption>Two real Companies House entities, scored by the tool. Band C against Band A, from filings alone.</figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">What the tool does</h2><div class="reveal">
+<p>Covenant screens the covenant strength of UK commercial tenants directly from Companies House, at any scale from a single lease to an entire postcode district.</p>
+<p>Every entity starts at 100 and loses points only for reasons that name the filing evidencing them. You get a band from A to E, a score, and a schedule of findings you can argue with, because each one links back to the register page it came from.</p>
+<p>It answers in transaction language: accept as is, take a six to twelve month deposit, require a guarantee. Not "moderate risk". Those are the decisions a lease negotiation actually turns on.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">How it works</h2><div class="reveal">
+<p>Two paths, deliberately kept at different currencies.</p>
+<p>The <strong>live path</strong> answers one question about one tenant. It hits the Companies House API, runs the rules engine, and returns a certificate with the deduction ledger on it.</p>
+<p>The <strong>scale path</strong> answers a portfolio question. A monthly bulk snapshot of 5,695,465 companies sits in Parquet, queried with DuckDB. A postcode sweep takes about six tenths of a second once cached. One W1 run scores 7,746 companies and returns the band distribution, the weakest names, and a distress league across the district.</p></div><figure class="figure reveal"><img src="/media/06-covenant-arch.png" alt="The two paths. A certificate is fetched live; a sweep reads a snapshot dated the first of the month." loading="lazy" width="1200" height="630"><figcaption>The two paths. A certificate is fetched live; a sweep reads a snapshot dated the first of the month.</figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Three decisions I would defend</h2><div class="reveal">
+<p><strong>A deduction ledger instead of a black box.</strong> A score with no working shown is an opinion wearing a number's clothing. Every deduction names the filing behind it, so a surveyor can disagree and go read the source.</p>
+<p><strong>The public demo is the real application, frozen to static HTML.</strong> No server to fall asleep, no API key to leak, and no risk of the demo drifting away from the tool it represents.</p>
+<p><strong>The two data sources never blur.</strong> The sweep is a photograph dated the first of the month. A certificate is fetched live at the moment you look. Presenting a month-old reading as live is exactly the error this tool exists to catch.</p>
+<p>It is a screen, not an opinion, and nothing in it is a Red Book valuation. It tells you which entities deserve an hour of a surveyor's attention, which is a useful thing to automate and a dangerous thing to overclaim.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/blog">More posts<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

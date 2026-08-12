@@ -10,7 +10,7 @@ Source for [akbar-khalid.vercel.app](https://akbar-khalid.vercel.app). Static, n
 python3 build.py
 ```
 
-That rewrites `index.html`, the six case pages, and `vercel.json` from one source, so the one-pager and the case pages cannot drift apart.
+That rewrites `index.html`, the six case pages, the blog index and posts, and `vercel.json` from one source, so the one-pager and the case pages cannot drift apart.
 
 Hand-maintained files:
 
@@ -21,6 +21,7 @@ Hand-maintained files:
 | `app.js` | Theme toggle, scroll reveal, floating tooltips |
 | `media/*.png` | Social preview card and the LinkedIn project images |
 | `media/src/*.html` | The HTML those PNGs are rendered from, at 1200x630 |
+| `blog/*.html` | **No, generated** by the `POSTS` list in `build.py` |
 
 ## Narrow screens
 

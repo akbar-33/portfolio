@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which businesses does AI actually threaten · Abdullah Akbar Khalid</title>
+<meta name="description" content="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.">
+<meta property="og:title" content="Which businesses does AI actually threaten · Abdullah Akbar Khalid">
+<meta property="og:description" content="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/blog/ai-impact-map">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og-v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abdullah Akbar Khalid: most people can read a deal or build a product, I do both.">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="/blog">Blog</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/blog">&larr; All posts</a>
+    <div class="post-meta reveal" style="margin-top:1rem"><span class="post-kicker">AI impact</span><span>2026-08-12 · 8 min read</span></div>
+    <h1 class="reveal d1">Which businesses does AI actually threaten</h1>
+    <p class="lede reveal d2">681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.</p>
+    <div class="tags reveal d3" style="margin-top:1.4rem"><span>AI displacement</span><span>UK market map</span><span>Companies House</span><span>LLM evaluation</span></div>
+    <p class="repos reveal d3" style="margin-top:1.2rem"><a href="/media/ai-map.png">Full-size map</a> · <a href="/blog/ai-impact-map">Method note</a></p>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The question, and why the first version failed</h2><div class="reveal">
+<p>"Which industries will AI eat" is usually answered at the level of a category. Legal. Accounting. Marketing. That is the wrong altitude, because AI acts on <em>tasks</em>, not on categories, and every category is a bundle of tasks with wildly different exposure.</p>
+<p>My first attempt scored two axes per archetype and let 681 subsectors inherit their archetype's position. It had no company counts, and a roll-up fit column I could not define precisely. Someone took it apart in about four questions on a call, and every one of those questions was fair. This version fixes exactly those three things and nothing else.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Two axes that are genuinely independent</h2><div class="reveal">
+<p><strong>Displacement risk</strong> asks whether AI can do the job instead of the incumbent. <strong>Tailwind</strong> asks whether AI lifts the business without replacing it, mostly through demand for the physical and regulated work that AI infrastructure itself creates.</p>
+<p>They are independent, which is the point. A subsector can score high on both, which makes it Contested. It can score low on both, which makes it Inert. The interesting corner is high tailwind and low displacement.</p>
+<p>Every subsector is scored individually on nine anchored criteria, five for displacement and four for tailwind, each on a 0 to 4 scale with a written anchor for what each level means. The axes are the weighted mean rescaled to 0 to 5. All the arithmetic lives in code, and every weight, anchor and threshold sits in one <code>assumptions.json</code>, so a challenge can be re-run rather than argued about: change the value, re-run the compute step.</p>
+<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind, not a line fitted to make the answer look tidy.</p></div><figure class="figure reveal"><img src="/media/ai-map.png" alt="681 subsectors. Bubble area is the count of active UK companies aged five years or more." loading="lazy" width="1200" height="630"><figcaption>681 subsectors. Bubble area is the count of active UK companies aged five years or more.</figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The finding I did not expect</h2><div class="reveal">
+<p>To check whether the scoring was reproducible, I deliberately scored 50 subsectors twice, with two different models as judges, and compared them.</p>
+<p><strong>Exact agreement was 33%.</strong> The mean difference was 1.04 levels on a 0 to 4 scale, and on tailwind the two judges sat 1.39 apart on a 0 to 5 scale. Worse, the disagreement was systematic rather than noisy. The smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75, and scored stocktaking displacement at zero.</p>
+<p>That matters far beyond this project. When your quadrant boundary is a <em>median</em>, mixing two judges across one scored universe silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. I re-scored all 681 with a single judge and kept both passes in the repository so the comparison stays inspectable.</p>
+<p>If you take one thing from this: <strong>never mix judges across a scored universe</strong>, and if you are using an LLM as a rater, measure inter-rater agreement before you trust a single output. It is a cheap test and it is the difference between an instrument and a picture.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Counting the companies honestly</h2><div class="reveal">
+<p>Bubble size is a real number, not an impression. Counts come live from the Companies House advanced-search API, queried per five-digit SIC code across all 731 codes, on two measures: active companies, and active companies incorporated on or before a five-year cutoff.</p>
+<p>The honest caveat is that 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so, plus a lower-bound column counting only codes exclusive to that subsector. 531 of the 681 rows are flagged.</p>
+<p>What is deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">What it says</h2><div class="reveal">
+<p>Fortified 166, Contested 180, Eroding 201, Inert 134. Thirty-seven subsectors are Fortified <em>and</em> have a buyable pool of companies behind them.</p>
+<p>Top of the list is data centre and critical-environment maintenance, displacement 1.12 against tailwind 4.38, with roughly 18,400 companies aged five years or more. Then electrical installation and contracting, EV charging maintenance, renewables operations and maintenance, lightning protection, industrial inspection and NDT. The pattern is not subtle: the work that AI infrastructure physically requires, done by people who have to be on site, holding a certification.</p>
+<p>The eroding end is equally blunt, and closer to home for anyone reading this. SEO and digital marketing, translation and localisation, transcription and captioning, directory publishing and data entry all score 4.75 on displacement.</p>
+<p>The uncomfortable version of the conclusion: the safest businesses on this map are the ones that need a van, a qualification and a physical site. The most exposed are the ones that were themselves the last wave of automation.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/blog">More posts<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

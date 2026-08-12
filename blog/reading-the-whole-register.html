@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading the entire UK company register · Abdullah Akbar Khalid</title>
+<meta name="description" content="Five million companies, four hundred columns, and a shortlist small enough to take into an investment committee. The hard part was never the data.">
+<meta property="og:title" content="Reading the entire UK company register · Abdullah Akbar Khalid">
+<meta property="og:description" content="Five million companies, four hundred columns, and a shortlist small enough to take into an investment committee. The hard part was never the data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/blog/reading-the-whole-register">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og-v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abdullah Akbar Khalid: most people can read a deal or build a product, I do both.">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="/blog">Blog</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/blog">&larr; All posts</a>
+    <div class="post-meta reveal" style="margin-top:1rem"><span class="post-kicker">Screening engine</span><span>2026-08-12 · 6 min read</span></div>
+    <h1 class="reveal d1">Reading the entire UK company register</h1>
+    <p class="lede reveal d2">Five million companies, four hundred columns, and a shortlist small enough to take into an investment committee. The hard part was never the data.</p>
+    <div class="tags reveal d3" style="margin-top:1.4rem"><span>Deal sourcing</span><span>Buy-and-build</span><span>Python</span><span>LLM classification</span></div>
+    <p class="repos reveal d3" style="margin-top:1.2rem"><a href="https://github.com/akbar-33/companies-house-screening-engine">Source</a> · <a href="/screening-engine">Case page</a></p>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">Sourcing is the grind, not the thesis</h2><div class="reveal">
+<p>A search fund or a buy-and-build thesis lives or dies on sourcing. The dream is the easy part. The grind is reading through thousands of companies to find the few that fit.</p>
+<p>Every standard tool starts from a keyword, which means it can only return companies that describe themselves the way you happened to phrase it. The ones you most want are the ones that describe themselves badly.</p>
+<p>The UK register is free, public and structured. Roughly five million live companies, about four hundred columns each. Nobody screens it systematically because the raw file is unusable on its own: SIC codes are self-reported and often stale, most rows carry no website, and small companies file abbreviated accounts with no revenue line at all.</p></div><figure class="figure reveal"><img src="/media/01-screening-engine.png" alt="What survives each stage. The last row is small enough for a partner to read." loading="lazy" width="1200" height="630"><figcaption>What survives each stage. The last row is small enough for a partner to read.</figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Two pipelines over one register</h2><div class="reveal">
+<p>The first pipeline decides what each company <em>is</em>. The second recovers what it is <em>worth</em>. Every stage caches its output, so a failed run resumes rather than restarting, which matters when a full pass costs real money in API calls.</p></div><figure class="figure reveal"><img src="/media/05-screening-arch.png" alt="Classification first, then financial recovery, then one consolidated table." loading="lazy" width="1200" height="630"><figcaption>Classification first, then financial recovery, then one consolidated table.</figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Decisions worth defending</h2><div class="reveal">
+<p><strong>Cheap filters before expensive ones.</strong> SIC filtering is coarse and imperfect, but it runs on a laptop in seconds and removes most of the register before anything bills per company. Ordering the pipeline by cost per row is the difference between a run that is affordable and one that is not.</p>
+<p><strong>The website is the ground truth, not the SIC code.</strong> A company's own description of itself is far more reliable than a code it picked at incorporation and never revisited. So the engine spends real effort finding sites that were never filed anywhere machine-readable, then judges the company on what it says it does.</p>
+<p><strong>Rules first, model second.</strong> The LLM is asked only the genuinely ambiguous cases. Rules handle the obvious ones deterministically, which keeps classification reproducible, cheaper and auditable. A four-axis taxonomy, stack layer by function by business model by vertical, means a company can be described precisely instead of dropped into one blunt bucket.</p>
+<p><strong>Estimate the financials, and say that they are estimates.</strong> Small companies do not file a revenue line. The engine triangulates from what is disclosed in iXBRL filings and labels the result as an estimate throughout. A number presented with false confidence is worse than no number.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/blog">More posts<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>
