@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI-Impact Map · Abdullah Akbar Khalid</title>
+<meta name="description" content="681 UK business-model subsectors, each scored individually on nine anchored criteria across two independent axes, with live company counts from the register.">
+<meta property="og:title" content="The AI-Impact Map · Abdullah Akbar Khalid">
+<meta property="og:description" content="681 UK business-model subsectors, each scored individually on nine anchored criteria across two independent axes, with live company counts from the register.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akbar-khalid.vercel.app/ai-impact-map">
+<meta property="og:image" content="https://akbar-khalid.vercel.app/media/og-v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abdullah Akbar Khalid: most people can read a deal or build a product, I do both.">
+<meta property="og:site_name" content="Abdullah Akbar Khalid">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC3013'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FBFAF7' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){document.documentElement.classList.add("js");try{if(localStorage.getItem("ak-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}})();</script>
+
+</head>
+<body><header class="masthead">
+  <div class="wrap-wide masthead-row">
+    <a class="brand" href="/">Abdullah Akbar Khalid</a>
+    <nav>
+      <a href="/#exhibits">Work</a>
+      <a href="/ideas">Ideas</a>
+      <a href="https://github.com/akbar-33">GitHub</a>
+      <a href="https://www.linkedin.com/in/akbar-khalid/">LinkedIn</a>
+      <a href="mailto:akbar.khalid@insead.edu">Email</a>
+      <button class="theme-toggle" type="button"><span class="dot"></span><span class="label">Dark</span></button>
+    </nav>
+  </div>
+</header>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="backlink" href="/#ai-impact-map">&larr; All exhibits</a>
+    <p class="eyebrow reveal" style="margin-top:1rem">Exhibit F · Market mapping</p>
+    <h1 class="reveal d1">Where AI eats a business, and where it feeds one</h1>
+    <p class="lede reveal d2">681 UK business-model subsectors, each scored individually on nine anchored criteria across two independent axes, with live company counts from the register.</p>
+    <div class="case-meta reveal d3"><div><dt>Status</dt><dd>Public figure, pipeline private</dd></div><div><dt>Stack</dt><dd>Python · Companies House API · LLM scoring</dd></div><div><dt>Universe</dt><dd>681 subsectors · 731 SIC codes</dd></div><div><dt>Essay</dt><dd><a href="/ideas/ai-impact-map">The method note</a></dd></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap"><h2 class="reveal">The instrument</h2><div class="reveal"><p>Click any bubble, row or quadrant to see the nine criteria behind it, with the anchor sentence for the level scored. Filter by section, by roll-up fit, or by minimum pool size. Bubble area is the count of active UK companies aged five years or more.</p></div><figure class="figure embed reveal" data-embed="/media/ai-impact-map.html?embed" data-embed-img="/media/ai-map.png" data-embed-alt="The AI-Impact Map: 681 UK subsectors plotted on displacement risk against tailwind"><div class="embed-slot"></div><figcaption>The full instrument, live. <a href="/media/ai-impact-map.html" target="_blank" rel="noopener">Open full screen</a></figcaption></figure></div></section><section class="sec"><div class="wrap"><h2 class="reveal">Why it is scored this way</h2><div class="reveal"><p>"Which industries will AI eat" is usually answered at the level of a category. That is the wrong altitude, because AI acts on <em>tasks</em>, and every category is a bundle of tasks with wildly different exposure.</p>
+<p>An earlier version scored two axes per archetype and let subsectors inherit their archetype's position. It had no company counts and a roll-up fit column I could not define precisely. Someone took it apart in about four questions, and every one was fair. This version scores each subsector individually, on nine criteria with written anchors for what each 0 to 4 level means, and puts every weight, anchor and threshold in one <code>assumptions.json</code> so a challenge can be re-run rather than argued about.</p>
+<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind. Not a line fitted to make the answer look tidy.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">The finding that generalises</h2><div class="reveal"><p>To test whether the scoring was reproducible, 50 subsectors were deliberately scored twice by two different models.</p>
+<p><strong>Exact agreement was 33%.</strong> Mean difference 1.04 levels on a 0 to 4 scale, and 1.39 apart on tailwind. The disagreement was systematic, not noise: the smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75.</p>
+<p>When a quadrant boundary is a median, mixing judges silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. All 681 were re-scored by a single judge, and both passes were kept so the comparison stays inspectable. If you use an LLM as a rater, measure inter-rater agreement before trusting a single pass.</p></div></div></section><section class="sec"><div class="wrap"><h2 class="reveal">What it refuses to claim</h2><div class="reveal"><p>Counts come live from the Companies House advanced-search API per five-digit SIC code, across all 731 codes. But 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so and a lower-bound column counting only exclusive codes.</p>
+<p>Deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p></div></div></section>
+<section class="sec"><div class="wrap">
+  <a class="more" href="/#ai-impact-map">Back to all exhibits<span class="arrow">&rarr;</span></a>
+</div></section>
+<footer class="site">
+  <div class="wrap-wide">
+    <span>Built by hand, no template, like everything above.</span>
+    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

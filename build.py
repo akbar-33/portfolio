@@ -166,6 +166,16 @@ RELAY = """<div class="visual reveal" aria-label="Automation stack data flow">
   </div>
 </div>"""
 
+QUAD = """<div class="visual reveal" aria-label="681 UK subsectors sorted into four quadrants">
+  <div class="visual-caption"><span>681 UK subsectors, two independent axes</span><span class="hint">Hover any quadrant</span></div>
+  <div class="quad">
+    <div class="q fort" data-tip="AI raises demand for the work but cannot do it. Mostly physical, certificated, on-site work: data centre maintenance, electrical contracting, EV charging, renewables O and M. 37 of these also have a buyable pool of companies behind them."><b>166</b><span>Fortified</span><small>AI lifts demand, cannot do the work</small></div>
+    <div class="q cont" data-tip="High on both axes. Demand rises and substitution is real at the same time, so the outcome depends on who moves first. The most interesting quadrant and the least comfortable."><b>180</b><span>Contested</span><small>Rising demand, real substitution risk</small></div>
+    <div class="q inert" data-tip="Low on both axes. AI neither threatens nor helps much. Largely untouched either way, which is its own kind of answer."><b>134</b><span>Inert</span><small>Largely untouched either way</small></div>
+    <div class="q erod" data-tip="Substitutable with no demand offset. SEO and digital marketing, translation, transcription, directory publishing and data entry all score 4.75 out of 5 on displacement. Mostly work that was itself the last wave of automation."><b>201</b><span>Eroding</span><small>Substitutable, no demand offset</small></div>
+  </div>
+</div>"""
+
 ARCH = {
 "screening": flow("How it operates: two pipelines over one register", [
   ("Pipeline 1<br>src/01-09", [
@@ -249,8 +259,14 @@ EX = [
    tags=["React","TypeScript","Supabase","row-level auth","edge functions"],
    pitch=['One dashboard for what six apps and my head used to hold: today\'s priorities, the backlog, overdue items, people I owe a reply, the job pipeline. My AI automations capture into it all day. The page that justifies the project is <strong>Automation Health</strong>, because automations fail silently and a briefing that stops arriving looks identical to a quiet news day until something checks.'],
    visuals=[GRID]),
- dict(slug="automation-stack", letter="F", label="The automation stack",
-   title="The systems that run my day", status='private by necessity<a class="cite" href="/#ref-8">[8]</a>', cite=None,
+ dict(slug="ai-impact-map", letter="F", label="Market mapping",
+   title="The AI-Impact Map", status="public figure · pipeline private", cite=8,
+   tags=["Python","Companies House API","LLM scoring","inter-rater agreement"],
+   pitch=['"Which industries will AI eat" is usually answered at the level of a category, which is the wrong altitude: AI acts on tasks, and every category is a bundle of tasks with wildly different exposure. So I scored <strong>681 UK business-model subsectors</strong> individually on nine anchored criteria, across two independent axes, and attached live Companies House counts so the size of each bubble is a real number of real companies.',
+          'The finding that mattered was not the answer. Scoring 50 subsectors twice with two different models as judges produced only <strong>33% exact agreement</strong>, and the disagreement was systematic rather than noisy. When your quadrant boundary is a median, mixing judges silently sorts one judge\'s rows into different quadrants than the other\'s. I re-scored all 681 with one judge.'],
+   visuals=[QUAD]),
+ dict(slug="automation-stack", letter="G", label="The automation stack",
+   title="The systems that run my day", status='private by necessity<a class="cite" href="/#ref-9">[9]</a>', cite=None,
    tags=["Python","Playwright","Claude API","launchd","WhatsApp bridge"],
    pitch=['No repo for these; they hold my sessions and keys. A scraping engine that reads pages bot-detection blocks, including LinkedIn. A Discord to WhatsApp relay that reformats a trading community\'s calls into structured tables in real time. An Instagram story archiver with review notes. And a briefing pipeline that ranks everything I\'m tracking and pushes a top-five to my WhatsApp twice a day, on a launchd schedule.'],
    visuals=[RELAY]),
@@ -296,7 +312,8 @@ def build_index():
       <li id="ref-5"><span class="n">[5]</span><span>RICS professional standard, <a href="https://www.rics.org/profession-standards/rics-standards-and-guidance/conduct-competence/responsible-use-of-ai"><i>Responsible use of AI in surveying practice</i></a>, in force 9 March 2026. Oversight is independent tooling and is not endorsed by RICS.</span></li>
       <li id="ref-6"><span class="n">[6]</span><span><a href="{GH}/cited-memo">github.com/akbar-33/cited-memo</a></span></li>
       <li id="ref-7"><span class="n">[7]</span><span><a href="{GH}/command-center-companion">github.com/akbar-33/command-center-companion</a></span></li>
-      <li id="ref-8"><span class="n">[8]</span><span class="note">source withheld: these systems carry live credentials and personal data. Demos on request.</span></li>
+      <li id="ref-8"><span class="n">[8]</span><span>Company counts from the <a href="https://developer.company-information.service.gov.uk/">Companies House advanced-search API</a>, queried per SIC code across all 731 codes. The scoring pipeline is private; the figure and the <a href="/ideas/ai-impact-map">method note</a> are public. Independent analysis, not affiliated with Companies House.</span></li>
+      <li id="ref-9"><span class="n">[9]</span><span class="note">source withheld: these systems carry live credentials and personal data. Demos on request.</span></li>
     </ol>
   </div>
 </section>"""
@@ -451,6 +468,26 @@ CASES = {
         "<p>A task list only I can write into becomes stale the first busy week. Edge functions let the automations file directly into the same backlog I read.</p>"), []),
   ]),
 
+"ai-impact-map": dict(
+  eyebrow="Exhibit F · Market mapping",
+  h1="Where AI eats a business, and where it feeds one",
+  lede="681 UK business-model subsectors, each scored individually on nine anchored criteria across two independent axes, with live company counts from the register.",
+  meta=[("Status","Public figure, pipeline private"),("Stack","Python · Companies House API · LLM scoring"),
+        ("Universe","681 subsectors · 731 SIC codes"),
+        ("Essay",'<a href="/ideas/ai-impact-map">The method note</a>')],
+  secs=[
+   ("The instrument", """<p>Click any bubble, row or quadrant to see the nine criteria behind it, with the anchor sentence for the level scored. Filter by section, by roll-up fit, or by minimum pool size. Bubble area is the count of active UK companies aged five years or more.</p>""",
+    ['<figure class="figure embed reveal" data-embed="/media/ai-impact-map.html?embed" data-embed-img="/media/ai-map.png" data-embed-alt="The AI-Impact Map: 681 UK subsectors plotted on displacement risk against tailwind"><div class="embed-slot"></div><figcaption>The full instrument, live. <a href="/media/ai-impact-map.html" target="_blank" rel="noopener">Open full screen</a></figcaption></figure>']),
+   ("Why it is scored this way", """<p>"Which industries will AI eat" is usually answered at the level of a category. That is the wrong altitude, because AI acts on <em>tasks</em>, and every category is a bundle of tasks with wildly different exposure.</p>
+<p>An earlier version scored two axes per archetype and let subsectors inherit their archetype's position. It had no company counts and a roll-up fit column I could not define precisely. Someone took it apart in about four questions, and every one was fair. This version scores each subsector individually, on nine criteria with written anchors for what each 0 to 4 level means, and puts every weight, anchor and threshold in one <code>assumptions.json</code> so a challenge can be re-run rather than argued about.</p>
+<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind. Not a line fitted to make the answer look tidy.</p>"""),
+   ("The finding that generalises", """<p>To test whether the scoring was reproducible, 50 subsectors were deliberately scored twice by two different models.</p>
+<p><strong>Exact agreement was 33%.</strong> Mean difference 1.04 levels on a 0 to 4 scale, and 1.39 apart on tailwind. The disagreement was systematic, not noise: the smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75.</p>
+<p>When a quadrant boundary is a median, mixing judges silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. All 681 were re-scored by a single judge, and both passes were kept so the comparison stays inspectable. If you use an LLM as a rater, measure inter-rater agreement before trusting a single pass.</p>"""),
+   ("What it refuses to claim", """<p>Counts come live from the Companies House advanced-search API per five-digit SIC code, across all 731 codes. But 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so and a lower-bound column counting only exclusive codes.</p>
+<p>Deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p>"""),
+  ]),
+
 "automation-stack": dict(
   eyebrow="Exhibit F · The automation stack",
   h1="The systems that run my day, and why none of them have a repository",
@@ -476,7 +513,9 @@ for e in EX:
     c = CASES[e["slug"]]
     meta = "".join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in c["meta"])
     secs = []
-    for title, html, vis in c["secs"]:
+    for sec in c["secs"]:
+        title, html = sec[0], sec[1]
+        vis = sec[2] if len(sec) > 2 else []
         secs.append(f'<section class="sec"><div class="wrap"><h2 class="reveal">{title}</h2>'
                     f'<div class="reveal">{html}</div>{"".join(vis)}</div></section>')
     body = f"""{masthead()}
@@ -637,7 +676,7 @@ def build_ideas():
                 if src == "EMBED":
                     # app.js swaps this for a live iframe on wide screens and a still
                     # image on phones, where a 348KB interactive map reads badly.
-                    return (f'<figure class="figure embed reveal" data-embed="/media/ai-impact-map.html?chart" '
+                    return (f'<figure class="figure embed reveal" data-embed="/media/ai-impact-map.html?embed&amp;chart" '
                             f'data-embed-img="/media/ai-map.png" data-embed-alt="The AI-Impact Map: 681 UK subsectors plotted on displacement risk against tailwind">'
                             f'<div class="embed-slot"></div>'
                             f'<figcaption>{cap} <a href="/media/ai-impact-map" target="_blank" rel="noopener">Open full screen</a></figcaption>'

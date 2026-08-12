@@ -434,3 +434,34 @@ footer.site a:hover{border-bottom-color:var(--red)}
   font-family:var(--mono);font-size:.7rem;color:var(--muted);
   padding:.55rem .9rem;border-top:1px solid var(--rule);
 }
+
+/* The live map wants more width than the reading column. On wide screens the
+   embed breaks out of the 47.5rem measure and centres on the viewport instead,
+   so the figure reads as a full-width instrument rather than a cramped inset. */
+@media (min-width:1000px){
+  .figure.embed{
+    width:min(72rem,calc(100vw - 4rem));
+    /* Centre with margin, not transform: .reveal.is-in sets transform:none at a
+       higher specificity, which would silently cancel a translate here. */
+    margin-left:calc(50% - min(36rem,calc(50vw - 2rem)));
+  }
+}
+
+/* ---------- 2x2 quadrant figure ---------- */
+.quad{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono)}
+.quad .q{padding:1.15rem 1.1rem 1.25rem;border-top:1px solid var(--rule);transition:background .2s}
+.quad .q:nth-child(-n+2){border-top:0}
+.quad .q:nth-child(odd){border-right:1px solid var(--rule)}
+.quad .q:hover{background:var(--card-2)}
+.quad .q b{display:block;font-size:1.75rem;font-weight:600;line-height:1}
+.quad .q span{display:block;font-size:.8rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;margin-top:.4rem}
+.quad .q small{display:block;color:var(--muted);font-size:.72rem;margin-top:.3rem;line-height:1.5}
+.quad .fort b,.quad .fort span{color:var(--band-a)}
+.quad .cont b,.quad .cont span{color:var(--band-c)}
+.quad .erod b,.quad .erod span{color:var(--red)}
+.quad .inert b,.quad .inert span{color:var(--muted)}
+@media (max-width:540px){
+  .quad{grid-template-columns:1fr}
+  .quad .q:nth-child(odd){border-right:0}
+  .quad .q:nth-child(2){border-top:1px solid var(--rule)}
+}

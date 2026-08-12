@@ -209,7 +209,10 @@
             var cs = frame.contentWindow.getComputedStyle(b);
             var h = Math.ceil(b.scrollHeight +
               (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0));
-            if (h > 100 && Math.abs(h - frame.clientHeight) > 4) frame.style.height = h + "px";
+            // 2px of slack: sub-pixel rounding can otherwise leave the last
+            // couple of pixels clipped, or provoke a scrollbar.
+            h += 2;
+            if (h > 100 && Math.abs(h - frame.clientHeight) > 2) frame.style.height = h + "px";
           };
           paintFrame(frame);
           fit();
