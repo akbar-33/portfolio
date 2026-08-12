@@ -176,6 +176,13 @@ tbody tr:hover td,tbody tr.hot td{background:var(--sunk)}
                        transition-duration:.01ms!important}
 }
 </style>
+<style>
+/* ?chart shows the matrix on its own, for embedding in a post that already
+   carries the title and the numbers in its own prose. */
+html.chartonly header, html.chartonly .states, html.chartonly .wrap > .rule{display:none}
+html.chartonly .wrap{padding-top:.75rem;padding-bottom:.75rem}
+</style>
+<script>if(location.search.indexOf("chart")>-1)document.documentElement.className+=" chartonly";</script>
 </head>
 <body>
 

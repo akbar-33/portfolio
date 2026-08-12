@@ -30,7 +30,7 @@ The diagrams are horizontal chains, which needs a `min-width` and therefore a si
 
 ## Live embeds
 
-The AI-Impact Map post embeds the real interactive tool, not a screenshot. `media/ai-impact-map.html` is the artifact build wrapped in a doctype and head (the source emits body-only HTML). `app.js` inserts it as an iframe above 700px and sizes the frame to the iframe's own document height, which is readable because it is same-origin, so the figure has no inner scrollbar. Below 700px it inserts the still image instead and never fetches the 348KB page, since the bubbles are unusable at that width.
+The AI-Impact Map post embeds the real interactive tool, not a screenshot. `media/ai-impact-map.html` is the artifact build wrapped in a doctype and head (the source emits body-only HTML). The embed requests `?chart`, which hides the map's own title block and summary cards so the figure is just the matrix; the full-screen link opens the whole page. The iframe src deliberately keeps its `.html` extension: Vercel's `cleanUrls` 308-redirects it, which costs one hop, but the extensionless form 404s on a plain static server, so keeping the extension is what lets `python3 -m http.server` preview the page correctly. `app.js` inserts it as an iframe above 700px and sizes the frame to the iframe's own document height, which is readable because it is same-origin, so the figure has no inner scrollbar. Below 700px it inserts the still image instead and never fetches the 348KB page, since the bubbles are unusable at that width.
 
 To refresh the map after re-running the pipeline, re-wrap the artifact and re-render the still:
 

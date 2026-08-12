@@ -183,9 +183,15 @@
         try {
           var d = frame.contentDocument;
           if (!d) return;
+          // Measure the body only. documentElement stretches to fill the frame,
+          // so including it locks the height at whatever it already was.
           var fit = function () {
-            var h = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight);
-            if (h > 100) frame.style.height = h + "px";
+            var b = d.body;
+            if (!b) return;
+            var cs = frame.contentWindow.getComputedStyle(b);
+            var h = Math.ceil(b.scrollHeight +
+              (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0));
+            if (h > 100 && Math.abs(h - frame.clientHeight) > 4) frame.style.height = h + "px";
           };
           fit();
           setTimeout(fit, 600);   // again once the load animation settles

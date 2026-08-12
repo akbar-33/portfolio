@@ -637,7 +637,7 @@ def build_ideas():
                 if src == "EMBED":
                     # app.js swaps this for a live iframe on wide screens and a still
                     # image on phones, where a 348KB interactive map reads badly.
-                    return (f'<figure class="figure embed reveal" data-embed="/media/ai-impact-map" '
+                    return (f'<figure class="figure embed reveal" data-embed="/media/ai-impact-map.html?chart" '
                             f'data-embed-img="/media/ai-map.png" data-embed-alt="The AI-Impact Map: 681 UK subsectors plotted on displacement risk against tailwind">'
                             f'<div class="embed-slot"></div>'
                             f'<figcaption>{cap} <a href="/media/ai-impact-map" target="_blank" rel="noopener">Open full screen</a></figcaption>'
