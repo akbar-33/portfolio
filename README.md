@@ -4,7 +4,7 @@ Source for [akbar-khalid.vercel.app](https://akbar-khalid.vercel.app). Static, n
 
 ## Editing
 
-`index.html` and the six case pages are **generated**. Do not edit them by hand, or the next build will overwrite the change. Edit `build.py` and re-run it:
+`index.html`, the six case pages, and everything under `blog/` are **generated**. Blog posts come from the `POSTS` list in `build.py`; add a post there, not as a new HTML file. Do not edit them by hand, or the next build will overwrite the change. Edit `build.py` and re-run it:
 
 ```bash
 python3 build.py
@@ -21,7 +21,6 @@ Hand-maintained files:
 | `app.js` | Theme toggle, scroll reveal, floating tooltips |
 | `media/*.png` | Social preview card and the LinkedIn project images |
 | `media/src/*.html` | The HTML those PNGs are rendered from, at 1200x630 |
-| `blog/*.html` | **No, generated** by the `POSTS` list in `build.py` |
 
 ## Narrow screens
 
