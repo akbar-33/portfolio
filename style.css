@@ -420,3 +420,17 @@ footer.site a:hover{border-bottom-color:var(--red)}
   font-family:var(--mono);font-size:.86em;background:var(--card-2);
   border:1px solid var(--rule);border-radius:2px;padding:.05em .35em;
 }
+
+/* ---------- live embeds ----------
+   The interactive map is same-origin, so app.js measures its document and sets
+   the iframe height to match. That keeps the embed free of an inner scrollbar. */
+.figure.embed{background:var(--paper)}
+.embed-slot{min-height:2rem}
+.embed-slot iframe{display:block;width:100%;border:0;background:#fff}
+.embed-slot img{display:block;width:100%;height:auto}
+.figure figcaption a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--rule);white-space:nowrap}
+.figure figcaption a:hover{border-bottom-color:var(--red)}
+.embed-note{
+  font-family:var(--mono);font-size:.7rem;color:var(--muted);
+  padding:.55rem .9rem;border-top:1px solid var(--rule);
+}

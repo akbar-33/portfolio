@@ -503,6 +503,37 @@ print(f"built index.html + {len(EX)} case pages + vercel.json")
 
 # ================================================================ ideas
 POSTS = [
+ dict(slug="ai-impact-map", date="2026-08-12", read="8 min",
+   kicker="AI impact",
+   title="Which businesses does AI actually threaten",
+   standfirst="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.",
+   tags=["AI displacement","UK market map","Companies House","LLM evaluation"],
+   links=[("Full-size map","/media/ai-map.png"),("Method note","/ideas/ai-impact-map")],
+   body=[
+    ("The question, and why the first version failed", """
+<p>"Which industries will AI eat" is usually answered at the level of a category. Legal. Accounting. Marketing. That is the wrong altitude, because AI acts on <em>tasks</em>, not on categories, and every category is a bundle of tasks with wildly different exposure.</p>
+<p>My first attempt scored two axes per archetype and let 681 subsectors inherit their archetype's position. It had no company counts, and a roll-up fit column I could not define precisely. Someone took it apart in about four questions on a call, and every one of those questions was fair. This version fixes exactly those three things and nothing else.</p>"""),
+    ("Two axes that are genuinely independent", """
+<p><strong>Displacement risk</strong> asks whether AI can do the job instead of the incumbent. <strong>Tailwind</strong> asks whether AI lifts the business without replacing it, mostly through demand for the physical and regulated work that AI infrastructure itself creates.</p>
+<p>They are independent, which is the point. A subsector can score high on both, which makes it Contested. It can score low on both, which makes it Inert. The interesting corner is high tailwind and low displacement.</p>
+<p>Every subsector is scored individually on nine anchored criteria, five for displacement and four for tailwind, each on a 0 to 4 scale with a written anchor for what each level means. The axes are the weighted mean rescaled to 0 to 5. All the arithmetic lives in code, and every weight, anchor and threshold sits in one <code>assumptions.json</code>, so a challenge can be re-run rather than argued about: change the value, re-run the compute step.</p>
+<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind, not a line fitted to make the answer look tidy.</p>""",
+     [("EMBED","Live and interactive: click any bubble, row or quadrant for the nine criteria behind it, filter by section or pool size, and press replay to watch the universe load. Bubble area is the count of active UK companies aged five years or more.")]),
+    ("The finding I did not expect", """
+<p>To check whether the scoring was reproducible, I deliberately scored 50 subsectors twice, with two different models as judges, and compared them.</p>
+<p><strong>Exact agreement was 33%.</strong> The mean difference was 1.04 levels on a 0 to 4 scale, and on tailwind the two judges sat 1.39 apart on a 0 to 5 scale. Worse, the disagreement was systematic rather than noisy. The smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75, and scored stocktaking displacement at zero.</p>
+<p>That matters far beyond this project. When your quadrant boundary is a <em>median</em>, mixing two judges across one scored universe silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. I re-scored all 681 with a single judge and kept both passes in the repository so the comparison stays inspectable.</p>
+<p>If you take one thing from this: <strong>never mix judges across a scored universe</strong>, and if you are using an LLM as a rater, measure inter-rater agreement before you trust a single output. It is a cheap test and it is the difference between an instrument and a picture.</p>"""),
+    ("Counting the companies honestly", """
+<p>Bubble size is a real number, not an impression. Counts come live from the Companies House advanced-search API, queried per five-digit SIC code across all 731 codes, on two measures: active companies, and active companies incorporated on or before a five-year cutoff.</p>
+<p>The honest caveat is that 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so, plus a lower-bound column counting only codes exclusive to that subsector. 531 of the 681 rows are flagged.</p>
+<p>What is deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p>"""),
+    ("What it says", """
+<p>Fortified 166, Contested 180, Eroding 201, Inert 134. Thirty-seven subsectors are Fortified <em>and</em> have a buyable pool of companies behind them.</p>
+<p>Top of the list is data centre and critical-environment maintenance, displacement 1.12 against tailwind 4.38, with roughly 18,400 companies aged five years or more. Then electrical installation and contracting, EV charging maintenance, renewables operations and maintenance, lightning protection, industrial inspection and NDT. The pattern is not subtle: the work that AI infrastructure physically requires, done by people who have to be on site, holding a certification.</p>
+<p>The eroding end is equally blunt, and closer to home for anyone reading this. SEO and digital marketing, translation and localisation, transcription and captioning, directory publishing and data entry all score 4.75 on displacement.</p>
+<p>The uncomfortable version of the conclusion: the safest businesses on this map are the ones that need a van, a qualification and a physical site. The most exposed are the ones that were themselves the last wave of automation.</p>"""),
+   ]),
  dict(slug="tenant-on-the-lease", date="2026-08-11", read="6 min",
    kicker="Covenant",
    title="The tenant on the lease is not always the business you think",
@@ -563,37 +594,6 @@ POSTS = [
 <p><strong>Estimate the financials, and say that they are estimates.</strong> Small companies do not file a revenue line. The engine triangulates from what is disclosed in iXBRL filings and labels the result as an estimate throughout. A number presented with false confidence is worse than no number.</p>"""),
    ]),
 
- dict(slug="ai-impact-map", date="2026-08-12", read="8 min",
-   kicker="AI impact",
-   title="Which businesses does AI actually threaten",
-   standfirst="681 UK subsectors scored on two independent axes, with live company counts. The most useful thing I learned had nothing to do with the answer.",
-   tags=["AI displacement","UK market map","Companies House","LLM evaluation"],
-   links=[("Full-size map","/media/ai-map.png"),("Method note","/ideas/ai-impact-map")],
-   body=[
-    ("The question, and why the first version failed", """
-<p>"Which industries will AI eat" is usually answered at the level of a category. Legal. Accounting. Marketing. That is the wrong altitude, because AI acts on <em>tasks</em>, not on categories, and every category is a bundle of tasks with wildly different exposure.</p>
-<p>My first attempt scored two axes per archetype and let 681 subsectors inherit their archetype's position. It had no company counts, and a roll-up fit column I could not define precisely. Someone took it apart in about four questions on a call, and every one of those questions was fair. This version fixes exactly those three things and nothing else.</p>"""),
-    ("Two axes that are genuinely independent", """
-<p><strong>Displacement risk</strong> asks whether AI can do the job instead of the incumbent. <strong>Tailwind</strong> asks whether AI lifts the business without replacing it, mostly through demand for the physical and regulated work that AI infrastructure itself creates.</p>
-<p>They are independent, which is the point. A subsector can score high on both, which makes it Contested. It can score low on both, which makes it Inert. The interesting corner is high tailwind and low displacement.</p>
-<p>Every subsector is scored individually on nine anchored criteria, five for displacement and four for tailwind, each on a 0 to 4 scale with a written anchor for what each level means. The axes are the weighted mean rescaled to 0 to 5. All the arithmetic lives in code, and every weight, anchor and threshold sits in one <code>assumptions.json</code>, so a challenge can be re-run rather than argued about: change the value, re-run the compute step.</p>
-<p>The cut lines are the universe median, 1.625 on displacement and 2.5 on tailwind, not a line fitted to make the answer look tidy.</p>""",
-     [("/media/ai-map.png","681 subsectors. Bubble area is the count of active UK companies aged five years or more.")]),
-    ("The finding I did not expect", """
-<p>To check whether the scoring was reproducible, I deliberately scored 50 subsectors twice, with two different models as judges, and compared them.</p>
-<p><strong>Exact agreement was 33%.</strong> The mean difference was 1.04 levels on a 0 to 4 scale, and on tailwind the two judges sat 1.39 apart on a 0 to 5 scale. Worse, the disagreement was systematic rather than noisy. The smaller model scored electricity transmission tailwind at 1.12 where the defensible answer is around 3.75, and scored stocktaking displacement at zero.</p>
-<p>That matters far beyond this project. When your quadrant boundary is a <em>median</em>, mixing two judges across one scored universe silently sorts one judge's rows into different quadrants than the other's. The map looks finished and is quietly incoherent. I re-scored all 681 with a single judge and kept both passes in the repository so the comparison stays inspectable.</p>
-<p>If you take one thing from this: <strong>never mix judges across a scored universe</strong>, and if you are using an LLM as a rater, measure inter-rater agreement before you trust a single output. It is a cheap test and it is the difference between an instrument and a picture.</p>"""),
-    ("Counting the companies honestly", """
-<p>Bubble size is a real number, not an impression. Counts come live from the Companies House advanced-search API, queried per five-digit SIC code across all 731 codes, on two measures: active companies, and active companies incorporated on or before a five-year cutoff.</p>
-<p>The honest caveat is that 251 of the 701 mapped codes are claimed by more than one subsector, so those counts are upper bounds. Every row carries a flag saying so, plus a lower-bound column counting only codes exclusive to that subsector. 531 of the 681 rows are flagged.</p>
-<p>What is deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p>"""),
-    ("What it says", """
-<p>Fortified 166, Contested 180, Eroding 201, Inert 134. Thirty-seven subsectors are Fortified <em>and</em> have a buyable pool of companies behind them.</p>
-<p>Top of the list is data centre and critical-environment maintenance, displacement 1.12 against tailwind 4.38, with roughly 18,400 companies aged five years or more. Then electrical installation and contracting, EV charging maintenance, renewables operations and maintenance, lightning protection, industrial inspection and NDT. The pattern is not subtle: the work that AI infrastructure physically requires, done by people who have to be on site, holding a certification.</p>
-<p>The eroding end is equally blunt, and closer to home for anyone reading this. SEO and digital marketing, translation and localisation, transcription and captioning, directory publishing and data entry all score 4.75 on displacement.</p>
-<p>The uncomfortable version of the conclusion: the safest businesses on this map are the ones that need a van, a qualification and a physical site. The most exposed are the ones that were themselves the last wave of automation.</p>"""),
-   ]),
 ]
 
 def build_ideas():
@@ -633,9 +633,18 @@ def build_ideas():
         for item in p["body"]:
             title, html = item[0], item[1]
             figs = item[2] if len(item) > 2 else []
-            figs_html = "".join(
-                f'<figure class="figure reveal"><img src="{src}" alt="{cap}" loading="lazy" width="1200" height="630">'
-                f'<figcaption>{cap}</figcaption></figure>' for src, cap in figs)
+            def fig(src, cap):
+                if src == "EMBED":
+                    # app.js swaps this for a live iframe on wide screens and a still
+                    # image on phones, where a 348KB interactive map reads badly.
+                    return (f'<figure class="figure embed reveal" data-embed="/media/ai-impact-map.html" '
+                            f'data-embed-img="/media/ai-map.png" data-embed-alt="The AI-Impact Map: 681 UK subsectors plotted on displacement risk against tailwind">'
+                            f'<div class="embed-slot"></div>'
+                            f'<figcaption>{cap} <a href="/media/ai-impact-map.html" target="_blank" rel="noopener">Open full screen</a></figcaption>'
+                            f'</figure>')
+                return (f'<figure class="figure reveal"><img src="{src}" alt="{cap}" loading="lazy" width="1200" height="630">'
+                        f'<figcaption>{cap}</figcaption></figure>')
+            figs_html = "".join(fig(src, cap) for src, cap in figs)
             secs.append(f'<section class="sec"><div class="wrap"><h2 class="reveal">{title}</h2>'
                         f'<div class="reveal">{html}</div>{figs_html}</div></section>')
         links = " · ".join(f'<a href="{u}">{t}</a>' for t, u in p["links"])

@@ -149,7 +149,54 @@
     });
   }
 
-  function init() { wireToggle(); wireReveal(); wireTips(); }
+  /* ---------- live embeds ----------
+     Wide screens get the real interactive page in an iframe, sized to its own
+     content so there is no scrollbar inside the figure. Phones get the still
+     image and a link instead: the map is 348KB and its bubbles are unusable at
+     that width, so loading it there would cost a lot and help nobody. */
+  function wireEmbeds() {
+    document.querySelectorAll("[data-embed]").forEach(function (fig) {
+      var slot = fig.querySelector(".embed-slot");
+      if (!slot) return;
+      var wide = window.innerWidth > 700;
+
+      if (!wide) {
+        var img = document.createElement("img");
+        img.src = fig.getAttribute("data-embed-img");
+        img.alt = fig.getAttribute("data-embed-alt") || "";
+        img.loading = "lazy";
+        slot.appendChild(img);
+        var note = document.createElement("div");
+        note.className = "embed-note";
+        note.textContent = "Still image. The interactive version needs a wider screen.";
+        slot.parentNode.insertBefore(note, slot.nextSibling);
+        return;
+      }
+
+      var frame = document.createElement("iframe");
+      frame.src = fig.getAttribute("data-embed");
+      frame.title = fig.getAttribute("data-embed-alt") || "Interactive figure";
+      frame.loading = "lazy";
+      frame.style.height = "820px";
+      frame.addEventListener("load", function () {
+        // same-origin, so the real document height is readable
+        try {
+          var d = frame.contentDocument;
+          if (!d) return;
+          var fit = function () {
+            var h = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight);
+            if (h > 100) frame.style.height = h + "px";
+          };
+          fit();
+          setTimeout(fit, 600);   // again once the load animation settles
+          if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body);
+        } catch (e) { /* leave the fallback height */ }
+      });
+      slot.appendChild(frame);
+    });
+  }
+
+  function init() { wireToggle(); wireReveal(); wireTips(); wireEmbeds(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
