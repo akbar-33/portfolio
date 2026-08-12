@@ -183,8 +183,11 @@ html.chartonly header, html.chartonly .states, html.chartonly .wrap > .rule{disp
 html.chartonly .wrap{padding-top:.75rem;padding-bottom:.75rem}
 /* embedded, the plot must not swallow a scroll gesture: the page scrolls, the
    map does not zoom. Drag-to-pan still works, it just no longer hijacks wheel. */
-html.embedded .grid.wide #plot,
-html.embedded .panel:fullscreen #plot{touch-action:pan-y}
+.grid.wide #plot{touch-action:pan-y}
+/* The x-axis title and the size legend are drawn just below the viewBox, and an
+   SVG clips its own content by default, which sliced them in half. */
+#plot{overflow:visible}
+.panel:fullscreen #plot{touch-action:none}
 
 /* Embedded in the portfolio, adopt the site's own palette so the figure sits
    flush with the page instead of reading as a pasted screenshot. The quadrant
@@ -213,15 +216,13 @@ html.embedded[data-theme="light"]{
   var m = q.match(/theme=(dark|light)/);          // the embedding page passes its theme
   if (m) r.setAttribute("data-theme", m[1]);
 
-  if (q.indexOf("embed") > -1) {
-    // The plot zooms on wheel. Inside a page that is itself scrolling, that
-    // hijacks the gesture. A capture listener on window runs before the plot's
-    // own handler, so stopping propagation here disables the zoom while leaving
-    // the default scroll untouched. Fullscreen is exempt: zoom is wanted there.
-    window.addEventListener("wheel", function (e) {
-      if (!document.fullscreenElement) e.stopPropagation();
-    }, { capture: true, passive: true });
-  }
+  // The plot zooms on wheel, which hijacks scrolling on any page that scrolls.
+  // A capture listener on window runs before the plot's own handler, so stopping
+  // propagation here disables the zoom and leaves the default scroll untouched.
+  // Fullscreen is exempt: there is no page to scroll and zoom is the point.
+  window.addEventListener("wheel", function (e) {
+    if (!document.fullscreenElement) e.stopPropagation();
+  }, { capture: true, passive: true });
 })();</script>
 </head>
 <body>

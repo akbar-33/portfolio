@@ -51,6 +51,8 @@ EOF
 
 The wrap also swaps the em dashes in the section labels for middots, since nothing in this repo carries an em dash.
 
+Three patches are applied to the vendored copy and must survive a re-wrap: `#plot{overflow:visible}` (the x-axis title and size legend are drawn just below the viewBox and an SVG clips its own content), the capture-phase `wheel` guard (the plot zooms on wheel, which hijacks page scrolling everywhere except fullscreen), and `touch-action:pan-y` on the plot so a swipe scrolls the page.
+
 **Check it for client references before publishing.** The source lives in a client folder. Grep for the client and engagement names; the only legitimate hits are data content, including a subsector named "Confidential shredding & data destruction".
 
 ## Two things that will bite you
