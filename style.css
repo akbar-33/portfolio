@@ -465,3 +465,28 @@ footer.site a:hover{border-bottom-color:var(--red)}
   .quad .q:nth-child(odd){border-right:0}
   .quad .q:nth-child(2){border-top:1px solid var(--rule)}
 }
+
+/* Butterfly mix chart (Exhibit H). Two bars grow outward from a centred label, so the
+   inversion between the two regions reads as a shape before you read any number. */
+.mix{font-family:var(--mono);padding:.35rem 0 .15rem}
+.mix-head{display:flex;align-items:center;font-size:.7rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);padding:0 .9rem .5rem}
+.mix-head span:first-child{flex:1;text-align:right}
+.mix-head span:last-child{flex:1;text-align:left}
+.mix-head .mix-mid{flex:0 0 12.5rem}
+.mix-row{display:flex;align-items:center;gap:.45rem;padding:.5rem .9rem;
+  border-top:1px solid var(--rule);transition:background .2s}
+.mix-row:hover{background:var(--card-2)}
+.mix-val{flex:0 0 3.1rem;font-size:.78rem;color:var(--muted)}
+.mix-row .mix-val:first-child{text-align:right}
+.mix-bar{flex:1;display:flex;height:.7rem}
+.mix-bar.l{justify-content:flex-end}
+.mix-bar i{display:block;height:100%;background:var(--muted);opacity:.55;transition:opacity .2s}
+.mix-bar.r i{background:var(--red);opacity:.85}
+.mix-row:hover .mix-bar i{opacity:1}
+.mix-label{flex:0 0 11rem;text-align:center;font-size:.76rem;letter-spacing:.02em}
+@media (max-width:640px){
+  .mix-label{flex:0 0 6.5rem;font-size:.68rem}
+  .mix-head .mix-mid{flex:0 0 7.5rem}
+  .mix-val{flex:0 0 2.6rem;font-size:.7rem}
+}

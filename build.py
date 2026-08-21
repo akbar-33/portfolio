@@ -176,6 +176,33 @@ QUAD = """<div class="visual reveal" aria-label="681 UK subsectors sorted into f
   </div>
 </div>"""
 
+MIX = """<div class="visual reveal" aria-label="Function mix of Elastic open roles, United States against International">
+  <div class="visual-caption"><span>Share of that region\'s open roles, by function</span><span class="hint">Hover any bar</span></div>
+  <div class="mix">
+    <div class="mix-head"><span>United States</span><span class="mix-mid"></span><span>International</span></div>
+    <div class="mix-row" data-tip="The inversion. Outside the US, more than half of every open role is engineering or product. Inside the US it is barely a third. A large part of what reads as international growth is research and development capacity placed in Spain, Portugal, Greece, Romania and India, not revenue capacity placed in market.">
+      <span class="mix-val">37.0%</span><span class="mix-bar l"><i style="width:67%"></i></span>
+      <span class="mix-label">Engineering / Product</span>
+      <span class="mix-bar r"><i style="width:100%"></i></span><span class="mix-val">55.1%</span>
+    </div>
+    <div class="mix-row" data-tip="Field and go-to-market is the mirror image: nearly half of US roles, barely a third of international ones. In absolute terms the US alone holds 44 percent of all field requisitions, more than the whole of EMEA at 35 percent.">
+      <span class="mix-val">48.9%</span><span class="mix-bar l"><i style="width:89%"></i></span>
+      <span class="mix-label">Field / GTM</span>
+      <span class="mix-bar r"><i style="width:66%"></i></span><span class="mix-val">36.1%</span>
+    </div>
+    <div class="mix-row" data-tip="Marketing is twice the share of headcount in the US that it is internationally, which is consistent with demand generation still being run largely from the home market.">
+      <span class="mix-val">10.9%</span><span class="mix-bar l"><i style="width:20%"></i></span>
+      <span class="mix-label">Marketing</span>
+      <span class="mix-bar r"><i style="width:9%"></i></span><span class="mix-val">5.1%</span>
+    </div>
+    <div class="mix-row" data-tip="General and administrative is flat across both, as you would expect from functions that scale with company size rather than with go-to-market strategy. A useful control: if this row were also skewed, the taxonomy would be suspect."><span class="mix-val">3.3%</span><span class="mix-bar l"><i style="width:6%"></i></span>
+      <span class="mix-label">G&amp;A</span>
+      <span class="mix-bar r"><i style="width:7%"></i></span><span class="mix-val">3.8%</span>
+    </div>
+  </div>
+</div>"""
+
+
 ARCH = {
 "screening": flow("How it operates: two pipelines over one register", [
   ("Pipeline 1<br>src/01-09", [
@@ -265,6 +292,13 @@ EX = [
    pitch=['"Which industries will AI eat" is usually answered at the level of a category, which is the wrong altitude: AI acts on tasks, and every category is a bundle of tasks with wildly different exposure. So I scored <strong>681 UK business-model subsectors</strong> individually on nine anchored criteria, across two independent axes, and attached live Companies House counts so the size of each bubble is a real number of real companies.',
           'The finding that mattered was not the answer. Scoring 50 subsectors twice with two different models as judges produced only <strong>33% exact agreement</strong>, and the disagreement was systematic rather than noisy. When your quadrant boundary is a median, mixing judges silently sorts one judge\'s rows into different quadrants than the other\'s. I re-scored all 681 with one judge.'],
    visuals=[QUAD]),
+ dict(slug="revealed-strategy", letter="H", label="Revealed strategy",
+   title="What a job board says that a strategy deck does not", status="public · python", cite=None,
+   tags=["Python","Greenhouse / Lever / Ashby APIs","auditable taxonomy","public filings"],
+   extra_link=("/elastic-international", "See it used in a market prioritisation model"),
+   pitch=['A strategy deck is a claim. An open requisition is a budget somebody already signed. So I read the second one: point this at any company\'s public job board and it returns the investment mix by region and function, ready to set against where the revenue actually comes from.',
+          'Run against <strong>Elastic\'s 250 live requisitions</strong>, the gap is immediate. International is <strong>46% of revenue but 63% of open roles</strong>. The mix, though, inverts: outside the US more than half of hiring is engineering, while inside the US nearly half is field. The US alone holds more field requisitions than the whole of EMEA. Read together, a good share of what looks like international expansion is engineering capacity placed in lower-cost hubs, and the question that follows is where International should add field capacity next.'],
+   visuals=[MIX]),
  dict(slug="automation-stack", letter="G", label="The automation stack",
    title="The systems that run my day", status='private by necessity<a class="cite" href="/#ref-9">[9]</a>', cite=None,
    tags=["Python","Playwright","Claude API","launchd","WhatsApp bridge"],
@@ -281,6 +315,11 @@ def build_index():
         vis = "".join(e["visuals"])
         tags = "".join(f"<span>{t}</span>" for t in e["tags"])
         extra = ""
+        if e.get("extra_link"):
+            href, label = e["extra_link"]
+            extra = (f'<p class="pitch reveal" style="margin-top:1.1rem">'
+                     f'<a href="{href}">{label}</a>, which uses this tool for the coverage and '
+                     f'competitor halves of the analysis.</p>')
         if e["slug"] == "oversight":
             extra = ('<p class="pitch reveal" style="margin-top:1.2rem">The example firm registers '
                      '<a href="/covenant">Covenant</a> as one of its AI systems, with a real reliability decision '
@@ -488,6 +527,30 @@ CASES = {
 <p>Deliberately missing: no financials by subsector, because the UK profit-and-loss exemption means small companies do not file one; no ownership filter; and these are register counts, not qualified targets.</p>"""),
   ]),
 
+"revealed-strategy": dict(
+  eyebrow="Exhibit H \u00b7 Revealed strategy",
+  h1="What a company's job board says that its strategy deck does not",
+  lede="A strategy deck is a claim. An open requisition is a budget somebody already signed. This reads any public job board and returns the investment mix by region and function, so you can set it against where the revenue actually comes from.",
+  meta=[("Status","Public, runs on any Greenhouse, Lever or Ashby board"),
+        ("Stack","Python \u00b7 public ATS APIs \u00b7 rules-based taxonomy"),
+        ("Worked example","Elastic N.V., 250 live requisitions, August 2026"),
+        ("Source",f'<a href="{GH}/revealed-strategy">github.com/akbar-33/revealed-strategy</a>')],
+  secs=[
+   ("The idea", """<p>Companies tell you where they are going in the language of ambition. They tell you where they are <em>actually</em> going in the language of open requisitions, because every one of those is a headcount budget that somebody already approved and is already paying for.</p>
+<p>Job boards are public. So the mix of those requisitions, cut by region and by function, is a read on capital allocation that nobody has to disclose to you and nobody bothers to obscure.</p>""",
+    []),
+   ("The worked example", """<p>Elastic reports that customers outside the United States are <strong>46% of revenue</strong>. Its live board is <strong>63% non-US roles</strong>, seventeen points ahead of the revenue share. On its own that reads like international investment running ahead of international revenue, which is what you would want to see.</p>
+<p>The function mix says something more specific. Outside the US, more than half of open roles are engineering or product. Inside the US, nearly half are field and go-to-market, and the US alone carries more field requisitions than the whole of EMEA. So a meaningful share of what reads as international expansion is engineering capacity placed in lower-cost hubs rather than revenue capacity placed in market.</p>
+<p>That is not a criticism. Placing engineering in Barcelona, Lisbon, Athens and Bangalore is a deliberate and defensible strategy. It just means the headline number and the underlying commitment are answering different questions, and only one of them tells you where field capacity goes next.</p>""",
+    [MIX]),
+   ("Decisions worth defending",
+    dec("Rules, not a model, for the taxonomy",
+        "<p>Every location and title is classified by an ordered list of regular expressions rather than an LLM call. Two reasons. A finding has to survive being challenged line by line, and a taxonomy that drifts between runs makes any time series meaningless. The cost is that the rules need maintaining; the benefit is that the mapping is auditable and identical every run.</p>") +
+    dec("Order encodes judgment, so put the arguable calls where they can be seen",
+        "<p>A sales engineer is field capacity, not research and development, so the field pattern is tested before the engineering one. Revenue operations sits in field; revenue accounting sits in general and administrative. Those are judgment calls that move the numbers, so they live in one readable file rather than inside a prompt.</p>") +
+    dec("Report what the rules could not place",
+        "<p>Anything unmatched lands in an explicit unmapped bucket and is printed with the results. The first Elastic run left sixteen percent of US titles unplaced, which quietly flattered the field share until the taxonomy was extended to cover account-based marketing, regional vice presidents, alliances, FP and A, and one requisition written in Japanese. Silent bucketing is how an analysis ends up confidently wrong.</p>")),
+  ]),
 "automation-stack": dict(
   eyebrow="Exhibit F · The automation stack",
   h1="The systems that run my day, and why none of them have a repository",
