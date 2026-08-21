@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where Elastic International grows next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#131418;--card:#191B21;--card2:#20232A;--ink:#EDEBE5;--muted:#9B9A94;--rule:#2B2D34;
+--red:#FF5A38;--green:#4FBF8B;--amber:#E0A445;
+--serif:"IBM Plex Serif",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65}
+.top{position:sticky;top:0;background:rgba(19,20,24,.94);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--rule);z-index:20}
+.topin{max-width:1080px;margin:0 auto;padding:1rem 1.5rem .1rem}
+.brand{font-family:var(--serif);font-size:1.05rem}
+.brand span{color:var(--muted);font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;
+text-transform:uppercase;margin-left:.6rem}
+nav{display:flex;gap:.15rem;overflow-x:auto;margin-top:.75rem}
+nav button{font-family:var(--mono);font-size:.73rem;letter-spacing:.04em;background:none;border:0;
+border-bottom:2px solid transparent;color:var(--muted);padding:.5rem .7rem;cursor:pointer;white-space:nowrap}
+nav button:hover{color:var(--ink)}
+nav button.on{color:var(--red);border-bottom-color:var(--red)}
+.wrap{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page{display:none}.page.on{display:block}
+h1{font-family:var(--serif);font-size:1.85rem;line-height:1.2;margin-bottom:.6rem}
+h2{font-family:var(--serif);font-size:1.15rem;margin:1.9rem 0 .6rem}
+h2:first-child{margin-top:0}
+.lede{color:var(--muted);font-size:.95rem;max-width:70ch;margin-bottom:1.6rem}
+p.body{font-size:.92rem;color:#C9C7C1;margin-bottom:.9rem;max-width:76ch}
+p.body b{color:var(--ink)}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:1.3rem 1.4rem;margin-bottom:1.4rem}
+.kicker{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+font-family:var(--mono);margin-bottom:.9rem}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:1.2rem 0 1.6rem}
+.big div{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:1rem 1.1rem}
+.big b{display:block;font-family:var(--mono);font-size:1.55rem;color:var(--red);line-height:1.1}
+.big span{display:block;font-size:.76rem;color:var(--muted);margin-top:.35rem;line-height:1.45}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem}
+th{text-align:right;color:var(--muted);font-weight:500;font-size:.67rem;letter-spacing:.07em;
+text-transform:uppercase;padding:.4rem .5rem;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+td{padding:.42rem .5rem;border-bottom:1px solid var(--rule);text-align:right}
+tbody tr:hover{background:var(--card2)}
+table.reason td{text-align:left;font-family:var(--sans);font-size:.84rem;vertical-align:top;padding:.6rem .8rem .6rem 0}
+table.reason td:last-child{font-family:var(--mono);font-size:.73rem;color:var(--red)}
+table.reason th{text-align:left}
+.bar{display:inline-block;height:.5rem;background:var(--red);vertical-align:middle;margin-right:.45rem;border-radius:1px}
+.rank{color:var(--muted);width:2rem;display:inline-block}
+.pill{font-size:.65rem;padding:.13rem .45rem;border-radius:20px;border:1px solid;white-space:nowrap}
+.Contested{color:var(--red);border-color:var(--red)}
+.Under-covered{color:var(--amber);border-color:var(--amber)}
+.Matched{color:var(--green);border-color:var(--green)}
+.Over-covered{color:var(--muted);border-color:var(--muted)}
+.note{color:var(--muted);font-size:.79rem;margin-top:.9rem;line-height:1.6;max-width:80ch}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.1rem}
+.sl label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.35rem}
+.sl label b{font-family:var(--mono);color:var(--red);font-weight:500}
+.sl input{width:100%;accent-color:var(--red)}
+.sl small{color:var(--muted);font-size:.71rem;display:block;margin-top:.3rem;line-height:1.45}
+.presets{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.1rem}
+.presets button{font-family:var(--mono);font-size:.73rem;background:var(--card2);color:var(--ink);
+border:1px solid var(--rule);border-radius:7px;padding:.42rem .75rem;cursor:pointer}
+.presets button:hover{border-color:var(--red);color:var(--red)}
+.steps{margin:.4rem 0 1rem 1.15rem;font-size:.9rem;color:#C9C7C1;max-width:78ch}
+.steps li{margin-bottom:.6rem}.steps b{color:var(--ink)}
+.worked{background:var(--card2);border-left:2px solid var(--red);padding:.85rem 1.05rem;border-radius:0 7px 7px 0}
+.ela{color:var(--red);font-weight:600}
+.moved{color:var(--red)}
+.warn{border-left:2px solid var(--amber);padding-left:1rem}
+@media(max-width:760px){.hideS{display:none}}
+</style></head><body>
+
+<div class="top"><div class="topin">
+  <div class="brand">Where Elastic International grows next<span>outside-in, public data only</span></div>
+  <nav id="nav"></nav>
+</div></div>
+
+<div class="wrap">
+
+<section class="page" id="p-findings">
+  <h1>The answer, and how confident to be in it</h1>
+  <p class="lede">Elastic reports 46% of $1.74bn FY2026 revenue from outside the United States and
+  discloses nothing finer. This scores 30 EMEA markets on opportunity Elastic can actually sell into,
+  then sets that against where Elastic is currently staffed.</p>
+  <div class="big">
+    <div><b id="k-rho"></b><span>rank correlation between this model and where 9 competitors actually put field staff</span></div>
+    <div><b>1</b><span>Elastic field roles in the Netherlands. Five peers are there with 25 between them</span></div>
+    <div><b>36%</b><span>field share of Elastic's international hiring, against a 47% peer median</span></div>
+    <div><b>11</b><span>EMEA countries where Elastic has field presence, against a peer median of 6</span></div>
+  </div>
+  <div class="panel">
+    <div class="kicker">What the data says</div>
+    <p class="body"><b>Breadth is not the problem, depth is.</b> Elastic reaches more EMEA countries
+    than most of its peers. But it staffs each one more thinly, and its international hiring skews to
+    engineering (55%) rather than field (36%), where the peer median is the other way round.</p>
+    <p class="body"><b>The Netherlands is the sharpest single case.</b> Highest hosted-database adoption
+    in Europe at 78% of large enterprises, roughly 2,155 addressable firms, and one Elastic field role.
+    Five of nine peers are present with 25 roles between them, Datadog alone carrying fifteen.</p>
+    <p class="body"><b>Italy is uncovered outright</b>, about 2,343 addressable enterprises and zero
+    Elastic field roles against twelve across three peers. <b>Germany is the largest opportunity but
+    already contested</b>, and its hosted-database adoption is only 30%, among the lowest in western
+    Europe, so it is an early market rather than a ripe one.</p>
+  </div>
+  <div class="panel warn">
+    <div class="kicker">Before acting on any of it</div>
+    <p class="body">A field role in Barcelona or Dublin may cover many markets, not the one it sits in.
+    That inflates coverage for hub countries and understates it everywhere else. <b>If Elastic covers
+    the Netherlands from Barcelona, the Dutch gap is smaller than it looks here.</b> No outside model
+    can see through that. The Limits page lists the rest.</p>
+  </div>
+</section>
+
+<section class="page" id="p-why">
+  <h1>Why this question</h1>
+  <p class="lede">The role that owns Elastic International exists to answer one question in different
+  clothes: where does the next unit of investment go, and how do you defend that to an executive?</p>
+  <div class="panel">
+    <p class="body">Elastic discloses that customers outside the United States are <b>46% of $1.74bn</b>
+    in FY2026 revenue. That is the entire public geographic disclosure. No country split, no per-market
+    growth, no coverage map. Internally the team has all of it; from outside there is nothing.</p>
+    <p class="body">So the interesting question is whether the decision can be reconstructed anyway.
+    Two public sources make it nearly possible:</p>
+    <p class="body"><b>Adoption of the specific services Elastic sells is measured.</b> Eurostat surveys
+    European enterprises on cloud usage and splits the answers by service type, one of which is hosted
+    database services. That is close to a direct proxy for the Elasticsearch buying motion, reported
+    country by country and by company size.</p>
+    <p class="body"><b>Field investment is advertised.</b> A strategy deck is a claim, but an open
+    requisition is a budget somebody already approved. Every company publishes them.</p>
+    <p class="body">Put the two together and you get where demand is, against where capacity is going.
+    That is not the whole job, but it is the shape of it.</p>
+  </div>
+</section>
+
+<section class="page" id="p-method">
+  <h1>How the criteria were chosen</h1>
+  <p class="lede">A generic market-attractiveness scorecard would be worthless, because it is not
+  derived from anything. Elastic earns in a particular way, and that dictates what makes a market
+  valuable. Every factor below traces to a line in the business model.</p>
+  <div class="panel">
+    <table class="reason"><thead><tr><th>How Elastic earns</th><th>What that implies</th><th>Measured by</th></tr></thead>
+    <tbody>
+      <tr><td>Elasticsearch is adopted bottom-up by developers, then converted</td>
+          <td>Landing needs developer and ICT depth, not GDP</td><td>Large ICT-sector enterprises</td></tr>
+      <tr><td>Elastic Cloud is consumption-priced and grew 22% in FY2026</td>
+          <td>Value follows enterprise cloud maturity</td><td>Hosted database and dev-platform adoption</td></tr>
+      <tr><td>Net expansion around 112%, and 1,720 customers sit above $100k ACV</td>
+          <td>The ceiling is the count of firms large enough to scale consumption, not logo count</td>
+          <td>Enterprises with 250+ employees</td></tr>
+      <tr><td>Elastic Security is a separate solution with its own buyers</td>
+          <td>Security demand can point somewhere different from search demand</td>
+          <td>Security-as-a-service adoption</td></tr>
+      <tr><td>Field coverage is expensive and country-specific</td>
+          <td>Return depends on presence already in market</td><td>Elastic's open field roles per country</td></tr>
+    </tbody></table>
+    <p class="body" style="margin-top:1rem">The useful accident is that Eurostat splits cloud adoption
+    by service <b>type</b>. One of those types is <b>hosted database services</b>, the closest public
+    proxy that exists for what Elasticsearch is bought to do. It carries the most weight.</p>
+  </div>
+
+  <h2>How the ranking is calculated</h2>
+  <div class="panel">
+    <ol class="steps">
+      <li><b>Addressable enterprises.</b> Large enterprises in the country multiplied by the share
+        already buying hosted database services. An estimated count, not a percentage, because a high
+        adoption rate on a small base is not a market.</li>
+      <li><b>Normalise each factor.</b> log(1+x), then min-max to 0 to 1. Enterprise counts are heavy
+        tailed: on a raw scale Germany flattens everything else into noise.</li>
+      <li><b>Weight and sum</b> the four normalised factors, scaled to 0 to 100. The weights are the
+        strategic prior, and they are the sliders on the Rankings page.</li>
+      <li><b>Expected coverage.</b> Spread Elastic's actual EMEA field roles across markets in
+        proportion to opportunity. Comparing actual against that expectation avoids inventing a
+        threshold out of thin air.</li>
+      <li><b>State.</b> Below half of expected is under-covered, within 1.5x is matched, above is
+        over-covered. Contested overrides all three when rivals are three times deeper.</li>
+    </ol>
+    <p class="body worked"><b>Worked example, the Netherlands.</b> 2,773 enterprises with 250 or more
+    employees, of which 77.7% buy hosted database services, giving <b>2,155 addressable</b>. With 147
+    large ICT enterprises, 59% dev-platform adoption and 79% security adoption, the balanced weighting
+    scores it <b>82.6</b>, third in EMEA. Spreading Elastic's 21 EMEA field roles by opportunity would
+    put <b>1.1</b> there. Elastic posts <b>1</b>. Nine peers post <b>25</b> between them.</p>
+  </div>
+</section>
+
+<section class="page" id="p-rank">
+  <h1>Rankings</h1>
+  <p class="lede">The ranking is a function of a strategic prior. Rather than assert one, the weights
+  are yours to move. Drag a slider or pick a preset and watch the order change.</p>
+  <div class="panel">
+    <div class="kicker">Weights</div>
+    <div class="sliders" id="sliders"></div>
+    <div class="presets">
+      <button data-p="balanced">Balanced (as shipped)</button>
+      <button data-p="size">Size first</button>
+      <button data-p="dev">Developer led</button>
+      <button data-p="sec">Security led</button>
+    </div>
+    <p class="note" id="delta"></p>
+  </div>
+  <div class="panel">
+    <div class="kicker">Tier 1 &middot; the 30 markets Eurostat measures</div>
+    <table><thead><tr>
+      <th>Market</th><th>Opportunity</th><th class="hideS">Addressable</th><th class="hideS">Hosted DB</th>
+      <th>Elastic</th><th>Peers</th><th>vs expected</th><th>State</th>
+    </tr></thead><tbody id="tbody"></tbody></table>
+    <p class="note"><b>Addressable</b> is large enterprises multiplied by the share already buying
+    hosted database services. <b>vs expected</b> spreads Elastic's field roles in proportion to
+    opportunity, then compares. Spain reads over-covered because Barcelona is a regional hub, not
+    because Spain is over-served.</p>
+  </div>
+</section>
+
+<section class="page" id="p-comp">
+  <h1>Comparator</h1>
+  <p class="lede">One company is an anecdote. These are the nine direct and adjacent competitors with a
+  readable public board, grouped by which Elastic solution they compete with.</p>
+  <div class="panel">
+    <table><thead><tr><th>Company</th><th>Reqs</th><th>Intl %</th><th>Field %</th>
+      <th class="hideS">Intl eng</th><th class="hideS">Intl field</th><th>EMEA field</th><th>Countries</th>
+    </tr></thead><tbody id="comp"></tbody></table>
+    <p class="note" id="compnote"></p>
+  </div>
+  <div class="panel">
+    <div class="kicker">Market by market, Elastic against all nine</div>
+    <table><thead><tr id="pchead"></tr></thead><tbody id="pcbody"></tbody></table>
+    <p class="note"><b>Splunk, Dynatrace, CrowdStrike, Chronosphere and Coveo have no readable public
+    board.</b> Splunk and Dynatrace are Elastic's closest observability rivals, so their absence is the
+    biggest hole in this comparison and is stated rather than glossed.</p>
+  </div>
+</section>
+
+<section class="page" id="p-valid">
+  <h1>Does the model actually predict anything?</h1>
+  <p class="lede">The score is built only from Eurostat adoption and enterprise counts. It never looks
+  at what any competitor does. So competitor field placement is an independent test of it.</p>
+  <div class="panel">
+    <div class="big" style="margin:0 0 1rem">
+      <div><b id="k-rho2"></b><span>Spearman rank correlation, opportunity score against peer field placement</span></div>
+      <div><b>9</b><span>independent companies, each allocating real budget</span></div>
+      <div><b>30</b><span>markets compared</span></div>
+    </div>
+    <p class="body">That answers the obvious objection to any weighted model, which is <b>why those
+    weights</b>. If nine firms independently allocate field capacity in nearly the same order this
+    score produces, the weights are not arbitrary. It is an out-of-sample check, not a restatement.</p>
+    <p class="body">It also separates two situations the score alone cannot tell apart. A high-scoring
+    market several peers already staff is <b>validated demand</b>, and being absent from it is a
+    competitive gap. A high-scoring market <b>nobody</b> staffs is either genuinely overlooked or has a
+    reason the score cannot see, and deserves a check before it becomes a plan.</p>
+    <table><thead><tr><th>Market</th><th>Opportunity</th><th>Elastic</th><th>Peers in</th>
+      <th>Peer roles</th><th>Read</th></tr></thead><tbody id="vbody"></tbody></table>
+    <p class="note">Ireland shows five peers and 34 roles because Dublin is where Datadog and MongoDB
+    put their EMEA hub. Read it as evidence about hub location, not Irish market demand.</p>
+  </div>
+</section>
+
+<section class="page" id="p-limits">
+  <h1>Tier 2 and limits</h1>
+  <p class="lede">Eurostat does not cover the UK, Switzerland, Israel or the Gulf, and the UK alone
+  holds 10 of Elastic's 36 EMEA field roles. Those markets get a separate, cruder table.</p>
+  <div class="panel">
+    <div class="kicker">Tier 2 &middot; never ranked against tier 1</div>
+    <table><thead><tr><th>Market</th><th>GDP $bn</th><th>ICT exports</th><th>Elastic</th><th>Peers</th></tr>
+    </thead><tbody id="t2"></tbody></table>
+    <p class="note">Only the field-presence columns are comparable to tier 1, because they come from the
+    same method. GDP is a size proxy from the World Bank and says nothing about whether these firms buy
+    hosted database services. Tier 1 uses no World Bank data at all.
+    <b>Israel is the row worth a second look</b>: the highest ICT-export intensity in either tier at
+    64%, eight peer field roles, and none from Elastic.</p>
+  </div>
+  <div class="panel">
+    <div class="kicker">What would change my mind</div>
+    <p class="body"><b>The hub effect is the real weakness.</b> Eight of Elastic's EMEA field roles sit
+    in Barcelona and 34 of the peers' sit in Ireland. Both are regional hubs, so a role there may cover
+    many markets. Coverage is overstated for hub countries and understated everywhere else.</p>
+    <p class="body"><b>A requisition is an intention, not a hire.</b> Boards carry stale and evergreen
+    postings, and a hiring plan is not coverage.</p>
+    <p class="body"><b>No country-level revenue exists publicly</b>, so current performance is proxied
+    by field presence and never measured. A market could be well served and quietly growing without a
+    single open role.</p>
+    <p class="body"><b>Vintage varies.</b> Cloud adoption is 2023 for most countries with 2024 where
+    published, enterprise counts are 2023, World Bank figures are 2024.</p>
+  </div>
+</section>
+
+</div><script>
+const ROWS=[{"country": "Germany", "addressable": 4482.3168, "ict_depth": 736, "dev_platform": 36.83, "security": 50.63, "elastic_field": 5, "rival_field": 13, "large_enterprises": 14976, "hosted_db_pct": 29.93, "peers_present": 7, "peer_reqs": 34, "consensus": "Consensus, Elastic present", "opportunity": 91.3}, {"country": "Spain", "addressable": 3203.2727999999997, "ict_depth": 297, "dev_platform": 45.94, "security": 63.31, "elastic_field": 9, "rival_field": 8, "large_enterprises": 4889, "hosted_db_pct": 65.52, "peers_present": 5, "peer_reqs": 14, "consensus": "Consensus, Elastic present", "opportunity": 86.6}, {"country": "Netherlands", "addressable": 2155.1756, "ict_depth": 147, "dev_platform": 59.0, "security": 79.14, "elastic_field": 1, "rival_field": 18, "large_enterprises": 2773, "hosted_db_pct": 77.72, "peers_present": 5, "peer_reqs": 25, "consensus": "Consensus, Elastic absent", "opportunity": 82.6}, {"country": "Italy", "addressable": 2342.724, "ict_depth": 224, "dev_platform": 30.81, "security": 72.21, "elastic_field": 0, "rival_field": 6, "large_enterprises": 4728, "hosted_db_pct": 49.55, "peers_present": 3, "peer_reqs": 12, "consensus": "Thin peer interest", "opportunity": 80.3}, {"country": "France", "addressable": 2147.328, "ict_depth": 376, "dev_platform": 32.85, "security": 50.12, "elastic_field": 2, "rival_field": 12, "large_enterprises": 6144, "hosted_db_pct": 34.95, "peers_present": 6, "peer_reqs": 33, "consensus": "Consensus, Elastic present", "opportunity": 79.1}, {"country": "Sweden", "addressable": 1017.6908999999999, "ict_depth": 140, "dev_platform": 52.8, "security": 69.56, "elastic_field": 0, "rival_field": 5, "large_enterprises": 1697, "hosted_db_pct": 59.97, "peers_present": 5, "peer_reqs": 16, "consensus": "Consensus, Elastic absent", "opportunity": 72.5}, {"country": "Poland", "addressable": 1071.9034, "ict_depth": 172, "dev_platform": 57.74, "security": 46.12, "elastic_field": 1, "rival_field": 4, "large_enterprises": 3547, "hosted_db_pct": 30.22, "peers_present": 2, "peer_reqs": 4, "consensus": "Thin peer interest", "opportunity": 70.6}, {"country": "Belgium", "addressable": 1023.0272, "ict_depth": 64, "dev_platform": 55.15, "security": 70.53, "elastic_field": 2, "rival_field": 0, "large_enterprises": 1508, "hosted_db_pct": 67.84, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 68.7}, {"country": "Denmark", "addressable": 558.22, "ict_depth": 55, "dev_platform": 67.29, "security": 75.02, "elastic_field": 1, "rival_field": 3, "large_enterprises": 904, "hosted_db_pct": 61.75, "peers_present": 3, "peer_reqs": 9, "consensus": "Thin peer interest", "opportunity": 63.6}, {"country": "Norway", "addressable": 574.4580000000001, "ict_depth": 56, "dev_platform": 59.81, "security": 71.81, "elastic_field": 0, "rival_field": 0, "large_enterprises": 804, "hosted_db_pct": 71.45, "peers_present": 1, "peer_reqs": 1, "consensus": "Thin peer interest", "opportunity": 62.7}, {"country": "Finland", "addressable": 428.36690000000004, "ict_depth": 77, "dev_platform": 56.36, "security": 75.59, "elastic_field": 0, "rival_field": 0, "large_enterprises": 761, "hosted_db_pct": 56.29, "peers_present": 1, "peer_reqs": 1, "consensus": "Thin peer interest", "opportunity": 61.5}, {"country": "Portugal", "addressable": 508.26919999999996, "ict_depth": 96, "dev_platform": 40.69, "security": 61.79, "elastic_field": 0, "rival_field": 2, "large_enterprises": 1228, "hosted_db_pct": 41.39, "peers_present": 1, "peer_reqs": 2, "consensus": "Thin peer interest", "opportunity": 60.2}, {"country": "Ireland", "addressable": 441.13300000000004, "ict_depth": 73, "dev_platform": 34.15, "security": 60.38, "elastic_field": 0, "rival_field": 29, "large_enterprises": 935, "hosted_db_pct": 47.18, "peers_present": 5, "peer_reqs": 34, "consensus": "Consensus, Elastic absent", "opportunity": 55.8}, {"country": "Austria", "addressable": 448.3272, "ict_depth": 65, "dev_platform": 34.6, "security": 62.35, "elastic_field": 0, "rival_field": 0, "large_enterprises": 1527, "hosted_db_pct": 29.36, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 55.7}, {"country": "Czechia", "addressable": 629.8979, "ict_depth": 92, "dev_platform": 24.03, "security": 39.47, "elastic_field": 0, "rival_field": 0, "large_enterprises": 1759, "hosted_db_pct": 35.81, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 54.0}, {"country": "Hungary", "addressable": 497.04549999999995, "ict_depth": 45, "dev_platform": 33.8, "security": 55.88, "elastic_field": 0, "rival_field": 0, "large_enterprises": 1015, "hosted_db_pct": 48.97, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 53.5}, {"country": "Romania", "addressable": 376.8492, "ict_depth": 127, "dev_platform": 13.72, "security": 29.06, "elastic_field": 0, "rival_field": 0, "large_enterprises": 1666, "hosted_db_pct": 22.62, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 43.7}, {"country": "Lithuania", "addressable": 222.6159, "ict_depth": 27, "dev_platform": 33.33, "security": 52.27, "elastic_field": 0, "rival_field": 0, "large_enterprises": 477, "hosted_db_pct": 46.67, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 41.7}, {"country": "Croatia", "addressable": 187.8288, "ict_depth": 27, "dev_platform": 34.58, "security": 56.73, "elastic_field": 0, "rival_field": 0, "large_enterprises": 436, "hosted_db_pct": 43.08, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 41.0}, {"country": "Slovakia", "addressable": 245.07240000000002, "ict_depth": 35, "dev_platform": 25.75, "security": 46.03, "elastic_field": 0, "rival_field": 0, "large_enterprises": 662, "hosted_db_pct": 37.02, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 41.0}, {"country": "Bulgaria", "addressable": 222.452, "ict_depth": 78, "dev_platform": 15.87, "security": 31.66, "elastic_field": 0, "rival_field": 0, "large_enterprises": 760, "hosted_db_pct": 29.27, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 37.4}, {"country": "Greece", "addressable": 175.0462, "ict_depth": 48, "dev_platform": 19.04, "security": 34.01, "elastic_field": 0, "rival_field": 0, "large_enterprises": 679, "hosted_db_pct": 25.78, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 34.2}, {"country": "Estonia", "addressable": 63.885999999999996, "ict_depth": 18, "dev_platform": 48.48, "security": 59.39, "elastic_field": 0, "rival_field": 0, "large_enterprises": 170, "hosted_db_pct": 37.58, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 30.6}, {"country": "Serbia", "addressable": 153.7536, "ict_depth": 52, "dev_platform": 11.1, "security": 31.05, "elastic_field": 0, "rival_field": 0, "large_enterprises": 704, "hosted_db_pct": 21.84, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 28.8}, {"country": "Luxembourg", "addressable": 113.898, "ict_depth": 9, "dev_platform": 36.22, "security": 47.07, "elastic_field": 0, "rival_field": 0, "large_enterprises": 246, "hosted_db_pct": 46.3, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 28.6}, {"country": "Slovenia", "addressable": 106.03599999999999, "ict_depth": 11, "dev_platform": 23.4, "security": 61.28, "elastic_field": 0, "rival_field": 0, "large_enterprises": 280, "hosted_db_pct": 37.87, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 28.5}, {"country": "Latvia", "addressable": 87.6766, "ict_depth": 23, "dev_platform": 28.02, "security": 41.55, "elastic_field": 0, "rival_field": 0, "large_enterprises": 242, "hosted_db_pct": 36.23, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 27.7}, {"country": "Malta", "addressable": 63.9796, "ict_depth": 7, "dev_platform": 42.17, "security": 65.06, "elastic_field": 0, "rival_field": 0, "large_enterprises": 118, "hosted_db_pct": 54.22, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 25.7}, {"country": "Cyprus", "addressable": 35.5524, "ict_depth": 16, "dev_platform": 11.08, "security": 63.82, "elastic_field": 0, "rival_field": 0, "large_enterprises": 129, "hosted_db_pct": 27.56, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 14.6}, {"country": "Bosnia and Herzegovina", "addressable": 66.3708, "ict_depth": 13, "dev_platform": 7.34, "security": 30.92, "elastic_field": 0, "rival_field": 0, "large_enterprises": 284, "hosted_db_pct": 23.37, "peers_present": 0, "peer_reqs": 0, "consensus": "Contrarian, nobody there", "opportunity": 10.1}], TIER2=[{"country": "United Kingdom", "iso3": "GBR", "elastic_field": 10, "rival_field": 22, "gdp_usd": 3695539513534.15, "gdp_usd_year": "2024", "ict_exports_pct": 9.24867865376499, "ict_exports_pct_year": "2024", "rival_ratio": 2.2}, {"country": "Saudi Arabia", "iso3": "SAU", "elastic_field": 3, "rival_field": 3, "gdp_usd": 1254140800000, "gdp_usd_year": "2024", "ict_exports_pct": 3.45004286026428, "ict_exports_pct_year": "2024", "rival_ratio": 1.0}, {"country": "Switzerland", "iso3": "CHE", "elastic_field": 1, "rival_field": 3, "gdp_usd": 969919786394.884, "gdp_usd_year": "2024", "ict_exports_pct": 12.7476065696781, "ict_exports_pct_year": "2024", "rival_ratio": 3.0}, {"country": "United Arab Emirates", "iso3": "ARE", "elastic_field": 1, "rival_field": 4, "gdp_usd": 552324919095.872, "gdp_usd_year": "2024", "ict_exports_pct": 4.58026730740351, "ict_exports_pct_year": "2024", "rival_ratio": 4.0}, {"country": "Israel", "iso3": "ISR", "elastic_field": 0, "rival_field": 8, "gdp_usd": 542284494490.778, "gdp_usd_year": "2024", "ict_exports_pct": 63.961714871638, "ict_exports_pct_year": "2024", "rival_ratio": null}], COMP={"elastic": {"total": 250, "intl_pct": 63.2, "field_pct": 40.8, "intl_eng": 55.1, "intl_field": 36.1, "emea_field_reqs": 36, "emea_countries": 11, "countries": ["Belgium", "Denmark", "France", "Germany", "Netherlands", "Poland", "Saudi Arabia", "Spain", "Switzerland", "United Arab Emirates", "United Kingdom"]}, "peers": [{"total": 448, "intl_pct": 50.7, "field_pct": 54.0, "intl_eng": 26.0, "intl_field": 65.6, "emea_field_reqs": 55, "emea_countries": 14, "countries": ["Denmark", "France", "Germany", "Ireland", "Israel", "Italy", "Netherlands", "Poland", "Portugal", "Saudi Arabia", "Spain", "Sweden", "Switzerland", "United Kingdom"], "name": "Datadog", "group": "Observability"}, {"total": 53, "intl_pct": 67.9, "field_pct": 50.9, "intl_eng": 36.1, "intl_field": 47.2, "emea_field_reqs": 6, "emea_countries": 5, "countries": ["France", "Germany", "Ireland", "Spain", "United Kingdom"], "name": "New Relic", "group": "Observability"}, {"total": 146, "intl_pct": 73.3, "field_pct": 16.4, "intl_eng": 82.2, "intl_field": 9.3, "emea_field_reqs": 6, "emea_countries": 6, "countries": ["Ireland", "Netherlands", "Spain", "Sweden", "Switzerland", "United Kingdom"], "name": "Grafana Labs", "group": "Observability"}, {"total": 16, "intl_pct": 68.8, "field_pct": 43.8, "intl_eng": 81.8, "intl_field": 18.2, "emea_field_reqs": 2, "emea_countries": 1, "countries": ["Germany"], "name": "Sumo Logic", "group": "Observability"}, {"total": 31, "intl_pct": 74.2, "field_pct": 64.5, "intl_eng": 26.1, "intl_field": 73.9, "emea_field_reqs": 14, "emea_countries": 3, "countries": ["France", "Germany", "United Kingdom"], "name": "Algolia", "group": "Search"}, {"total": 410, "intl_pct": 57.1, "field_pct": 39.0, "intl_eng": 30.8, "intl_field": 49.6, "emea_field_reqs": 58, "emea_countries": 12, "countries": ["France", "Germany", "Ireland", "Israel", "Italy", "Netherlands", "Poland", "Spain", "Sweden", "Switzerland", "United Arab Emirates", "United Kingdom"], "name": "MongoDB", "group": "Data platform, adjacent"}, {"total": 30, "intl_pct": 30.0, "field_pct": 0.0, "intl_eng": 100.0, "intl_field": 0, "emea_field_reqs": 0, "emea_countries": 0, "countries": [], "name": "Confluent", "group": "Data platform, adjacent"}, {"total": 391, "intl_pct": 37.3, "field_pct": 25.8, "intl_eng": 42.5, "intl_field": 37.0, "emea_field_reqs": 21, "emea_countries": 10, "countries": ["Denmark", "France", "Germany", "Ireland", "Israel", "Netherlands", "Norway", "Sweden", "United Arab Emirates", "United Kingdom"], "name": "Snowflake", "group": "Data platform, adjacent"}, {"total": 807, "intl_pct": 44.2, "field_pct": 39.5, "intl_eng": 35.0, "intl_field": 53.2, "emea_field_reqs": 84, "emea_countries": 12, "countries": ["Denmark", "Finland", "France", "Germany", "Israel", "Italy", "Netherlands", "Saudi Arabia", "Spain", "Sweden", "Switzerland", "United Kingdom"], "name": "Databricks", "group": "Data platform, adjacent"}], "unreadable": ["Splunk", "Dynatrace", "CrowdStrike", "Chronosphere", "Coveo"]}, PC={"Datadog": {"Ireland": 16, "Netherlands": 15, "Israel": 2, "Saudi Arabia": 3, "United Kingdom": 16, "France": 7, "Denmark": 3, "Sweden": 4, "Switzerland": 1, "Germany": 3, "Portugal": 2, "Spain": 4, "Italy": 3, "Poland": 1}, "New Relic": {"Germany": 3, "Ireland": 2, "United Kingdom": 2, "France": 1, "Spain": 1}, "Grafana Labs": {"Netherlands": 1, "Sweden": 2, "Switzerland": 2, "Ireland": 1, "United Kingdom": 1, "Spain": 1}, "Sumo Logic": {"Germany": 2}, "Algolia": {"United Kingdom": 7, "France": 4, "Germany": 3}, "MongoDB": {"Switzerland": 2, "United Arab Emirates": 4, "Israel": 6, "Ireland": 13, "Germany": 10, "Netherlands": 3, "Italy": 3, "France": 5, "Spain": 4, "United Kingdom": 6, "Poland": 3, "Sweden": 1}, "Confluent": {}, "Snowflake": {"Israel": 1, "United Kingdom": 8, "Norway": 1, "Germany": 1, "Netherlands": 1, "France": 1, "Ireland": 2, "Denmark": 1, "Sweden": 2, "United Arab Emirates": 3}, "Databricks": {"United Kingdom": 31, "France": 15, "Sweden": 7, "Finland": 1, "Denmark": 5, "Netherlands": 5, "Germany": 12, "Israel": 1, "Spain": 4, "Switzerland": 1, "Italy": 6, "Saudi Arabia": 1}}, VALID={"spearman": 0.958, "peers": 9, "markets": 30};
+
+const PAGES=[["findings","Findings"],["why","Why this question"],["method","Method"],
+             ["rank","Rankings"],["comp","Comparator"],["valid","Validation"],["limits","Tier 2 & limits"]];
+const nav=document.getElementById('nav');
+PAGES.forEach(([id,label],i)=>{
+  const b=document.createElement('button');b.textContent=label;b.dataset.id=id;
+  b.addEventListener('click',()=>show(id));nav.appendChild(b);
+});
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+id));
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
+  window.scrollTo({top:0,behavior:'instant'});
+  location.hash=id;
+}
+
+const FACTORS={
+ addressable:{label:"Addressable enterprises",hint:"Large firms already buying hosted database services. The closest proxy for the Elasticsearch motion."},
+ ict_depth:{label:"ICT depth",hint:"Large ICT-sector enterprises. Proxy for the bottom-up developer landing motion."},
+ dev_platform:{label:"Dev platform adoption",hint:"Enterprises buying hosted build and deploy environments."},
+ security:{label:"Security SaaS adoption",hint:"Enterprises buying security software as a cloud service. Elastic Security's market."}};
+const PRESETS={balanced:{addressable:50,ict_depth:25,dev_platform:15,security:10},
+ size:{addressable:85,ict_depth:15,dev_platform:0,security:0},
+ dev:{addressable:20,ict_depth:30,dev_platform:50,security:0},
+ sec:{addressable:30,ict_depth:10,dev_platform:10,security:50}};
+let W={...PRESETS.balanced}, baseline=null;
+
+const sl=document.getElementById('sliders');
+Object.entries(FACTORS).forEach(([k,f])=>{
+  const d=document.createElement('div');d.className='sl';
+  d.innerHTML=`<label for="${k}">${f.label}<b id="v-${k}">${W[k]}</b></label>
+    <input type="range" id="${k}" min="0" max="100" value="${W[k]}"><small>${f.hint}</small>`;
+  sl.appendChild(d);
+  d.querySelector('input').addEventListener('input',e=>{W[k]=+e.target.value;render()});
+});
+document.querySelectorAll('.presets button').forEach(b=>b.addEventListener('click',()=>{
+  W={...PRESETS[b.dataset.p]};
+  Object.keys(FACTORS).forEach(k=>document.getElementById(k).value=W[k]);render();}));
+
+function norm(vals){const nz=vals.filter(v=>v>0);if(!nz.length)return vals.map(()=>0);
+  const lo=Math.log1p(Math.min(...nz)),hi=Math.log1p(Math.max(...nz)),span=(hi-lo)||1;
+  return vals.map(v=>v>0?(Math.log1p(v)-lo)/span:0);}
+function score(){
+  const keys=Object.keys(FACTORS),n={};keys.forEach(k=>n[k]=norm(ROWS.map(r=>r[k]||0)));
+  const tot=keys.reduce((s,k)=>s+W[k],0)||1;
+  const out=ROWS.map((r,i)=>({...r,opportunity:100*keys.reduce((s,k)=>s+(W[k]/tot)*n[k][i],0)}));
+  const tf=out.reduce((s,r)=>s+r.elastic_field,0), to=out.reduce((s,r)=>s+r.opportunity,0)||1;
+  out.forEach(r=>{r.expected=tf*r.opportunity/to;r.ratio=r.expected?r.elastic_field/r.expected:null;
+    if(r.rival_field>=4&&r.rival_field>=3*Math.max(r.elastic_field,1))r.state='Contested';
+    else if(r.ratio===null)r.state='Unscored';
+    else if(r.ratio<0.5)r.state='Under-covered';
+    else if(r.ratio<=1.5)r.state='Matched';else r.state='Over-covered';});
+  out.sort((a,b)=>b.opportunity-a.opportunity);return out;}
+function render(){
+  Object.keys(FACTORS).forEach(k=>document.getElementById('v-'+k).textContent=W[k]);
+  const rows=score();if(!baseline)baseline=rows.map(r=>r.country);
+  const max=rows[0].opportunity||1;
+  document.getElementById('tbody').innerHTML=rows.map((r,i)=>{
+    const was=baseline.indexOf(r.country),moved=was>=0&&was!==i;
+    const a=moved?`<span class="moved" title="was #${was+1}">${was>i?'&uarr;':'&darr;'}${Math.abs(was-i)}</span>`:'';
+    return `<tr><td><span class="rank">${i+1}</span>${r.country} ${a}</td>
+      <td><span class="bar" style="width:${(r.opportunity/max*54).toFixed(1)}px"></span>${r.opportunity.toFixed(1)}</td>
+      <td class="hideS">${Math.round(r.addressable).toLocaleString()}</td>
+      <td class="hideS">${r.hosted_db_pct.toFixed(0)}%</td>
+      <td>${r.elastic_field}</td><td>${r.rival_field}</td>
+      <td>${r.expected?r.elastic_field+' vs '+r.expected.toFixed(1):'.'}</td>
+      <td><span class="pill ${r.state}">${r.state}</span></td></tr>`;}).join('');
+  document.getElementById('delta').innerHTML=
+    `Top five now: <b>${rows.slice(0,5).map(r=>r.country).join(' &gt; ')}</b>. Arrows show movement against the shipped weighting.`;
+}
+
+// findings + validation numbers
+document.getElementById('k-rho').textContent=VALID.spearman.toFixed(2);
+document.getElementById('k-rho2').textContent=VALID.spearman.toFixed(2);
+
+// comparator
+const ce=COMP.elastic,groups={};
+COMP.peers.forEach(p=>{(groups[p.group]=groups[p.group]||[]).push(p)});
+let ch=`<tr><td class="ela">Elastic</td><td>${ce.total}</td><td>${ce.intl_pct.toFixed(0)}%</td>
+ <td>${ce.field_pct.toFixed(0)}%</td><td class="hideS">${ce.intl_eng.toFixed(0)}%</td>
+ <td class="hideS">${ce.intl_field.toFixed(0)}%</td><td>${ce.emea_field_reqs}</td><td>${ce.emea_countries}</td></tr>`;
+Object.entries(groups).forEach(([g,rs])=>{
+  ch+=`<tr><td colspan="8" style="color:var(--muted);font-size:.69rem;padding-top:.75rem">${g}</td></tr>`;
+  rs.forEach(p=>{ch+=`<tr><td>${p.name}</td><td>${p.total}</td><td>${p.intl_pct.toFixed(0)}%</td>
+   <td>${p.field_pct.toFixed(0)}%</td><td class="hideS">${p.intl_eng.toFixed(0)}%</td>
+   <td class="hideS">${p.intl_field.toFixed(0)}%</td><td>${p.emea_field_reqs}</td><td>${p.emea_countries}</td></tr>`});});
+document.getElementById('comp').innerHTML=ch;
+const med=k=>{const v=COMP.peers.map(p=>p[k]).sort((a,b)=>a-b),m=Math.floor(v.length/2);
+  return v.length%2?v[m]:(v[m-1]+v[m])/2};
+document.getElementById('compnote').innerHTML=
+ `<b>Read against the peer median, Elastic's breadth is fine and its international mix is not.</b>
+  Field roles as a share of all hiring: Elastic ${ce.field_pct.toFixed(0)}% against a median of
+  ${med('field_pct').toFixed(0)}%, which is normal. EMEA countries with any field presence: Elastic
+  ${ce.emea_countries} against a median of ${med('emea_countries')}, above most peers. But the field
+  share of <i>international</i> hiring is ${ce.intl_field.toFixed(0)}% against ${med('intl_field').toFixed(0)}%,
+  and engineering takes ${ce.intl_eng.toFixed(0)}% against ${med('intl_eng').toFixed(0)}%.
+  <b>The gap is depth in specific markets, not breadth across them.</b>`;
+
+const FOCUS=["Netherlands","Italy","Sweden","France","Germany","Spain","Ireland","Poland"];
+const pn=Object.keys(PC);
+document.getElementById('pchead').innerHTML='<th>Market</th><th>Elastic</th>'+
+ pn.map(n=>`<th class="hideS">${n.split(' ')[0]}</th>`).join('')+'<th>Peers total</th>';
+document.getElementById('pcbody').innerHTML=FOCUS.map(m=>{
+ const e=(ROWS.find(r=>r.country===m)||{}).elastic_field||0;
+ const tot=pn.reduce((s,n)=>s+(PC[n][m]||0),0);
+ return `<tr><td>${m}</td><td class="ela">${e}</td>${pn.map(n=>`<td class="hideS">${PC[n][m]||'-'}</td>`).join('')}<td>${tot}</td></tr>`;
+}).join('');
+
+// validation table
+const ORDER={"Consensus, Elastic absent":0,"Contrarian, nobody there":1,"Consensus, Elastic present":2,"Thin peer interest":3};
+document.getElementById('vbody').innerHTML=[...ROWS]
+ .sort((a,b)=>(ORDER[a.consensus]-ORDER[b.consensus])||(b.peer_reqs-a.peer_reqs))
+ .slice(0,16).map(r=>{
+  const col=r.consensus.startsWith('Consensus, Elastic absent')?'var(--red)':
+            r.consensus.startsWith('Contrarian')?'var(--amber)':'var(--muted)';
+  return `<tr><td>${r.country}</td><td>${r.opportunity.toFixed(1)}</td>
+   <td class="ela">${r.elastic_field}</td><td>${r.peers_present}</td><td>${r.peer_reqs}</td>
+   <td style="color:${col}">${r.consensus}</td></tr>`;}).join('');
+
+document.getElementById('t2').innerHTML=TIER2.map(r=>`<tr><td>${r.country}</td>
+ <td>${r.gdp_usd?Math.round(r.gdp_usd/1e9).toLocaleString():'.'}</td>
+ <td>${r.ict_exports_pct?r.ict_exports_pct.toFixed(0)+'%':'.'}</td>
+ <td class="ela">${r.elastic_field}</td><td>${r.rival_field}</td></tr>`).join('');
+
+render();
+show((location.hash||'#findings').slice(1));
+</script></body></html>
