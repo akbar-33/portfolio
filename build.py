@@ -2,7 +2,7 @@
 """Build the portfolio: one index page plus six case pages, from one source of truth."""
 import pathlib
 
-OUT = pathlib.Path("/Users/mandalorian/portfolio")
+OUT = pathlib.Path(".")
 SITE = "https://akbar-khalid.vercel.app"
 GH = "https://github.com/akbar-33"
 
@@ -75,6 +75,7 @@ FOOT = f"""<footer class="site">
 </footer>
 <script src="/app.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </body>
 </html>"""
 
