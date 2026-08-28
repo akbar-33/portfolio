@@ -74,6 +74,7 @@ FOOT = f"""<footer class="site">
   </div>
 </footer>
 <script src="/app.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>"""
 
