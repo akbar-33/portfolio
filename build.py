@@ -70,7 +70,7 @@ def masthead(brand_link=True):
 FOOT = f"""<footer class="site">
   <div class="wrap-wide">
     <span>Built by hand, no template, like everything above.</span>
-    <span><a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+    <span><a class="foot-contact" href="/contact">Send me a message or file &rarr;</a> · <a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
   </div>
 </footer>
 <script src="/app.js"></script>
@@ -773,3 +773,39 @@ def build_ideas():
     print(f"built ideas index + {len(POSTS)} posts")
 
 build_ideas()
+
+# ---------------------------------------------------------------- contact
+def build_contact():
+    body = f"""{masthead()}
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow reveal">Contact</p>
+    <h1 class="reveal d1">Send me something</h1>
+    <p class="lede reveal d2">A note, a long brief, a deck, a data room extract. Write as much as you need and attach files up to 200 MB each; it all lands in my inbox and I reply from there.</p>
+  </div>
+</section>
+<section class="sec"><div class="wrap">
+  <form class="contact-form" id="contact-form" novalidate>
+    <div class="cf-row">
+      <label>Name<input name="name" autocomplete="name" maxlength="200"></label>
+      <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="320"></label>
+    </div>
+    <label>Message<textarea name="message" rows="12" maxlength="50000" placeholder="As long as it needs to be."></textarea></label>
+    <label class="cf-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="cf-drop" id="cf-drop">
+      <input type="file" id="cf-files" multiple>
+      <label for="cf-files"><b>Attach files</b><small>Click or drop here · up to 10 files, 200 MB each</small></label>
+    </div>
+    <ul class="cf-list" id="cf-list"></ul>
+    <button class="more cf-send" type="submit">Send<span class="arrow">&rarr;</span></button>
+    <p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+{FOOT.replace('<script src="/app.js"></script>', '<script src="/app.js"></script>\n<script type="module" src="/contact-form.js"></script>')}"""
+    (OUT / "contact.html").write_text(
+        head("Contact · Abdullah Akbar Khalid",
+             "Send Abdullah Akbar Khalid a message, a long brief or files of up to 200 MB.",
+             SITE + "/contact") + body)
+    print("built contact page")
+
+build_contact()

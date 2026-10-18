@@ -490,3 +490,39 @@ footer.site a:hover{border-bottom-color:var(--red)}
   .mix-head .mix-mid{flex:0 0 7.5rem}
   .mix-val{flex:0 0 2.6rem;font-size:.7rem}
 }
+
+/* ---------- contact form ---------- */
+.foot-contact{color:var(--red)}
+.contact-form{display:grid;gap:1.1rem}
+.contact-form label{display:grid;gap:.35rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.contact-form input,.contact-form textarea{
+  font:inherit;font-family:var(--sans);font-size:1rem;letter-spacing:0;text-transform:none;color:var(--ink);
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:.65rem .75rem;width:100%;
+  transition:border-color .2s;
+}
+.contact-form textarea{resize:vertical;min-height:12rem;line-height:1.55}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--red)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.cf-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.cf-drop{position:relative;border:1px dashed var(--rule);border-radius:2px;background:var(--card-2);transition:border-color .2s}
+.cf-drop.is-over,.cf-drop:hover{border-color:var(--red)}
+.cf-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.cf-drop label{padding:1.3rem;text-align:center;text-transform:none;letter-spacing:0;pointer-events:none}
+.cf-drop b{font-family:var(--mono);font-size:.8125rem;color:var(--red);font-weight:500}
+.cf-drop small{font-family:var(--sans);font-size:.85rem}
+.contact-form .cf-list{list-style:none;display:grid;gap:.4rem;margin:0;max-width:none}
+.contact-form .cf-list li{margin:0}
+.cf-list:empty{display:none}
+.cf-list li{display:grid;grid-template-columns:1fr auto 4rem auto;gap:.7rem;align-items:center;font-size:.9rem;
+  border:1px solid var(--rule);border-radius:2px;padding:.4rem .6rem;background:var(--card)}
+.cf-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.cf-size{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.cf-bar{height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
+.cf-bar i{display:block;height:100%;width:0;background:var(--red);transition:width .2s}
+.cf-list button{background:none;border:0;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1}
+.cf-list button:hover{color:var(--red)}
+.cf-send{justify-self:start;margin-top:.2rem;cursor:pointer;font:inherit;font-family:var(--mono);font-size:.8125rem}
+.cf-send:disabled{opacity:.55;cursor:progress}
+.cf-status{font-family:var(--mono);font-size:.8rem;color:var(--band-a);min-height:1.2em}
+.cf-status.is-error{color:var(--red)}
+@media (max-width:540px){.cf-row{grid-template-columns:1fr}}

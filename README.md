@@ -1,6 +1,6 @@
 # Portfolio
 
-Source for [akbar-khalid.vercel.app](https://akbar-khalid.vercel.app). Static, no build step at deploy time, no dependencies.
+Source for [akbar-khalid.vercel.app](https://akbar-khalid.vercel.app). Static, no build step at deploy time. The one exception is the contact form, which uses two Vercel functions and one dependency (`@vercel/blob`).
 
 ## Editing
 
@@ -19,6 +19,9 @@ Hand-maintained files:
 | `build.py` | The generator: copy, exhibits, tooltips, architecture diagrams |
 | `style.css` | Shared styles. Dark is the default, light is opt-in via `[data-theme="light"]` |
 | `app.js` | Theme toggle, scroll reveal, floating tooltips |
+| `contact-form.js` | The `/contact` form: uploads files to Vercel Blob, then posts the message to `/api/contact` |
+| `api/upload.js`, `api/contact.js` | The only server code: Blob upload tokens, and the email via Resend |
+| `vendor/blob-client.js` | `@vercel/blob/client` `upload()` bundled for the browser (see below) |
 | `media/*.png` | Social preview card and the LinkedIn project images |
 | `media/src/*.html` | The HTML those PNGs are rendered from, at 1200x630 |
 
@@ -80,3 +83,22 @@ To force a refresh for a link already in circulation, run the page through [Face
 ## Deploying
 
 Vercel is connected to this repository, so every push to `main` redeploys. Framework preset is Other, with no build command and no output directory.
+
+## Contact form
+
+`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `linkwithakbar@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to Vercel Blob, then sends the text and the file URLs to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+
+Setup, once, in the Vercel project:
+
+1. **Storage → Create → Blob**, access **Public**, connected to this project. That adds `BLOB_READ_WRITE_TOKEN`.
+2. Sign up at [resend.com](https://resend.com) with `linkwithakbar@gmail.com`, create an API key, and add it as `RESEND_API_KEY`. Until a domain is verified in Resend, the sender is `onboarding@resend.dev`, which can only deliver to the address the Resend account was created with.
+3. Redeploy so the functions see the variables.
+
+Optional: `CONTACT_TO` changes the inbox, and `CONTACT_FROM` the sender once a domain is verified. Blob URLs are public but unguessable (random suffix); delete old uploads from the Blob store in the dashboard when you no longer need them.
+
+`vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`:
+
+```bash
+echo "export { upload } from '@vercel/blob/client';" > /tmp/entry.js
+npx esbuild /tmp/entry.js --bundle --format=esm --platform=browser --minify --legal-comments=none --outfile=vendor/blob-client.js
+```
