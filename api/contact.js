@@ -4,7 +4,7 @@
 import { head, issueSignedToken, presignUrl } from "@vercel/blob";
 import { signedLink, LINK_DAYS } from "./_sign.js";
 
-const TO = process.env.CONTACT_TO || "linkwithakbar@gmail.com";
+const TO = process.env.CONTACT_TO || "akbarthesecond@gmail.com";
 const FROM = process.env.CONTACT_FROM || "Portfolio inbox <onboarding@resend.dev>";
 
 const MAX_MESSAGE = 50000;

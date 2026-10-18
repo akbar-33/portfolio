@@ -86,7 +86,7 @@ Vercel is connected to this repository, so every push to `main` redeploys. Frame
 
 ## Contact form
 
-`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `linkwithakbar@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `akbarthesecond@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
 
 Private blobs have no public URL. The email links point at `api/file`, carry an HMAC signature keyed on `BLOB_READ_WRITE_TOKEN`, and expire after 90 days (`LINK_DAYS` in `api/_sign.js`). `api/file` checks the signature and redirects to a Blob URL that is valid for ten minutes, so the bytes never pass through a function. Rotating the Blob token in Vercel revokes every link already sent.
 
@@ -96,7 +96,7 @@ Setup, once, in the Vercel project:
 2. Create a Resend API key and add it as `RESEND_API_KEY`. Until a domain is verified in Resend, the sender is `onboarding@resend.dev`, which can only deliver to the address the Resend account was created with, so `CONTACT_TO` must be that address.
 3. Redeploy so the functions see the variables.
 
-Optional: `CONTACT_TO` changes the inbox (default `linkwithakbar@gmail.com`), `CONTACT_FROM` the sender once a domain is verified, and `SITE_URL` the base of the download links (default: the host the form was sent from). Delete old uploads from the Blob store in the dashboard when you no longer need them; their links stop working.
+Optional: `CONTACT_TO` changes the inbox (default `akbarthesecond@gmail.com`, the Resend account address), `CONTACT_FROM` the sender once a domain is verified, and `SITE_URL` the base of the download links (default: the host the form was sent from). Delete old uploads from the Blob store in the dashboard when you no longer need them; their links stop working.
 
 `vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`:
 
