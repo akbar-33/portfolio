@@ -109,7 +109,8 @@ form.addEventListener("submit", async function (e) {
     render();
     say("Sent. Thank you, I'll reply to " + email + ".");
   } catch (err) {
-    var msg = err.message || "Something went wrong. Please try again.";
+    console.error("contact form failed at " + stage, err);
+    var msg = (err.name && err.name !== "Error" ? err.name + ": " : "") + (err.message || "Something went wrong. Please try again.");
     if (stage === "upload") msg += " · " + await diagnose();
     say(msg, true);
   } finally {

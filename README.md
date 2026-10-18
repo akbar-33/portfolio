@@ -100,9 +100,9 @@ Setup, once, in the Vercel project:
 
 Optional: `CONTACT_TO` changes the inbox (default `akbarthesecond@gmail.com`, the Resend account address), `CONTACT_FROM` the sender once a domain is verified, and `SITE_URL` the base of the download links (default: the host the form was sent from). Delete old uploads from the Blob store in the dashboard when you no longer need them; their links stop working.
 
-`vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`:
+`vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`. The define caps browser retries at one; the SDK default of ten, with exponential backoff, leaves a failing upload looking frozen for about 15 minutes:
 
 ```bash
 echo "export { uploadPresigned } from '@vercel/blob/client';" > /tmp/entry.js
-npx esbuild /tmp/entry.js --bundle --format=esm --platform=browser --minify --legal-comments=none --outfile=vendor/blob-client.js
+npx esbuild /tmp/entry.js --bundle --format=esm --platform=browser --minify --legal-comments=none '--define:process.env.VERCEL_BLOB_RETRIES="1"' --outfile=vendor/blob-client.js
 ```
