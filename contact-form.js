@@ -44,6 +44,19 @@ function add(files) {
   say(skipped.join(" · "), skipped.length > 0);
 }
 
+// asks the upload function why it failed; the Blob SDK hides the server's reason
+async function diagnose() {
+  try {
+    var r = await fetch("/api/upload", { cache: "no-store" });
+    var d = await r.json().catch(function () { return null; });
+    if (!d) return "upload function not running (HTTP " + r.status + ")";
+    if (!d.BLOB_READ_WRITE_TOKEN) return "BLOB_READ_WRITE_TOKEN missing; blob settings found: " + (d.blobVariableNames.join(", ") || "none");
+    return "token check: " + d.tokenCheck;
+  } catch (e) {
+    return "upload function unreachable";
+  }
+}
+
 input.addEventListener("change", function () { add(input.files); input.value = ""; });
 ["dragenter", "dragover"].forEach(function (t) {
   drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("is-over"); });
@@ -94,7 +107,9 @@ form.addEventListener("submit", async function (e) {
     render();
     say("Sent. Thank you, I'll reply to " + email + ".");
   } catch (err) {
-    say(err.message || "Something went wrong. Please try again.", true);
+    var msg = err.message || "Something went wrong. Please try again.";
+    if (/client token/i.test(msg)) msg += " · " + await diagnose();
+    say(msg, true);
   } finally {
     button.disabled = false;
   }

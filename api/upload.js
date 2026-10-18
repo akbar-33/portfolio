@@ -10,8 +10,20 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const has = (k) => Boolean(process.env[k]);
     const blobVars = Object.keys(process.env).filter((k) => /BLOB/i.test(k)).sort();
+    // dry run of the real token step, so the exact failure is visible
+    let tokenCheck = "ok";
+    try {
+      await handleUpload({
+        request: req,
+        body: { type: "blob.generate-client-token", payload: { pathname: "inbox/check.txt", clientPayload: null, multipart: false } },
+        onBeforeGenerateToken: async () => ({ maximumSizeInBytes: 1, validUntil: Date.now() + 1000 }),
+      });
+    } catch (err) {
+      tokenCheck = err.message;
+    }
     return res.status(200).json({
       functionRuns: true,
+      tokenCheck,
       BLOB_READ_WRITE_TOKEN: has("BLOB_READ_WRITE_TOKEN"),
       RESEND_API_KEY: has("RESEND_API_KEY"),
       blobVariableNames: blobVars,
