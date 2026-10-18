@@ -84,12 +84,28 @@ form.addEventListener("submit", async function (e) {
       say("Uploading " + (i + 1) + " of " + picked.length + ": " + f.name);
       var bar = bars[i];
       var safe = f.name.replace(/[^\w.\-]+/g, "_").slice(-120) || "file";
-      var blob = await uploadPresigned("inbox/" + safe, f, {
-        access: "private",
-        handleUploadUrl: "/api/upload",
-        multipart: f.size > 20 * 1024 * 1024,
-        onUploadProgress: function (p) { if (bar) bar.style.width = p.percentage + "%"; }
-      });
+      // No onUploadProgress: with it, the SDK streams the body (fetch duplex),
+      // which can hang with no error. A plain body is one ordinary request.
+      if (bar) bar.parentNode.classList.add("is-busy");
+      var ctl = new AbortController();
+      // generous ceiling: a minute, plus a minute per 25 MB
+      var timer = setTimeout(function () { ctl.abort(); }, 60000 + Math.ceil(f.size / (25 * 1048576)) * 60000);
+      var blob;
+      try {
+        blob = await uploadPresigned("inbox/" + safe, f, {
+          access: "private",
+          handleUploadUrl: "/api/upload",
+          multipart: f.size > 20 * 1024 * 1024,
+          abortSignal: ctl.signal
+        });
+      } catch (err) {
+        if (ctl.signal.aborted) throw new Error("Upload of " + f.name + " timed out");
+        throw err;
+      } finally {
+        clearTimeout(timer);
+        if (bar) bar.parentNode.classList.remove("is-busy");
+      }
+      if (bar) bar.style.width = "100%";
       uploaded.push({ pathname: blob.pathname, name: f.name });
     }
     stage = "send";
