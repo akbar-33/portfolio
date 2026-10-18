@@ -1,4 +1,4 @@
-/* Contact form: files go straight to Vercel Blob, then the text and file links go to /api/contact. */
+/* Contact form: files go straight to private Vercel Blob, then the text and file paths go to /api/contact. */
 import { upload } from "/vendor/blob-client.js";
 
 var MAX_FILES = 10;
@@ -71,12 +71,12 @@ form.addEventListener("submit", async function (e) {
       var bar = bars[i];
       var safe = f.name.replace(/[^\w.\-]+/g, "_").slice(-120) || "file";
       var blob = await upload("inbox/" + safe, f, {
-        access: "public",
+        access: "private",
         handleUploadUrl: "/api/upload",
         multipart: f.size > 20 * 1024 * 1024,
         onUploadProgress: function (p) { if (bar) bar.style.width = p.percentage + "%"; }
       });
-      uploaded.push({ url: blob.url, name: f.name, size: f.size });
+      uploaded.push({ pathname: blob.pathname, name: f.name });
     }
     say("Sending…");
     var r = await fetch("/api/contact", {

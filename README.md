@@ -20,7 +20,7 @@ Hand-maintained files:
 | `style.css` | Shared styles. Dark is the default, light is opt-in via `[data-theme="light"]` |
 | `app.js` | Theme toggle, scroll reveal, floating tooltips |
 | `contact-form.js` | The `/contact` form: uploads files to Vercel Blob, then posts the message to `/api/contact` |
-| `api/upload.js`, `api/contact.js` | The only server code: Blob upload tokens, and the email via Resend |
+| `api/upload.js`, `api/contact.js`, `api/file.js`, `api/_sign.js` | The only server code: Blob upload tokens, the email via Resend, and signed download links |
 | `vendor/blob-client.js` | `@vercel/blob/client` `upload()` bundled for the browser (see below) |
 | `media/*.png` | Social preview card and the LinkedIn project images |
 | `media/src/*.html` | The HTML those PNGs are rendered from, at 1200x630 |
@@ -86,15 +86,17 @@ Vercel is connected to this repository, so every push to `main` redeploys. Frame
 
 ## Contact form
 
-`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `linkwithakbar@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to Vercel Blob, then sends the text and the file URLs to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `linkwithakbar@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+
+Private blobs have no public URL. The email links point at `api/file`, carry an HMAC signature keyed on `BLOB_READ_WRITE_TOKEN`, and expire after 90 days (`LINK_DAYS` in `api/_sign.js`). `api/file` checks the signature and redirects to a Blob URL that is valid for ten minutes, so the bytes never pass through a function. Rotating the Blob token in Vercel revokes every link already sent.
 
 Setup, once, in the Vercel project:
 
-1. **Storage → Create → Blob**, access **Public**, connected to this project. That adds `BLOB_READ_WRITE_TOKEN`.
-2. Sign up at [resend.com](https://resend.com) with `linkwithakbar@gmail.com`, create an API key, and add it as `RESEND_API_KEY`. Until a domain is verified in Resend, the sender is `onboarding@resend.dev`, which can only deliver to the address the Resend account was created with.
+1. **Storage → Create → Blob**, access **Private**, connected to this project. That adds `BLOB_READ_WRITE_TOKEN`.
+2. Create a Resend API key and add it as `RESEND_API_KEY`. Until a domain is verified in Resend, the sender is `onboarding@resend.dev`, which can only deliver to the address the Resend account was created with, so `CONTACT_TO` must be that address.
 3. Redeploy so the functions see the variables.
 
-Optional: `CONTACT_TO` changes the inbox, and `CONTACT_FROM` the sender once a domain is verified. Blob URLs are public but unguessable (random suffix); delete old uploads from the Blob store in the dashboard when you no longer need them.
+Optional: `CONTACT_TO` changes the inbox (default `linkwithakbar@gmail.com`), `CONTACT_FROM` the sender once a domain is verified, and `SITE_URL` the base of the download links (default: the host the form was sent from). Delete old uploads from the Blob store in the dashboard when you no longer need them; their links stop working.
 
 `vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`:
 
