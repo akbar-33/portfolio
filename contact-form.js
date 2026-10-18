@@ -1,5 +1,5 @@
 /* Contact form: files go straight to private Vercel Blob, then the text and file paths go to /api/contact. */
-import { upload } from "/vendor/blob-client.js";
+import { uploadPresigned } from "/vendor/blob-client.js";
 
 var MAX_FILES = 10;
 var MAX_BYTES = 200 * 1024 * 1024;
@@ -50,8 +50,8 @@ async function diagnose() {
     var r = await fetch("/api/upload", { cache: "no-store" });
     var d = await r.json().catch(function () { return null; });
     if (!d) return "upload function not running (HTTP " + r.status + ")";
-    if (!d.BLOB_READ_WRITE_TOKEN) return "BLOB_READ_WRITE_TOKEN missing; blob settings found: " + (d.blobVariableNames.join(", ") || "none");
-    return "token check: " + d.tokenCheck;
+    if (!d.BLOB_STORE_ID) return "BLOB_STORE_ID missing: storage is not connected to this project";
+    return "storage check: " + d.tokenCheck;
   } catch (e) {
     return "upload function unreachable";
   }
@@ -75,6 +75,7 @@ form.addEventListener("submit", async function (e) {
   if (!message && !picked.length) return say("Add a message or at least one file.", true);
 
   button.disabled = true;
+  var stage = "upload";
   var bars = list.querySelectorAll(".cf-bar i");
   try {
     var uploaded = [];
@@ -83,7 +84,7 @@ form.addEventListener("submit", async function (e) {
       say("Uploading " + (i + 1) + " of " + picked.length + ": " + f.name);
       var bar = bars[i];
       var safe = f.name.replace(/[^\w.\-]+/g, "_").slice(-120) || "file";
-      var blob = await upload("inbox/" + safe, f, {
+      var blob = await uploadPresigned("inbox/" + safe, f, {
         access: "private",
         handleUploadUrl: "/api/upload",
         multipart: f.size > 20 * 1024 * 1024,
@@ -91,6 +92,7 @@ form.addEventListener("submit", async function (e) {
       });
       uploaded.push({ pathname: blob.pathname, name: f.name });
     }
+    stage = "send";
     say("Sending…");
     var r = await fetch("/api/contact", {
       method: "POST",
@@ -108,7 +110,7 @@ form.addEventListener("submit", async function (e) {
     say("Sent. Thank you, I'll reply to " + email + ".");
   } catch (err) {
     var msg = err.message || "Something went wrong. Please try again.";
-    if (/client token/i.test(msg)) msg += " · " + await diagnose();
+    if (stage === "upload") msg += " · " + await diagnose();
     say(msg, true);
   } finally {
     button.disabled = false;

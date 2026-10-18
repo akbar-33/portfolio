@@ -1,12 +1,14 @@
 // Signed download links for private blobs. The underscore keeps Vercel from
-// treating this file as a function. The key is the Blob read-write token, so
-// rotating that token in Vercel revokes every link ever emailed.
+// treating this file as a function. The key is LINK_SECRET if set, else the
+// Resend API key; rotating whichever is used revokes every link ever emailed.
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 export const LINK_DAYS = 90;
 
+const secret = () => process.env.LINK_SECRET || process.env.RESEND_API_KEY || "";
+
 function mac(pathname, expires) {
-  return createHmac("sha256", process.env.BLOB_READ_WRITE_TOKEN || "")
+  return createHmac("sha256", secret())
     .update(`${pathname}\n${expires}`)
     .digest("base64url");
 }
@@ -18,7 +20,7 @@ export function signedLink(base, pathname) {
 }
 
 export function verify(pathname, expires, sig) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return false;
+  if (!secret()) return false;
   if (!pathname || !sig || !(Number(expires) > Date.now())) return false;
   const want = Buffer.from(mac(pathname, expires));
   const got = Buffer.from(String(sig));

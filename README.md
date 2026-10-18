@@ -86,13 +86,15 @@ Vercel is connected to this repository, so every push to `main` redeploys. Frame
 
 ## Contact form
 
-`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `akbarthesecond@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute token and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+`/contact` (linked from every footer) takes a long message plus up to 10 files of 200 MB each and emails them to `akbarthesecond@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute presigned upload URL and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
 
-Private blobs have no public URL. The email links point at `api/file`, carry an HMAC signature keyed on `BLOB_READ_WRITE_TOKEN`, and expire after 90 days (`LINK_DAYS` in `api/_sign.js`). `api/file` checks the signature and redirects to a Blob URL that is valid for ten minutes, so the bytes never pass through a function. Rotating the Blob token in Vercel revokes every link already sent.
+Private blobs have no public URL. The email links point at `api/file`, carry an HMAC signature keyed on `LINK_SECRET` (or `RESEND_API_KEY` when that is unset), and expire after 90 days (`LINK_DAYS` in `api/_sign.js`). `api/file` checks the signature and redirects to a Blob URL that is valid for ten minutes, so the bytes never pass through a function. Rotating that key revokes every link already sent.
+
+Blob auth is Vercel OIDC: connecting the store sets `BLOB_STORE_ID` and `BLOB_WEBHOOK_PUBLIC_KEY`, and the functions get a short-lived OIDC token at runtime. There is no `BLOB_READ_WRITE_TOKEN`. `GET /api/upload` reports which settings exist and whether Blob accepts the credentials, without showing any values.
 
 Setup, once, in the Vercel project:
 
-1. **Storage → Create → Blob**, access **Private**, connected to this project. That adds `BLOB_READ_WRITE_TOKEN`.
+1. **Storage → Create → Blob**, access **Private**, connected to this project. That adds `BLOB_STORE_ID`.
 2. Create a Resend API key and add it as `RESEND_API_KEY`. Until a domain is verified in Resend, the sender is `onboarding@resend.dev`, which can only deliver to the address the Resend account was created with, so `CONTACT_TO` must be that address.
 3. Redeploy so the functions see the variables.
 
@@ -101,6 +103,6 @@ Optional: `CONTACT_TO` changes the inbox (default `akbarthesecond@gmail.com`, th
 `vendor/blob-client.js` is regenerated only when bumping `@vercel/blob`:
 
 ```bash
-echo "export { upload } from '@vercel/blob/client';" > /tmp/entry.js
+echo "export { uploadPresigned } from '@vercel/blob/client';" > /tmp/entry.js
 npx esbuild /tmp/entry.js --bundle --format=esm --platform=browser --minify --legal-comments=none --outfile=vendor/blob-client.js
 ```

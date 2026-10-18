@@ -1,6 +1,6 @@
 // Receives the contact form (text plus the paths of files already uploaded to
 // private Blob) and emails it through Resend with signed download links.
-// Env: RESEND_API_KEY, BLOB_READ_WRITE_TOKEN, optional CONTACT_TO / CONTACT_FROM / SITE_URL.
+// Env: RESEND_API_KEY, BLOB_STORE_ID (set by Vercel), optional CONTACT_TO / CONTACT_FROM / SITE_URL / LINK_SECRET.
 import { head, issueSignedToken, presignUrl } from "@vercel/blob";
 import { signedLink, LINK_DAYS } from "./_sign.js";
 
