@@ -70,7 +70,7 @@ def masthead(brand_link=True):
 FOOT = f"""<footer class="site">
   <div class="wrap-wide">
     <span>Built by hand, no template, like everything above.</span>
-    <span><a class="foot-contact" href="/contact">Send me a message or file &rarr;</a> · <a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+    <span><a class="foot-contact" href="/more-information">More information &rarr;</a> · <a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
   </div>
 </footer>
 <script src="/app.js"></script>
@@ -600,7 +600,7 @@ for e in EX:
     (OUT/f"{e['slug']}.html").write_text(
         head(f"{e['title']} · Abdullah Akbar Khalid", c["lede"], f"{SITE}/{e['slug']}") + body)
 
-(OUT/"vercel.json").write_text('{\n  "cleanUrls": true,\n  "trailingSlash": false\n}\n')
+(OUT/"vercel.json").write_text('{\n  "cleanUrls": true,\n  "trailingSlash": false,\n  "redirects": [\n    { "source": "/contact", "destination": "/more-information", "permanent": true }\n  ]\n}\n')
 print(f"built index.html + {len(EX)} case pages + vercel.json")
 
 
@@ -780,7 +780,7 @@ def build_contact():
 <section class="case-hero">
   <div class="wrap">
     <p class="eyebrow reveal">Contact</p>
-    <h1 class="reveal d1">Send me something</h1>
+    <h1 class="reveal d1">More information</h1>
     <p class="lede reveal d2">A note, a long brief, a deck, a data room extract. Write as much as you need and attach files up to 200 MB each; it all lands in my inbox and I reply from there.</p>
   </div>
 </section>
@@ -802,10 +802,10 @@ def build_contact():
   </form>
 </div></section>
 {FOOT.replace('<script src="/app.js"></script>', '<script src="/app.js"></script>\n<script type="module" src="/contact-form.js"></script>')}"""
-    (OUT / "contact.html").write_text(
-        head("Contact · Abdullah Akbar Khalid",
+    (OUT / "more-information.html").write_text(
+        head("More information · Abdullah Akbar Khalid",
              "Send Abdullah Akbar Khalid a message, a long brief or files of up to 200 MB.",
-             SITE + "/contact") + body)
-    print("built contact page")
+             SITE + "/more-information") + body)
+    print("built more-information page")
 
 build_contact()
