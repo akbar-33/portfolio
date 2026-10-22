@@ -70,13 +70,37 @@ def masthead(brand_link=True):
 FOOT = f"""<footer class="site">
   <div class="wrap-wide">
     <span>Built by hand, no template, like everything above.</span>
-    <span><a class="foot-contact" href="/more-information">More information &rarr;</a> · <a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
+    <span><a class="foot-contact" href="/#more-information">More information &rarr;</a> · <a href="mailto:akbar.khalid@insead.edu">akbar.khalid@insead.edu</a> · 2026</span>
   </div>
 </footer>
 <script src="/app.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>"""
+
+# the contact form sits at the bottom of the index; every footer links to it
+CONTACT = """<section class="sec contact-sec" id="more-information">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>More information</h2>
+    <p>A note, a long brief, a deck, a data room extract. Write as much as you need and attach files up to 200 MB each; it all lands in my inbox and I reply from there.</p>
+  <form class="contact-form" id="contact-form" novalidate>
+    <div class="cf-row">
+      <label>Name<input name="name" autocomplete="name" maxlength="200"></label>
+      <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="320"></label>
+    </div>
+    <label>Message<textarea name="message" rows="12" maxlength="50000" placeholder="As long as it needs to be."></textarea></label>
+    <label class="cf-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="cf-drop" id="cf-drop">
+      <input type="file" id="cf-files" multiple>
+      <label for="cf-files"><b>Attach files</b><small>Click or drop here · up to 10 files, 200 MB each</small></label>
+    </div>
+    <ul class="cf-list" id="cf-list"></ul>
+    <button class="more cf-send" type="submit">Send<span class="arrow">&rarr;</span></button>
+    <p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+  </form>
+  </div>
+</section>"""
 
 # ---------------------------------------------------------------- visuals
 FUNNEL = """<div class="visual reveal" aria-label="Screening funnel from five million companies to a ranked shortlist">
@@ -369,7 +393,8 @@ def build_index():
 </section>
 <div id="exhibits">{''.join(arts)}</div>
 {refs}
-{FOOT}"""
+{CONTACT}
+{FOOT.replace('<script src="/app.js"></script>', '<script src="/app.js"></script>\n<script type="module" src="/contact-form.js"></script>')}"""
     (OUT/"index.html").write_text(
         head("Abdullah Akbar Khalid · Portfolio",
              "Systems I built for private-markets work: register-scale screening, covenant checks, AI governance records, self-verifying memos. Every claim cites its source.",
@@ -600,7 +625,7 @@ for e in EX:
     (OUT/f"{e['slug']}.html").write_text(
         head(f"{e['title']} · Abdullah Akbar Khalid", c["lede"], f"{SITE}/{e['slug']}") + body)
 
-(OUT/"vercel.json").write_text('{\n  "cleanUrls": true,\n  "trailingSlash": false,\n  "redirects": [\n    { "source": "/contact", "destination": "/more-information", "permanent": true }\n  ]\n}\n')
+(OUT/"vercel.json").write_text('{\n  "cleanUrls": true,\n  "trailingSlash": false,\n  "redirects": [\n    { "source": "/contact", "destination": "/#more-information", "permanent": true },\n    { "source": "/more-information", "destination": "/#more-information", "permanent": true }\n  ]\n}\n')
 print(f"built index.html + {len(EX)} case pages + vercel.json")
 
 
@@ -774,38 +799,3 @@ def build_ideas():
 
 build_ideas()
 
-# ---------------------------------------------------------------- contact
-def build_contact():
-    body = f"""{masthead()}
-<section class="case-hero">
-  <div class="wrap">
-    <p class="eyebrow reveal">Contact</p>
-    <h1 class="reveal d1">More information</h1>
-    <p class="lede reveal d2">A note, a long brief, a deck, a data room extract. Write as much as you need and attach files up to 200 MB each; it all lands in my inbox and I reply from there.</p>
-  </div>
-</section>
-<section class="sec"><div class="wrap">
-  <form class="contact-form" id="contact-form" novalidate>
-    <div class="cf-row">
-      <label>Name<input name="name" autocomplete="name" maxlength="200"></label>
-      <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="320"></label>
-    </div>
-    <label>Message<textarea name="message" rows="12" maxlength="50000" placeholder="As long as it needs to be."></textarea></label>
-    <label class="cf-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-    <div class="cf-drop" id="cf-drop">
-      <input type="file" id="cf-files" multiple>
-      <label for="cf-files"><b>Attach files</b><small>Click or drop here · up to 10 files, 200 MB each</small></label>
-    </div>
-    <ul class="cf-list" id="cf-list"></ul>
-    <button class="more cf-send" type="submit">Send<span class="arrow">&rarr;</span></button>
-    <p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
-  </form>
-</div></section>
-{FOOT.replace('<script src="/app.js"></script>', '<script src="/app.js"></script>\n<script type="module" src="/contact-form.js"></script>')}"""
-    (OUT / "more-information.html").write_text(
-        head("More information · Abdullah Akbar Khalid",
-             "Send Abdullah Akbar Khalid a message, a long brief or files of up to 200 MB.",
-             SITE + "/more-information") + body)
-    print("built more-information page")
-
-build_contact()

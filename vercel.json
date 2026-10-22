@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/contact", "destination": "/more-information", "permanent": true }
+    { "source": "/contact", "destination": "/#more-information", "permanent": true },
+    { "source": "/more-information", "destination": "/#more-information", "permanent": true }
   ]
 }

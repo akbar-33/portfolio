@@ -493,6 +493,9 @@ footer.site a:hover{border-bottom-color:var(--red)}
 
 /* ---------- contact form ---------- */
 .foot-contact{color:var(--red)}
+.contact-sec{border-top:1px solid var(--rule)}
+.contact-sec .eyebrow{margin-bottom:.6rem}
+.contact-sec .contact-form{margin-top:1.6rem}
 .contact-form{display:grid;gap:1.1rem}
 .contact-form label{display:grid;gap:.35rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .contact-form input,.contact-form textarea{

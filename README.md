@@ -19,7 +19,7 @@ Hand-maintained files:
 | `build.py` | The generator: copy, exhibits, tooltips, architecture diagrams |
 | `style.css` | Shared styles. Dark is the default, light is opt-in via `[data-theme="light"]` |
 | `app.js` | Theme toggle, scroll reveal, floating tooltips |
-| `contact-form.js` | The `/contact` form: uploads files to Vercel Blob, then posts the message to `/api/contact` |
+| `contact-form.js` | The home-page contact form: uploads files to Vercel Blob, then posts the message to `/api/contact` |
 | `api/upload.js`, `api/contact.js`, `api/file.js`, `api/_sign.js` | The only server code: Blob upload tokens, the email via Resend, and signed download links |
 | `vendor/blob-client.js` | `@vercel/blob/client` `upload()` bundled for the browser (see below) |
 | `media/*.png` | Social preview card and the LinkedIn project images |
@@ -86,7 +86,7 @@ Vercel is connected to this repository, so every push to `main` redeploys. Frame
 
 ## Contact form
 
-`/more-information` (linked from every footer as "More information"; `/contact` redirects there) takes a long message plus up to 10 files of 200 MB each and emails them to `akbarthesecond@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute presigned upload URL and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
+The contact form sits at the bottom of the home page (`/#more-information`, linked from every footer as "More information"; the old `/contact` and `/more-information` pages redirect there). It takes a long message plus up to 10 files of 200 MB each and emails them to `akbarthesecond@gmail.com`. Files never pass through a function, which caps a request body at 4.5 MB: the browser asks `api/upload` for a 15-minute presigned upload URL and uploads straight to a **private** Vercel Blob store, then sends the text and the file paths to `api/contact`, which emails through Resend. Files up to 10 MB (25 MB in total) arrive as real attachments; every file is also linked.
 
 Private blobs have no public URL. The email links point at `api/file`, carry an HMAC signature keyed on `LINK_SECRET` (or `RESEND_API_KEY` when that is unset), and expire after 90 days (`LINK_DAYS` in `api/_sign.js`). `api/file` checks the signature and redirects to a Blob URL that is valid for ten minutes, so the bytes never pass through a function. Rotating that key revokes every link already sent.
 
