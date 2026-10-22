@@ -49,6 +49,7 @@ async function diagnose() {
   try {
     var r = await fetch("/api/upload", { cache: "no-store" });
     var d = await r.json().catch(function () { return null; });
+    if (!d && (r.status === 401 || r.status === 403)) return "blocked before reaching the site (HTTP " + r.status + "), often a work or school network filter; try another network";
     if (!d) return "upload function not running (HTTP " + r.status + ")";
     if (!d.BLOB_STORE_ID) return "BLOB_STORE_ID missing: storage is not connected to this project";
     return "storage check: " + d.tokenCheck;
